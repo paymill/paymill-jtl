@@ -297,6 +297,7 @@ class paymill {
 
 	function install() {
 		xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_PAYMENT_PAYMILL_STATUS', 'True', '6', '0', 'xtc_cfg_select_option(array(\'True\', \'False\')', now())");
+		xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_PAYMENT_PAYMILL_ALLOWED', '', '6', '0', now())");
 		xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_PAYMENT_PAYMILL_SORT_ORDER', '0', '6', '0', now())");
         xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_PAYMENT_PAYMILL_PUBLICKEY', '0', '6', '0', now())");
         xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_PAYMENT_PAYMILL_PRIVATEKEY', '0', '6', '0', now())");
@@ -308,7 +309,7 @@ class paymill {
 	}
 
 	function keys() {
-		return array('MODULE_PAYMENT_PAYMILL_STATUS',  'MODULE_PAYMENT_PAYMILL_SORT_ORDER', 'MODULE_PAYMENT_PAYMILL_PUBLICKEY', 'MODULE_PAYMENT_PAYMILL_PRIVATEKEY');
+		return array('MODULE_PAYMENT_PAYMILL_STATUS',  'MODULE_PAYMENT_PAYMILL_SORT_ORDER', 'MODULE_PAYMENT_PAYMILL_PUBLICKEY', 'MODULE_PAYMENT_PAYMILL_PRIVATEKEY', 'MODULE_PAYMENT_PAYMILL_ALLOWED');
 	}
 
     function update_status() {
