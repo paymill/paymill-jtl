@@ -11,5 +11,7 @@ define('MODULE_PAYMENT_PAYMILL_PUBLICKEY_TITLE', 'Öffentlicher API Key');
 define('MODULE_PAYMENT_PAYMILL_PUBLICKEY_DESC', '');
 define('MODULE_PAYMENT_PAYMILL_TEXT_ERROR_100', 'Zahlung konnte nicht ausgeführt werden. Der Zahlungsstatus ist "open"');
 define('MODULE_PAYMENT_PAYMILL_TEXT_ERROR_200', 'Zahlung konnte nicht ausgeführt werden.');
+define('MODULE_PAYMENT_PAYMILL_ALLOWED_TITLE', 'Erlaubt für Zonen');
+define('MODULE_PAYMENT_PAYMILL_ALLOWED_DESC', 'Für alle Zonen leer lassen');
 //
 ?>
