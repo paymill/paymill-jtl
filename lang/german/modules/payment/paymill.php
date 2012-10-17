@@ -13,5 +13,9 @@ define('MODULE_PAYMENT_PAYMILL_TEXT_ERROR_100', 'Zahlung konnte nicht ausgeführt
 define('MODULE_PAYMENT_PAYMILL_TEXT_ERROR_200', 'Zahlung konnte nicht ausgeführt werden.');
 define('MODULE_PAYMENT_PAYMILL_ALLOWED_TITLE', 'Erlaubt für Zonen');
 define('MODULE_PAYMENT_PAYMILL_ALLOWED_DESC', 'Für alle Zonen leer lassen');
+define('MODULE_PAYMENT_PAYMILL_BRIDGE_URL_TITLE', 'Bridge URL');
+define('MODULE_PAYMENT_PAYMILL_BRIDGE_URL_DESC', '');
+define('MODULE_PAYMENT_PAYMILL_API_URL_TITLE', 'API URL');
+define('MODULE_PAYMENT_PAYMILL_API_URL_DESC', '');
 //
 ?>

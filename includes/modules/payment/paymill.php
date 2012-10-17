@@ -44,53 +44,45 @@ class paymill {
 		$form_array = array();
 
 		// CC Number
-		$form_array = array_merge(
-            $form_array, 
-            array(
-                array(
-                    'title' => 'Kreditkarten-Nummer', 
-                    'field' => '<input type="text" id="card-number"/>'
-                )
-            )
+		$form_array[] = array(
+            'title' => 'Kreditkarten-Nummer', 
+            'field' => '<input type="text" id="card-number"/>'
         );
 
 		// expire date
-		$form_array = array_merge(
-            $form_array, 
-            array(
-                array(
-                    'title' => 'Gültigkeitsdatum', 
-                    'field' => '<select id="card-expiry-month">' . $months_string . '</select>' .'&nbsp;'.'<select id="card-expiry-year">' . $years_string . '</select>' 
-                )
-            )
+		$form_array[] = array(
+            'title' => 'G&uuml;ltigkeitsdatum', 
+            'field' => '<select id="card-expiry-month">' 
+                . $months_string 
+                . '</select>' 
+                . '&nbsp;' 
+                . '<select id="card-expiry-year">' . $years_string . '</select>' 
         );
 
 		// CVV
-		$form_array = array_merge(
-            $form_array, 
-            array(
-                array(
-                    'title' => 'CVC-Code' . ' ' 
-                        . '<a href="javascript:popupWindow(\''.xtc_href_link(FILENAME_POPUP_CVV, '', 'SSL').'\')">'
-                        . 'Info' . '</a>', 
-                    'field' => '<input type="text" size="4" id="card-cvc" />'
-                )
-            )
+		$form_array[] = array(
+            'title' => 'CVC-Code' . ' ' 
+                . '<a href="javascript:popupWindow(\''.xtc_href_link(FILENAME_POPUP_CVV, '', 'SSL').'\')">'
+                . 'Info' . '</a>', 
+            'field' => '<input type="text" size="4" id="card-cvc" />'
         );
 
 		// Paymill token
-		$form_array = array_merge($form_array, array (array ('title' => '', 'field' => '<input type="hidden" name="paymill_token" id="paymill_token" />')));
+		$form_array[] = array(
+		    'title' => '', 
+		    'field' => '<input type="hidden" name="paymill_token" id="paymill_token" />'
+		);
 
 		// paymill javascript
 		$script ='<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>'
 		. '<script type="text/javascript">' 
 		. 'var PAYMILL_PUBLIC_KEY = "' . MODULE_PAYMENT_PAYMILL_PUBLICKEY . '";'
 		. '</script>'
-		. '<script type="text/javascript" src="https://bridge.paymill.de/"></script>' 
+		. '<script type="text/javascript" src="' . MODULE_PAYMENT_PAYMILL_BRIDGE_URL . '"></script>' 
 		. '<script type="text/javascript">' 
 		. 'function paymillFormHanlder() { 
             if ($("input[name=\'payment\'][value=\'paymill\']").attr("checked") == "checked") {
-				// javascript_validation
+				// javascript_validation 
 				if (!paymill.validateExpiry($("#card-expiry-month option:selected").val(), $("#card-expiry-year option:selected").val())) {
 					alert("Das Gültigkeitsdatum ihrer Kreditkarte ist ungültig. Bitte korrigieren Sie Ihre Angaben.");
 					return false;
@@ -129,28 +121,18 @@ class paymill {
 		. '$("#checkout_payment").attr("onSubmit", "return paymillFormHanlder();")'
 		. '</script>';
 
-		$form_array = array_merge(
-            $form_array, 
-            array(
-                array(
-                    'title' => "", 
-                    'field' => $script
-                )
-            )
+		$form_array[] = array(
+            'title' => "", 
+            'field' => $script
         );
 
 		// cards
 		$this->accepted .= xtc_image(DIR_WS_ICONS . 'cc_visa.jpg');
 		$this->accepted .= xtc_image(DIR_WS_ICONS . 'cc_mastercard.jpg');
 					
-		$form_array = array_merge(
-            array(
-                array(
-                    'title' => MODULE_PAYMENT_PAYMILL_ACCEPTED_CARDS,
-                    'field' => $this->accepted
-                )
-            ),
-            $form_array
+		$form_array[] = array(
+            'title' => MODULE_PAYMENT_PAYMILL_ACCEPTED_CARDS,
+            'field' => $this->accepted
         );
 
 		$selection = array(
@@ -227,7 +209,7 @@ class paymill {
 
         // configuration
         $paymillPrivateApiKey = MODULE_PAYMENT_PAYMILL_PRIVATEKEY;
-        $paymillApiEndpoint = "https://api.paymill.de/v1/";
+        $paymillApiEndpoint = MODULE_PAYMENT_PAYMILL_API_URL;
 
         // Access objects for the Paymill API
         $clientsObject = new Services_Paymill_Clients(
@@ -301,6 +283,8 @@ class paymill {
 		xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_PAYMENT_PAYMILL_SORT_ORDER', '0', '6', '0', now())");
         xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_PAYMENT_PAYMILL_PUBLICKEY', '0', '6', '0', now())");
         xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_PAYMENT_PAYMILL_PRIVATEKEY', '0', '6', '0', now())");
+        xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_PAYMENT_PAYMILL_BRIDGE_URL', 'https://bridge.paymill.de/', '6', '0', now())");
+        xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_PAYMENT_PAYMILL_API_URL', 'https://api.paymill.de/v1/', '6', '0', now())");
 
 	}
 
@@ -309,7 +293,7 @@ class paymill {
 	}
 
 	function keys() {
-		return array('MODULE_PAYMENT_PAYMILL_STATUS',  'MODULE_PAYMENT_PAYMILL_SORT_ORDER', 'MODULE_PAYMENT_PAYMILL_PUBLICKEY', 'MODULE_PAYMENT_PAYMILL_PRIVATEKEY', 'MODULE_PAYMENT_PAYMILL_ALLOWED');
+		return array('MODULE_PAYMENT_PAYMILL_STATUS',  'MODULE_PAYMENT_PAYMILL_SORT_ORDER', 'MODULE_PAYMENT_PAYMILL_PUBLICKEY', 'MODULE_PAYMENT_PAYMILL_PRIVATEKEY', 'MODULE_PAYMENT_PAYMILL_ALLOWED', 'MODULE_PAYMENT_PAYMILL_BRIDGE_URL', 'MODULE_PAYMENT_PAYMILL_API_URL');
 	}
 
     function update_status() {
