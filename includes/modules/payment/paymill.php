@@ -126,9 +126,11 @@ class paymill {
             'field' => $script
         );
 
+        $resources_dir = HTTP_SERVER . DIR_WS_CATALOG . '/includes/modules/payment/paymill/resources/';
+        
 		// cards
-		$this->accepted .= xtc_image(DIR_WS_ICONS . 'cc_visa.jpg');
-		$this->accepted .= xtc_image(DIR_WS_ICONS . 'cc_mastercard.jpg');
+		$this->accepted .= xtc_image($resources_dir . 'icon_mastercard.png');
+		$this->accepted .= " " . xtc_image($resources_dir . 'icon_visa.png');
 					
 		$form_array[] = array(
             'title' => MODULE_PAYMENT_PAYMILL_ACCEPTED_CARDS,
@@ -278,7 +280,7 @@ class paymill {
 	}
 
 	function install() {
-		xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_PAYMENT_PAYMILL_STATUS', 'True', '6', '0', 'xtc_cfg_select_option(array(\'True\', \'False\'))', now())");
+		xtc_db_query("insert into ".TABLE_CONFIGURATION." ( configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_PAYMENT_PAYMILL_STATUS', 'True', '6', '1', 'xtc_cfg_select_option(array(\'True\', \'False\'), ', now())");
 		xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_PAYMENT_PAYMILL_ALLOWED', '', '6', '0', now())");
 		xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_PAYMENT_PAYMILL_SORT_ORDER', '0', '6', '0', now())");
         xtc_db_query("insert into ".TABLE_CONFIGURATION." (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_PAYMENT_PAYMILL_PUBLICKEY', '0', '6', '0', now())");
