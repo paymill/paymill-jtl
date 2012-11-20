@@ -1,0 +1,3 @@
+[submodule "includes/modules/payment/paymill/lib/v2"]
+	path = includes/modules/payment/paymill/lib/v2
+	url = https://github.com/Paymill/Paymill-PHP.git

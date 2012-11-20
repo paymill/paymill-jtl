@@ -16,7 +16,19 @@ class paymill {
 
     function selection() {
 
-		global $order;
+		global $order, $xtPrice;
+
+        if ($_SESSION['customers_status']['customers_status_show_price_tax'] == 0 && $_SESSION['customers_status']['customers_status_add_tax_ot'] == 1) {
+            $total = $order->info['total'] + $order->info['tax'];
+            die($order->info['tax']);
+        } else {
+            $total = $order->info['total'];
+        }
+        if ($_SESSION['currency'] == $order->info['currency']) {
+            $amount = round($total, $xtPrice->get_decimal_places($order->info['currency']));
+        } else {
+            $amount = round($xtPrice->xtcCalculateCurrEx($total, $order->info['currency']), $xtPrice->get_decimal_places($order->info['currency']));
+        }
 
         // build date select options
 		for ($i = 1; $i < 13; $i ++) {
@@ -103,7 +115,9 @@ class paymill {
             		number: $("#card-number").val(),
             		exp_month: $("#card-expiry-month option:selected").val(), 
             		exp_year: $("#card-expiry-year option:selected").val(), 
-            		cvc: $("#card-cvc").val()
+            		cvc: $("#card-cvc").val(),
+                    amount: "' . floatval($amount) . '",
+                    currency: "' . strtoupper($order->info['currency']) . '",
            		}, PaymillResponseHandler);
 		 		return false; 
             }
@@ -180,78 +194,31 @@ class paymill {
 
 	function before_process() {
 		global $order, $xtPrice;
-		
-		// include paymill wrapper
-		require_once dirname(__FILE__) . '/paymill/lib/Services/Paymill/Creditcards.php';
-		require_once dirname(__FILE__) . '/paymill/lib/Services/Paymill/Transactions.php';
-		require_once dirname(__FILE__) . '/paymill/lib/Services/Paymill/Clients.php';
-
-		// read the token
-		$paymill_token = $_POST['paymill_token'];
-        $amount = $_POST['paymill_amount'];
-
-		// setup client params
-        $clientParams = array(
-            'email' => $order->customer['email_address'],
-            'description' => $order->customer['lastname'] . ', ' . $order->customer['firstname']
-        );
-
-        // setup credit card params
-        $creditcardParams = array(
-            'token' => $paymill_token
-        );
-
-        // setup transaction params
-
-        $transactionParams = array(
-            'amount' => $amount,
-            'currency' => strtolower($order->info['currency']),
-            'description' => $order->customer['lastname'] . ', ' . $order->customer['firstname']
-        );
 
         // configuration
         $paymillPrivateApiKey = MODULE_PAYMENT_PAYMILL_PRIVATEKEY;
         $paymillApiEndpoint = MODULE_PAYMENT_PAYMILL_API_URL;
 
-        // Access objects for the Paymill API
-        $clientsObject = new Services_Paymill_Clients(
-            $paymillPrivateApiKey, $paymillApiEndpoint
-        );
-        $creditcardsObject = new Services_Paymill_Creditcards(
-            $paymillPrivateApiKey, $paymillApiEndpoint
-        );
-        $transactionsObject = new Services_Paymill_Transactions(
-            $paymillPrivateApiKey, $paymillApiEndpoint
-        );
+        // process the payment
+        $result = $this->_processPayment(array(
+            'libVersion' => 'v2',
+            'token' => $_POST['paymill_token'],
+            'amount' => $_POST['paymill_amount'],
+            'currency' => strtolower($order->info['currency']),
+            'name' => $order->customer['lastname'] . ', ' . $order->customer['firstname'],
+            'email' => $order->customer['email_address'],
+            'description' => $order->customer['lastname'] . ', ' . $order->customer['firstname'],
+            'libBase' => dirname(__FILE__) . '/paymill/lib/v2/lib/',
+            'privateKey' => MODULE_PAYMENT_PAYMILL_PRIVATEKEY,
+            'apiUrl' => MODULE_PAYMENT_PAYMILL_API_URL,
+            'loggerCallback' => array('paymill', 'logAction')
+        )); 
 		
-		// perform conection to the Paymill API and trigger the payment
-        try {
-            // create card
-            $creditcard = $creditcardsObject->create($creditcardParams);
+		if (!$result) {
+            xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, 'step=step2&payment_error=paymill&error=200', 'SSL', true, false));
+        }
 
-            // create client
-            $clientParams['creditcard'] = $creditcard['id'];
-            $client = $clientsObject->create($clientParams);
-
-            // create transaction
-            $transactionParams['client'] = $client['id'];
-            $transaction = $transactionsObject->create($transactionParams);
-
-            // check if transaction was successful, otherwise redirect to payment page
-            if (is_array($transaction) && array_key_exists('status', $transaction)) {
-                if ($transaction['status'] == "closed") {
-                    return true;
-                } elseif ($transaction['status'] == "open") {
-                	xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, 'step=step2&payment_error=paymill&error=100', 'SSL', true, false));
-                } else {
-                	xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, 'step=step2&payment_error=paymill&error=200', 'SSL', true, false));
-                }
-            } else {
-            	xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, 'step=step2&payment_error=paymill&error=200', 'SSL', true, false));
-            }
-        } catch (Services_Paymill_Exception $ex) {
-        	xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, 'step=step2&payment_error=paymill&error=200', 'SSL', true, false));
-        } 
+        return true;
 	}
 
     function get_error() {
@@ -308,5 +275,116 @@ class paymill {
 
     function after_process() {
     }
+
+    /**
+     * Processes the payment against the paymill API
+     * @param $params array The settings array
+     * @return boolean
+     */
+    private function _processPayment($params) {  
+        
+        // setup the logger
+        $logger = $params['loggerCallback'];
+               
+        // reformat paramters
+        $params['currency'] = strtolower($params['currency']);
+        
+        // setup client params
+        $clientParams = array(
+            'email' => $params['email'],
+            'description' => $params['name']
+        );
+
+        // setup credit card params
+        $creditcardParams = array(
+            'token' => $params['token']
+        );
+
+        // setup transaction params
+        $transactionParams = array(
+            'amount' => $params['amount'],
+            'currency' => $params['currency'],
+            'description' => $params['description']
+        );
+                
+        require_once $params['libBase'] . 'Services/Paymill/Transactions.php';
+        require_once $params['libBase'] . 'Services/Paymill/Clients.php';
+        require_once $params['libBase'] . 'Services/Paymill/Payments.php';
+
+        $clientsObject = new Services_Paymill_Clients(
+            $params['privateKey'], $params['apiUrl']
+        );
+        $transactionsObject = new Services_Paymill_Transactions(
+            $params['privateKey'], $params['apiUrl']
+        );
+        $creditcardsObject = new Services_Paymill_Payments(
+            $params['privateKey'], $params['apiUrl']
+        );
+        
+        // perform conection to the Paymill API and trigger the payment
+        try {
+
+            // create card
+            $creditcard = $creditcardsObject->create($creditcardParams);
+            if (!isset($creditcard['id'])) {
+                call_user_func_array($logger, array("No creditcard created: " . var_export($creditcard, true) . " with params " . var_export($creditcardParams, true)));
+                return false;
+            } else {
+                call_user_func_array($logger, array("Creditcard created: " . $creditcard['id']));
+            }
+
+            // create client
+            $clientParams['creditcard'] = $creditcard['id'];
+            $client = $clientsObject->create($clientParams);
+            if (!isset($client['id'])) {
+                call_user_func_array($logger, array("No client created" . var_export($client, true)));
+                return false;
+            } else {
+                call_user_func_array($logger, array("Client created: " . $client['id']));
+            }
+
+            // create transaction
+            $transactionParams['client'] = $client['id'];
+            $transactionParams['payment'] = $creditcard['id'];
+            $transaction = $transactionsObject->create($transactionParams);
+            if (!isset($transaction['id'])) {
+                call_user_func_array($logger, array("No transaction created" . var_export($transaction, true)));
+                return false;
+            } else {
+                call_user_func_array($logger, array("Transaction created: " . $transaction['id']));
+            }
+
+            // check result
+            if (is_array($transaction) && array_key_exists('status', $transaction)) {
+                if ($transaction['status'] == "closed") {
+                    // transaction was successfully issued
+                    return true;
+                } elseif ($transaction['status'] == "open") {
+                    // transaction was issued but status is open for any reason
+                    call_user_func_array($logger, array("Status is open."));
+                    return false;
+                } else {
+                    // another error occured
+                    call_user_func_array($logger, array("Unknown error." . var_export($transaction, true)));
+                    return false;
+                }
+            } else {
+                // another error occured
+                call_user_func_array($logger, array("Transaction could not be issued."));
+                return false;
+            }
+
+        } catch (Services_Paymill_Exception $ex) {
+            // paymill wrapper threw an exception
+            call_user_func_array($logger, array("Exception thrown from paymill wrapper: " . $ex->getMessage()));
+            return false;
+        }        
+        
+        return true;
+    }
+
+    public function logAction($message) {
+
+    } 
 }
 ?>
