@@ -384,7 +384,12 @@ class paymill {
     }
 
     public function logAction($message) {
-
+        $logfile = dirname(__FILE__) . '/paymill/log.txt';
+        if (file_exists($logfile ) && is_writable($logfile)) {
+            $handle = fopen($logfile, 'a');
+            fwrite($handle, "[" . date(DATE_RFC822) . "] " . $message . "\n");
+            fclose($handle);
+        }
     } 
 }
 ?>
