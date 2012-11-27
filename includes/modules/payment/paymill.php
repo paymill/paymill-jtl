@@ -285,10 +285,7 @@ class paymill {
         
         // setup the logger
         $logger = $params['loggerCallback'];
-               
-        // reformat paramters
-        $params['currency'] = strtolower($params['currency']);
-        
+                       
         // setup client params
         $clientParams = array(
             'email' => $params['email'],
