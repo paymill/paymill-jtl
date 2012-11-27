@@ -204,7 +204,7 @@ class paymill {
             'libVersion' => 'v2',
             'token' => $_POST['paymill_token'],
             'amount' => $_POST['paymill_amount'],
-            'currency' => strtolower($order->info['currency']),
+            'currency' => strtoupper($order->info['currency']),
             'name' => $order->customer['lastname'] . ', ' . $order->customer['firstname'],
             'email' => $order->customer['email_address'],
             'description' => $order->customer['lastname'] . ', ' . $order->customer['firstname'],
