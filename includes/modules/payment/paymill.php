@@ -124,7 +124,7 @@ class paymill {
 		 } ' 
 		. 'function PaymillResponseHandler(error, result) { 
 			if (error) {
-				console.log(error.apierror);
+				console.log("An API error occured: " + error.apierror);
 			} else {
 				console.log(result.token);
 				$("#paymill_token").val(result.token);
@@ -185,7 +185,7 @@ class paymill {
             $amount = round($xtPrice->xtcCalculateCurrEx($total, $order->info['currency']), $xtPrice->get_decimal_places($order->info['currency']));
         }
 
-        $paymill_amount = $amount * 100;
+        $paymill_amount = round($amount * 100);
 
 		$process_button_string = xtc_draw_hidden_field('paymill_token', $this->paymill_token).xtc_draw_hidden_field('paymill_amount', $paymill_amount);
 
@@ -293,7 +293,7 @@ class paymill {
         );
 
         // setup credit card params
-        $creditcardParams = array(
+        $paymentParams = array(
             'token' => $params['token']
         );
 
@@ -314,24 +314,21 @@ class paymill {
         $transactionsObject = new Services_Paymill_Transactions(
             $params['privateKey'], $params['apiUrl']
         );
-        $creditcardsObject = new Services_Paymill_Payments(
+        $paymentsObject = new Services_Paymill_Payments(
             $params['privateKey'], $params['apiUrl']
         );
         
         // perform conection to the Paymill API and trigger the payment
         try {
 
-            // create card
-            $creditcard = $creditcardsObject->create($creditcardParams);
-            if (!isset($creditcard['id'])) {
-                call_user_func_array($logger, array("No creditcard created: " . var_export($creditcard, true) . " with params " . var_export($creditcardParams, true)));
-                return false;
-            } else {
-                call_user_func_array($logger, array("Creditcard created: " . $creditcard['id']));
-            }
+            $allParams = array(
+                'clientParams' => $clientParams,
+                'paymentParams' => $paymentParams,
+                'transactionParams' => $transactionParams
+            );
+            
+            call_user_func_array($logger, array("Try to issue new transaction with: " . var_export($allParams, true)));
 
-            // create client
-            $clientParams['creditcard'] = $creditcard['id'];
             $client = $clientsObject->create($clientParams);
             if (!isset($client['id'])) {
                 call_user_func_array($logger, array("No client created" . var_export($client, true)));
@@ -340,9 +337,19 @@ class paymill {
                 call_user_func_array($logger, array("Client created: " . $client['id']));
             }
 
+            // create card
+            $paymentParams['client'] = $client['id'];
+            $payment = $paymentsObject->create($paymentParams);
+            if (!isset($payment['id'])) {
+                call_user_func_array($logger, array("No payment (credit card) created: " . var_export($payment, true) . " with params " . var_export($paymentParams, true)));
+                return false;
+            } else {
+                call_user_func_array($logger, array("Payment (credit card) created: " . $payment['id']));
+            }            
+
             // create transaction
-            $transactionParams['client'] = $client['id'];
-            $transactionParams['payment'] = $creditcard['id'];
+            //$transactionParams['client'] = $client['id'];
+            $transactionParams['payment'] = $payment['id'];
             $transaction = $transactionsObject->create($transactionParams);
             if (!isset($transaction['id'])) {
                 call_user_func_array($logger, array("No transaction created" . var_export($transaction, true)));
