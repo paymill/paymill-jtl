@@ -2,7 +2,7 @@
 
 require_once(dirname(__FILE__) . '/../helpers/Util.php');
 require_once(dirname(__FILE__) . '/../services/RequestService.php');
-require_once(dirname(__FILE__) . '/../lib/Services/Paymill/Transactions.php');
+require_once(dirname(__FILE__) . '/../v2/lib/Services/Paymill/Transactions.php');
 require_once(PFAD_ROOT . PFAD_INCLUDES_MODULES . 'PaymentMethod.class.php');
 
 class Paymill extends PaymentMethod 
