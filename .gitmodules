@@ -1,0 +1,3 @@
+[submodule "pi_paymill/version/100/paymentmethod/classes/v2"]
+	path = pi_paymill/version/100/paymentmethod/classes/v2
+	url = https://github.com/Paymill/Paymill-PHP.git
