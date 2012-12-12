@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+    <Name>Paymill</Name>
+    <Description>Fügt Ihrem Shop die Paymill Zahlweisen Kreditkarte und das Elektronische Lastschriftverfahren hinzu.</Description>
+    <Author>PayIntelligent GmbH</Author>
+    <URL>http://www.payintelligent.de</URL>
+    <XMLVersion>100</XMLVersion>
+    <ShopVersion>315</ShopVersion>
+    <PluginID>pi_paymill</PluginID>
+    <Install>
+        <Version nr="100">
+            <CreateDate>2012-12-10</CreateDate>
+        </Version>
+        <Adminmenu>
+            <Settingslink sort="1">
+                <Name>Einstellungen</Name>
+                <Setting type="text" initialValue="" sort="1" conf="Y">
+                    <Name>Paymill Private Key</Name>
+                    <Description>Der Private Key, welchen Sie von Paymill erhalten haben.</Description>
+                    <ValueName>pi_paymill_private_key</ValueName>
+                </Setting>
+                <Setting type="text" initialValue="" sort="2" conf="Y">
+                    <Name>Paymill Public Key</Name>
+                    <Description>Der Public Key, welchen Sie von Paymill erhalten haben.</Description>
+                    <ValueName>pi_paymill_public_key</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y">
+                    <Name>Paymill debug mode</Name>
+                    <Description>Debug Modus, für die schnelle Fehlerfindung.</Description>
+                    <ValueName>pi_paymill_debug_mode</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="text" initialValue="https://bridge.paymill.de/" sort="4" conf="Y">
+                    <Name>Paymill bridge URL</Name>
+                    <Description>Die URL zur Payment bridge</Description>
+                    <ValueName>pi_paymill_payment_bridge</ValueName>
+                </Setting>
+                <Setting type="text" initialValue="https://api.paymill.de/v2/" sort="5" conf="Y">
+                    <Name>Paymill API Endpoint</Name>
+                    <Description>Der Paymill api endpoint</Description>
+                    <ValueName>pi_paymill_api_endpoint</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="v2" sort="6" conf="Y">
+                    <Name>Paymill Label anzeigen</Name>
+                    <Description>Paymill label im Checkout anzeigen</Description>
+                    <ValueName>pi_paymill_show_label</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+            </Settingslink>
+        </Adminmenu>
+        <Hooks>
+            <Hook id="8">payment_selection.php</Hook>
+            <Hook id="10">payment_check.php</Hook>
+            <Hook id="140">payment_error.php</Hook>
+        </Hooks>
+        <PaymentMethod>
+            <Method>
+                <Name>paymill_cc</Name>
+                <Sort>0</Sort>
+                <SendMail>0</SendMail>
+                <Provider>Paymill</Provider>
+                <TSCode>OTHER</TSCode>
+                <PreOrder>1</PreOrder>
+                <Soap>0</Soap>
+                <Curl>1</Curl>
+                <Sockets>0</Sockets>
+                <ClassFile>classes/payment/Paymill.php</ClassFile>
+                <ClassName>Paymill</ClassName>
+                <TemplateFile>template/finish.tpl</TemplateFile>
+                <MethodLanguage iso="GER">
+                    <Name>Kreditkartenzahlung</Name>
+                    <ChargeName>Paymill CC Gebühr</ChargeName>
+                </MethodLanguage>
+                <MethodLanguage iso="ENG">
+                    <Name>Creditcard payment</Name>
+                    <ChargeName>Paymill cc fee</ChargeName>
+                </MethodLanguage>
+            </Method>
+            <Method>
+                <Name>paymill_elv</Name>
+                <Sort>0</Sort>
+                <SendMail>0</SendMail>
+                <Provider>Paymill</Provider>
+                <TSCode>OTHER</TSCode>
+                <PreOrder>1</PreOrder>
+                <Soap>0</Soap>
+                <Curl>1</Curl>
+                <Sockets>0</Sockets>
+                <ClassFile>classes/payment/Paymill.php</ClassFile>
+                <ClassName>Paymill</ClassName>
+                <TemplateFile>template/finish.tpl</TemplateFile>
+                <MethodLanguage iso="GER">
+                    <Name>Elektronisches Lastschriftverfahren</Name>
+                    <ChargeName>Paymill ELV Gebühr</ChargeName>
+                </MethodLanguage>
+                <MethodLanguage iso="ENG">
+                    <Name>Direct debit</Name>
+                    <ChargeName>Paymill ELV fee</ChargeName>
+                </MethodLanguage>
+            </Method>
+        </PaymentMethod>
+        <Locales>
+            <Variable>
+                <Name>___Credit_Card_Number___</Name>
+                <Description>Credit Card Number</Description>
+                <VariableLocalized iso="GER">Kreditkartennummer</VariableLocalized>
+                <VariableLocalized iso="ENG">Credit Card Number</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>___Card_Verification_Number___</Name>
+                <Description>Card Verification Number</Description>
+                <VariableLocalized iso="GER">Kreditkarten-Prüfnummer</VariableLocalized>
+                <VariableLocalized iso="ENG">Card Verification Number</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>___Expiration_Date___</Name>
+                <Description>Expiration Date</Description>
+                <VariableLocalized iso="GER">Gültigkeitsdatum</VariableLocalized>
+                <VariableLocalized iso="ENG">Expiration Date</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>___Credit_Card_Holder___</Name>
+                <Description>Credit card holder</Description>
+                <VariableLocalized iso="GER">Karteninhaber</VariableLocalized>
+                <VariableLocalized iso="ENG">Credit Card Holder</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>___Account_Owner___</Name>
+                <Description>Account owner</Description>
+                <VariableLocalized iso="GER">Kontoinhaber</VariableLocalized>
+                <VariableLocalized iso="ENG">Account owner</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>___Account_Number___</Name>
+                <Description>Account number</Description>
+                <VariableLocalized iso="GER">Kontonummer</VariableLocalized>
+                <VariableLocalized iso="ENG">Account owner</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>___Sort_Code___</Name>
+                <Description>Sort code</Description>
+                <VariableLocalized iso="GER">Bankleitzahl</VariableLocalized>
+                <VariableLocalized iso="ENG">Sort code</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Credit_Card_Number_Invalid</Name>
+                <Description>Invalid credit card error</Description>
+                <VariableLocalized iso="GER">Deine Kreditkartennummer ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="ENG">Your credit card number is invalid.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Credit_Card_Expiration_Date_Invalid</Name>
+                <Description>Invalid expiration date error</Description>
+                <VariableLocalized iso="GER">Das Gültigkeitsdatum ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="ENG">The expiration date is invalid.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Credit_Card_Verfication_Number_Invalid</Name>
+                <Description>Invalid verfication number error</Description>
+                <VariableLocalized iso="GER">Die Kartenprüfnummer ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="ENG">The verification number is invalid.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Credit_Card_Holder_Invalid</Name>
+                <Description>Invalid credit card holder error</Description>
+                <VariableLocalized iso="GER">Bitte geben Sie den Karteninhaber an.</VariableLocalized>
+                <VariableLocalized iso="ENG">Credit Card Holder is missing.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Account_Holder_Invalid</Name>
+                <Description>Invalid account holder error</Description>
+                <VariableLocalized iso="GER">Der Kontoinhaber muss ausgefüllt sein.</VariableLocalized>
+                <VariableLocalized iso="ENG">The account holder must be filled out.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Sort_Code_Invalid</Name>
+                <Description>Invalid sort code error</Description>
+                <VariableLocalized iso="GER">Die Bankleitzahl ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="ENG">The sort code is invalid.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Account_Number_Invalid</Name>
+                <Description>Invalid account number error</Description>
+                <VariableLocalized iso="GER">Die Kontonummer ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="ENG">The account number is invalid.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Payment_Processing_Error</Name>
+                <Description>Payment processingr error</Description>
+                <VariableLocalized iso="GER">Die Zahlung konnte nicht ausgeführt werden, bitte versuche es später erneut. Fehler: </VariableLocalized>
+                <VariableLocalized iso="ENG">Your payment was not processed. Please try again later. Error: </VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Invalid_Token_Error</Name>
+                <Description>Invalid token error</Description>
+                <VariableLocalized iso="GER">Bei der erstellung Ihres Token trat ein Fehler auf.</VariableLocalized>
+                <VariableLocalized iso="ENG">During the creation of your token, an error occurred.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Paymill_Label_Credit_Card</Name>
+                <Description>Paymill cc label text</Description>
+                <VariableLocalized iso="GER">Sichere Kreditkartenzahlung powered by</VariableLocalized>
+                <VariableLocalized iso="ENG">Secure credit card payment powered by</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Paymill_Label_Direct_Debit</Name>
+                <Description>Paymill elv label text</Description>
+                <VariableLocalized iso="GER">Sicheres Lastschriftverfahren powered by</VariableLocalized>
+                <VariableLocalized iso="ENG">Secure direct debit payment powered by</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Order_Generate_Error</Name>
+                <Description>Generate order error</Description>
+                <VariableLocalized iso="GER">Bei der erstellung der Bestellung trat ein Fehler auf, bitte kontaktieren Sie den Shopbetreiber.</VariableLocalized>
+                <VariableLocalized iso="ENG">With the creation of the order was an error, please contact the store owner.</VariableLocalized>
+            </Variable>
+        </Locales>
+    </Install>
+</jtlshop3plugin>
+
