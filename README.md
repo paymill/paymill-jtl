@@ -12,7 +12,7 @@ Paymill extension (credit card and direct debit) for JTL (Version 3.1.5).
 
 Use the following command to clone the complete repository including the submodules:
 
-    git clone --recursive https://github.com/Paymill/Paymill-Oxid.git
+    git clone --recursive https://github.com/Paymill/Paymill-JTL.git
 
 Afterwards merge the contents of the Paymill-JTL-Module directory with your JTL plugins folder (<shop_root>/includes/plugins).
 
