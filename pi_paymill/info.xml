@@ -8,8 +8,8 @@
     <ShopVersion>315</ShopVersion>
     <PluginID>pi_paymill</PluginID>
     <Install>
-        <Version nr="100">
-            <CreateDate>2012-12-10</CreateDate>
+        <Version nr="101">
+            <CreateDate>2012-01-03</CreateDate>
         </Version>
         <Adminmenu>
             <Settingslink sort="1">
@@ -68,7 +68,7 @@
                 <TSCode>OTHER</TSCode>
                 <PreOrder>1</PreOrder>
                 <Soap>0</Soap>
-                <Curl>1</Curl>
+                <Curl>0</Curl>
                 <Sockets>0</Sockets>
                 <ClassFile>classes/payment/Paymill.php</ClassFile>
                 <ClassName>Paymill</ClassName>
@@ -90,7 +90,7 @@
                 <TSCode>OTHER</TSCode>
                 <PreOrder>1</PreOrder>
                 <Soap>0</Soap>
-                <Curl>1</Curl>
+                <Curl>0</Curl>
                 <Sockets>0</Sockets>
                 <ClassFile>classes/payment/Paymill.php</ClassFile>
                 <ClassName>Paymill</ClassName>
