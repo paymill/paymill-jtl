@@ -1,7 +1,7 @@
 Paymill-xtCommerce-3
 ====================
 
-xtCommerce (Version 3.x) Plugin für Paymill credit card payments
+xtCommerce (Version 3.x) Plugin for Paymill credit card and elv payments
 
 # Installation
 
