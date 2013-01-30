@@ -19,7 +19,10 @@
         </Version>
         <Version nr="103">
             <CreateDate>2013-01-04</CreateDate>
-        </Version>        
+        </Version>
+        <Version nr="104">
+            <CreateDate>2013-01-30</CreateDate>
+        </Version>                      
         <Adminmenu>
             <Settingslink sort="1">
                 <Name>Einstellungen</Name>
