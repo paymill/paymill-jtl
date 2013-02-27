@@ -16,16 +16,16 @@ class paymill
         } else {
             $total = $order->info['total'];
         }
-        
+
         if ($_SESSION['currency'] == $order->info['currency']) {
             $amount = round($total, $xtPrice->get_decimal_places($order->info['currency']));
         } else {
             $amount = round(
-                $xtPrice->xtcCalculateCurrEx($total, $order->info['currency']), 
+                $xtPrice->xtcCalculateCurrEx($total, $order->info['currency']),
                 $xtPrice->get_decimal_places($order->info['currency'])
             );
         }
-        
+
         $_SESSION['paymill_token'] = $_POST['paymill_token'];
         $_SESSION['pi']['paymill_amount'] = $amount;
     }
@@ -49,11 +49,11 @@ class paymill
     {
         global $_GET;
         $error = '';
-        
+
         if (isset($_GET['error'])) {
             $error = urldecode($_GET['error']);
         }
-        
+
         switch ($error) {
             case '100':
                 $error_text['error'] = utf8_decode(MODULE_PAYMENT_PAYMILL_TEXT_ERROR_100);
@@ -62,7 +62,7 @@ class paymill
                 $error_text['error'] = utf8_decode(MODULE_PAYMENT_PAYMILL_TEXT_ERROR_200);
                 break;
         }
-        
+
         return $error_text;
     }
 
@@ -79,13 +79,13 @@ class paymill
     function after_process()
     {
         global $order, $insert_id;
-        
+
         if ($_SESSION['customers_status']['customers_status_show_price_tax'] == 0 && $_SESSION['customers_status']['customers_status_add_tax_ot'] == 1) {
             $total = $order->info['total'] + $order->info['tax'];
         } else {
             $total = $order->info['total'];
         }
-        
+
         // process the payment
         $result = $this->_processPayment(array(
             'libVersion' => 'v2',
@@ -105,9 +105,9 @@ class paymill
             xtc_db_query("UPDATE " . TABLE_ORDERS . " SET orders_status = '99' WHERE orders_id = '" . $insert_id . "'");
             xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, 'step=step2&payment_error=' . $this->code . '&error=200', 'SSL', true, false));
         }
-        
+
         unset($_SESSION['pi']);
-        
+
         return true;
     }
 
@@ -186,6 +186,11 @@ class paymill
             //$transactionParams['client'] = $client['id'];
             $transactionParams['payment'] = $payment['id'];
             $transaction = $transactionsObject->create($transactionParams);
+            if(isset($transaction['data']['response_code'])){
+                call_user_func_array($logger, array("An Error occured: " . var_export($transaction, true)));
+                return false;
+            }
+
             if (!isset($transaction['id'])) {
                 call_user_func_array($logger, array("No transaction created" . var_export($transaction, true)));
                 return false;
