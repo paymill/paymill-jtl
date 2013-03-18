@@ -32,6 +32,9 @@
         <Version nr="107">
             <CreateDate>2013-02-27</CreateDate>
         </Version>
+        <Version nr="108">
+            <CreateDate>2013-03-15</CreateDate>
+        </Version>
         <Adminmenu>
             <Settingslink sort="1">
                 <Name>Einstellungen</Name>
