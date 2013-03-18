@@ -8,19 +8,19 @@ Paymill extension (credit card and direct debit) for JTL (Version 3.1.5).
 
 # Installation
 
-## Installation from this git repository 
+## Installation from this git repository
 
-Use the following command to clone the complete repository including the submodules:
-    
-    git clone --recursive https://github.com/Paymill/Paymill-Oxid.git
+Use the following link to download the module:
 
-Afterwards merge the contents of the Paymill-JTL-Module directory with your JTL plugins folder (<shop_root>/includes/plugins). 
+    https://github.com/Paymill/Paymill-JTL/archive/master.zip
+
+Afterwards merge the contents of the Paymill-JTL-Module directory with your JTL plugins folder (<shop_root>/includes/plugins).
 
 # Configuration
 
 - In the main menu goto **Plugins -> Pluginverwaltung**
 - Select module "Paymill" and choose **Installieren**
-- In the main menu goto **Plugins -> Plugins -> Paymill** 
+- In the main menu goto **Plugins -> Plugins -> Paymill**
 - Enter your Paymill Test- or Livekeys and click on **Speichern**
 - Click on **Installiere Tpl-Blöcke** and on **Zahlungsart installieren**
 - The field **Paymill API URL** should contain V2
