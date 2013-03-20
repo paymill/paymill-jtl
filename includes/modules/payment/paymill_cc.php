@@ -7,7 +7,7 @@ class paymill_cc extends paymill
     function paymill_cc()
     {
         $this->code = 'paymill_cc';
-        $this->version = '1.0.1';
+        $this->version = '1.0.2';
         $this->title = 'Kreditkartenzahlung';
         $this->public_title = 'Kreditkartenzahlung';
         $this->sort_order = MODULE_PAYMENT_PAYMILL_CC_SORT_ORDER;

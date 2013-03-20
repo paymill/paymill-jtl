@@ -8,7 +8,7 @@ class paymill_elv extends paymill
     function paymill_elv()
     {
         $this->code = 'paymill_elv';
-        $this->version = '1.0.1';
+        $this->version = '1.0.2';
         $this->title = 'Elektronisches Lastschriftverfahren';
         $this->public_title = 'Elektronisches Lastschriftverfahren';
         $this->sort_order = MODULE_PAYMENT_PAYMILL_ELV_SORT_ORDER;
