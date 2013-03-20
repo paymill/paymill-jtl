@@ -8,7 +8,7 @@ class paymill_elv extends paymill
     function paymill_elv()
     {
         $this->code = 'paymill_elv';
-        $this->version = '1.0.0';
+        $this->version = '1.0.1';
         $this->title = 'Elektronisches Lastschriftverfahren';
         $this->public_title = 'Elektronisches Lastschriftverfahren';
         $this->sort_order = MODULE_PAYMENT_PAYMILL_ELV_SORT_ORDER;
@@ -16,23 +16,23 @@ class paymill_elv extends paymill
         $this->privateKey = MODULE_PAYMENT_PAYMILL_ELV_PRIVATEKEY;
         $this->apiUrl = MODULE_PAYMENT_PAYMILL_ELV_API_URL;
     }
-    
+
     function selection()
-    {   
+    {
         $resourcesDir = HTTP_SERVER . DIR_WS_CATALOG . '/includes/modules/payment/paymill/resources/';
-        
+
         $formArray = array();
-        
+
         $formArray[] = array(
             'title' => '',
             'field' => '<link rel="stylesheet" type="text/css" href="' . HTTP_SERVER . DIR_WS_CATALOG . 'css/paymill.css"/>'
         );
-        
+
         $formArray[] =  array(
             'title' => '',
             'field' => xtc_image($resourcesDir . 'icon_elv.png')
         );
-        
+
         $formArray[] = array(
             'title' => 'Kontonummer',
             'field' => '<br/><input type="text" id="account-number" class="form-row-paymill"/>'
@@ -47,9 +47,9 @@ class paymill_elv extends paymill
             'title' => 'Kontoinhaber',
             'field' => '<br/><input type="text" id="bank-owner" class="form-row-paymill"/>'
         );
-        
+
         $formArray[] = array(
-        'field' => 
+        'field' =>
             '<div class="form-row">'
               . '<div class="paymill_powered">'
                    . '<div class="paymill_credits">'
@@ -59,7 +59,7 @@ class paymill_elv extends paymill
                . '</div>'
            . '</div>'
         );
-        
+
         $script = '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>'
                 . '<script type="text/javascript">'
                     . 'var PAYMILL_PUBLIC_KEY = "' . MODULE_PAYMENT_PAYMILL_ELV_PUBLICKEY . '";'
@@ -76,17 +76,17 @@ class paymill_elv extends paymill
             'title' => "",
             'field' => $script
         );
-        
+
         $selection = array(
             'id' => $this->code,
             'module' => $this->title,
             'fields' => $formArray,
             'description' => $this->info
         );
-        
+
         return $selection;
     }
-    
+
     function check()
     {
         if (!isset($this->_check)) {
@@ -98,6 +98,14 @@ class paymill_elv extends paymill
 
     function install()
     {
+        if (xtc_db_num_rows(xtc_db_query("SELECT * from " . TABLE_ORDERS_STATUS . " where orders_status_name LIKE '%Paymill%'")) == 0) {
+            //based on orders_status.php with action save new orders_status_id
+            $next_id_query = xtc_db_query("select max(orders_status_id) as orders_status_id from " . TABLE_ORDERS_STATUS . "");
+            $next_id = xtc_db_fetch_array($next_id_query);
+            $orders_status_id = $next_id['orders_status_id'] + 1;
+            //based on orders_status.php ends
+            xtc_db_query("INSERT INTO " . TABLE_ORDERS_STATUS . " (orders_status_id, language_id, orders_status_name) VALUES (" . $orders_status_id . ",1, 'Paymill Payment cancelled'),(" . $orders_status_id . ",2,'Paymill Bezahlung abgebrochen');");
+        }
         xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PAYMENT_PAYMILL_ELV_STATUS', 'True', '6', '1', 'xtc_cfg_select_option(array(\'True\', \'False\'), ', now())");
         xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) VALUES ('MODULE_PAYMENT_PAYMILL_ELV_ALLOWED', '', '6', '0', now())");
         xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) VALUES ('MODULE_PAYMENT_PAYMILL_ELV_SORT_ORDER', '0', '6', '0', now())");

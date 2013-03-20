@@ -102,7 +102,7 @@ class paymill
         ));
 
         if (!$result) {
-            xtc_db_query("UPDATE " . TABLE_ORDERS . " SET orders_status = '99' WHERE orders_id = '" . $insert_id . "'");
+            xtc_db_query("UPDATE " . TABLE_ORDERS . " SET orders_status = (SELECT orders_status_id from " . TABLE_ORDERS_STATUS . " where orders_status_name LIKE '%Paymill%' GROUP by orders_status_id) WHERE orders_id = '" . $insert_id . "'");
             xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, 'step=step2&payment_error=' . $this->code . '&error=200', 'SSL', true, false));
         }
 
