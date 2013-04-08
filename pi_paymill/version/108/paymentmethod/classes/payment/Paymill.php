@@ -29,7 +29,7 @@ class Paymill extends PaymentMethod
         $requestService = new RequestService();
         if (array_key_exists('pi', $_SESSION) && array_key_exists('paymillToken', $_SESSION['pi'])) {
             $endpoint = $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_api_endpoint'];
-
+            $amount = round((float)$order->fGesamtsummeKundenwaehrung * 100);
             $client = $requestService->createClient(
                     Util::getCreateClientParams($order), $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key'], $endpoint
             );
