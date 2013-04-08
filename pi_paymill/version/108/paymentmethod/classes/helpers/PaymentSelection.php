@@ -47,7 +47,7 @@ class PaymentSelection
     public static function getPaymillPaymentForm($code, $paymentId, $pluginPath, $oPlugin)
     {
         $amount = round((float) $_SESSION["Warenkorb"]->gibGesamtsummeWaren(true) * 100);
-        $_SESSION['pi']['authorizedAmount'] = $amount;
+        $_SESSION['PigmbhPaymill']['authorizedAmount'] = $amount;
         $currency = key($_SESSION["Warenkorb"]->PositionenArr[0]->cGesamtpreisLocalized[0]);
         $html = file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '.tpl');
         $html = str_replace('{__paymentId__}', $paymentId, $html);
