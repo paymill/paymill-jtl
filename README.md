@@ -3,8 +3,8 @@ Paymill-JTL
 
 Paymill extension (credit card and direct debit) for JTL (Version 3.1.5).
 
-![Paymill creditcard payment form](https://raw.github.com/Paymill/Paymill-Oxid/master/Paymill-JTL-Module/paymill_cc_form_de.png)
-![Paymill creditcard payment form](https://raw.github.com/Paymill/Paymill-Oxid/master/Paymill-JTL-Module/paymill_elv_form_de.png)
+![Paymill creditcard payment form](https://raw.github.com/Paymill/Paymill-JTL/master/Paymill-JTL-Module/paymill_cc_form_de.png)
+![Paymill creditcard payment form](https://raw.github.com/Paymill/Paymill-JTL/master/Paymill-JTL-Module/paymill_elv_form_de.png)
 
 # Installation
 
