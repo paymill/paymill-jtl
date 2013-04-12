@@ -22,9 +22,8 @@ Afterwards merge the contents of the Paymill-JTL-Module directory with your JTL 
 - Select module "Paymill" and choose **Installieren**
 - In the main menu goto **Plugins -> Plugins -> Paymill**
 - Enter your Paymill Test- or Livekeys and click on **Speichern**
-- Click on **Installiere Tpl-Blöcke** and on **Zahlungsart installieren**
-- The field **Paymill API URL** should contain V2
-- The field **Paymill Bridge URL** should contain https://bridge.paymill.de/
+- The field **Paymill API URL** should contain https://api.paymill.com/v2/
+- The field **Paymill Bridge URL** should contain https://bridge.paymill.com/
 
 # Activate Paymill Payment
 
