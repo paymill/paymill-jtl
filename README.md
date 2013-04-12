@@ -1,18 +1,18 @@
 Paymill-JTL
-===========
+====================
 
 Paymill extension (credit card and direct debit) for JTL (Version 3.1.5).
 
-![Paymill creditcard payment form](https://raw.github.com/Paymill/Paymill-JTL/master/paymill_cc_form_de.png)
-![Paymill creditcard payment form](https://raw.github.com/Paymill/Paymill-JTL/master/paymill_elv_form_de.png)
+![Paymill creditcard payment form](https://raw.github.com/Paymill/Paymill-Oxid/master/Paymill-JTL-Module/paymill_cc_form_de.png)
+![Paymill creditcard payment form](https://raw.github.com/Paymill/Paymill-Oxid/master/Paymill-JTL-Module/paymill_elv_form_de.png)
 
 # Installation
 
 ## Installation from this git repository
 
-Use the following command to clone the complete repository including the submodules:
+Use the following link to download the module:
 
-    git clone --recursive https://github.com/Paymill/Paymill-JTL.git
+    https://github.com/Paymill/Paymill-JTL/archive/master.zip
 
 Afterwards merge the contents of the Paymill-JTL-Module directory with your JTL plugins folder (<shop_root>/includes/plugins).
 
@@ -22,9 +22,8 @@ Afterwards merge the contents of the Paymill-JTL-Module directory with your JTL 
 - Select module "Paymill" and choose **Installieren**
 - In the main menu goto **Plugins -> Plugins -> Paymill**
 - Enter your Paymill Test- or Livekeys and click on **Speichern**
-- Click on **Installiere Tpl-Blöcke** and on **Zahlungsart installieren**
-- The field **Paymill API URL** should contain V2
-- The field **Paymill Bridge URL** should contain https://bridge.paymill.de/
+- The field **Paymill API URL** should contain https://api.paymill.com/v2/
+- The field **Paymill Bridge URL** should contain https://bridge.paymill.com/
 
 # Activate Paymill Payment
 
