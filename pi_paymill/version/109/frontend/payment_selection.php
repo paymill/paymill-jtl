@@ -15,6 +15,7 @@ foreach ($oPlugin->oPluginEinstellungAssoc_arr as $key => $value) {
 
 $js = <<<HTML
 <script type="text/javascript">
+    var flag = true;
     var PAYMILL_PUBLIC_KEY = '$pi_paymill_public_key';
     var debug = "$debug";
     var lang = new Array();
