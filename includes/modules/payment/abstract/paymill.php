@@ -29,7 +29,6 @@ class paymill
         }
 
         $_SESSION['paymill_token'] = $_POST['paymill_token'];
-        $_SESSION['pi']['paymill_amount'] = $_POST['amount'];
     }
 
     function confirmation()
@@ -91,7 +90,8 @@ class paymill
         $total = floatval(str_replace(',', '.', str_replace('.', '', $total))) + $this->getShippingTaxAmount($order);
         
         $paymill = new processPayment($this);
-        $authorizedAmount = $_SESSION['pi']['paymill_amount'] / 100;
+        $authorizedAmount = $_SESSION['pi']['paymill_amount'];
+        
         if ($this->code === 'paymill_elv') {
             $authorizedAmount = $total;
         }

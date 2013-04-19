@@ -104,6 +104,8 @@ class paymill_cc extends paymill
            . '</div>'
         );
 
+        $_SESSION['pi']['paymill_amount'] = $amount;
+        
         $formArray[] = array(
             'title' => '',
             'field' => '<br/><input type="hidden" value="' . $amount * 100 . '" id="amount" name="amount"/>'
