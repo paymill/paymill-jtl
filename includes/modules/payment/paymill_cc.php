@@ -7,7 +7,7 @@ class paymill_cc extends paymill
     function paymill_cc()
     {
         $this->code = 'paymill_cc';
-        $this->version = '1.0.2';
+        $this->version = '1.0.3';
         $this->title = 'Kreditkartenzahlung';
         $this->public_title = 'Kreditkartenzahlung';
         $this->sort_order = MODULE_PAYMENT_PAYMILL_CC_SORT_ORDER;
@@ -66,7 +66,7 @@ class paymill_cc extends paymill
             'field' => '<link rel="stylesheet" type="text/css" href="' . HTTP_SERVER . DIR_WS_CATALOG . 'css/paymill.css"/>'
         );
 
-        $resourcesDir = HTTP_SERVER . DIR_WS_CATALOG . '/includes/modules/payment/paymill/resources/';
+        $resourcesDir = HTTP_SERVER . DIR_WS_CATALOG . '/includes/modules/payment/resources/';
         $this->accepted = xtc_image($resourcesDir . 'icon_mastercard.png') . " " . xtc_image($resourcesDir . 'icon_visa.png');
 
         $formArray[] = array(

@@ -8,7 +8,7 @@ class paymill_elv extends paymill
     function paymill_elv()
     {
         $this->code = 'paymill_elv';
-        $this->version = '1.0.2';
+        $this->version = '1.0.3';
         $this->title = 'Elektronisches Lastschriftverfahren';
         $this->public_title = 'Elektronisches Lastschriftverfahren';
         $this->sort_order = MODULE_PAYMENT_PAYMILL_ELV_SORT_ORDER;
@@ -19,7 +19,7 @@ class paymill_elv extends paymill
 
     function selection()
     {
-        $resourcesDir = HTTP_SERVER . DIR_WS_CATALOG . '/includes/modules/payment/paymill/resources/';
+        $resourcesDir = HTTP_SERVER . DIR_WS_CATALOG . '/includes/modules/payment/resources/';
 
         $formArray = array();
 

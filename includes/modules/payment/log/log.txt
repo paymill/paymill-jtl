@@ -1,0 +1,10 @@
+[Fri, 19 Apr 13 13:05:24 +0200] Client created: client_131813bcfcc6e5d28598
+[Fri, 19 Apr 13 13:05:24 +0200] Payment created: pay_652443312c338733c4bd489b8a39
+[Fri, 19 Apr 13 13:05:25 +0200] Transaction created: tran_7779749614f267dd1e6764dc40d3
+[Fri, 19 Apr 13 13:05:25 +0200] An Error occured: array (
+  'data' => 
+  array (
+    'error' => 'Amount to high',
+    'response_code' => '',
+  ),
+)

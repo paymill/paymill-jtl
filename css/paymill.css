@@ -3,7 +3,7 @@
     border: 1px solid #ccc;
     width: 300px;
     padding: 4px;
-    background: white url('../includes/modules/payment/paymill/resources/icon_paymill.png') no-repeat center right;
+    background: white url('../includes/modules/payment/resources/icon_paymill.png') no-repeat center right;
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
