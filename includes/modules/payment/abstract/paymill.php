@@ -235,5 +235,40 @@ class paymill
             fclose($handle);
         }
     }
+    
+    /**
+     * Add the shipping tax to the order object
+     * 
+     * @param order $order
+     * @return float
+     */
+    public function getShippingTaxAmount(order $order)
+    {
+        return round($order->info['shipping_cost'] * (self::getShippingTaxRate($order) / 100), 2);
+    }
+
+    /**
+     * Retrieve the shipping tax rate
+     * 
+     * @param order $order
+     * @return float 
+     */
+    public function getShippingTaxRate(order $order)
+    {
+        $shippingClassArray = explode("_", $order->info['shipping_class']);
+        $shippingClass = strtoupper($shippingClassArray[0]);
+        if (empty($shippingClass)) {
+            $shippingTaxRate = 0;
+        } else {
+            $const = 'MODULE_SHIPPING_' . $shippingClass . '_TAX_CLASS';
+            if (defined($const)) {
+                $shippingTaxRate = xtc_get_tax_rate(constant($const));
+            } else {
+                $shippingTaxRate = 0;
+            }
+        }
+
+        return $shippingTaxRate;
+    }
 
 }

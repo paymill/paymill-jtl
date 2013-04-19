@@ -32,6 +32,8 @@ class paymill_cc extends paymill
             $amount = round($xtPrice->xtcCalculateCurrEx($total, $order->info['currency']), $xtPrice->get_decimal_places($order->info['currency']));
         }
 
+        $amount = $amount + $this->getShippingTaxAmount($order);
+        
         for ($i = 1; $i < 13; $i++) {
             $expires_month[] = array(
                 'id' => sprintf('%02d', $i),
