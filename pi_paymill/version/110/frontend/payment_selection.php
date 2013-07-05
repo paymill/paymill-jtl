@@ -30,7 +30,7 @@ $js = <<<HTML
     lang['account_number_invalid'] = '$Account_Number_Invalid';
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="$pi_paymill_payment_bridge"></script>
+<script type="text/javascript" src="https://bridge.paymill.com/"></script>
 <script type="text/javascript" src="$pluginPath/js/payment.js"></script>
 <link rel="stylesheet" type="text/css" href="$pluginPath/css/paymill.css" />
 HTML;
