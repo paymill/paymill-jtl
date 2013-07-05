@@ -1,15 +1,15 @@
 <?php
 
 require_once(dirname(__FILE__) . '/../helpers/Util.php');
-require_once(dirname(__FILE__) . '/../services/RequestService.php');
-require_once(dirname(__FILE__) . '/../v2/lib/Services/Paymill/Transactions.php');
-require_once(dirname(__FILE__) . '/../v2/lib/Services/Paymill/Clients.php');
-require_once(dirname(__FILE__) . '/../v2/lib/Services/Paymill/Payments.php');
-require_once(dirname(__FILE__) . '/../v2/lib/Services/Paymill/Refunds.php');
+require_once(dirname(__FILE__) . '/../lib/Services/Paymill/PaymentProcessor.php');
+require_once(dirname(__FILE__) . '/../lib/Services/Paymill/LoggingInterface.php');
 require_once(PFAD_ROOT . PFAD_INCLUDES_MODULES . 'PaymentMethod.class.php');
 
-class Paymill extends PaymentMethod
+class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
 {
+
+    private $_apiUrl = 'https://api.paymill.com/v2/';
+
 
     function init($moduleID)
     {
@@ -26,99 +26,29 @@ class Paymill extends PaymentMethod
     public function preparePaymentProcess(&$order)
     {
         global $oPlugin, $Einstellungen;
-        $requestService = new RequestService();
         if (array_key_exists('pi', $_SESSION) && array_key_exists('paymillToken', $_SESSION['pi'])) {
-            $endpoint = $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_api_endpoint'];
-            $amount = round((float)$order->fGesamtsummeKundenwaehrung * 100);
-            $client = $requestService->createClient(
-                    Util::getCreateClientParams($order), $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key'], $endpoint
-            );
+            $amount = (float) $order->fGesamtsummeKundenwaehrung;
+            $paymill = new Services_Paymill_PaymentProcessor();
+            $paymill->setAmount((int)(string) ($amount * 100));
+            $paymill->setApiUrl((string) $this->_apiUrl);
+            $paymill->setCurrency((string) strtoupper($order->Waehrung->cISO));
+            $paymill->setDescription((string) ($Einstellungen['global']['global_shopname'] . 'Bestellnummer: ' . baueBestellnummer()));
+            $paymill->setEmail((string)  $order->oRechnungsadresse->cMail);
+            //$paymill->setName((string) $order->customer['lastname'] . ', ' . $order->customer['firstname']);
+            $paymill->setPrivateKey((string) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']);
+            $paymill->setToken((string) $_SESSION['paymill_token']);
+            $paymill->setLogger($this);
+            //$paymill->setSource($this->version . '_' . str_replace(' ','_', PROJECT_VERSION));
 
-            if (!isset($client['id'])) {
-                Util::paymillLog('No client created: ' . var_export($client, true));
-                return false;
-            } else {
-                Util::paymillLog('Client created: ' . $client['id']);
-            }
-
-            $paymentParams = Util::getCreatePaymentParams($_SESSION['pi']['paymillToken'], $client);
-            $payment = $requestService->createPayment(
-                    $paymentParams, $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key'], $endpoint
-            );
-
-            if (!isset($payment['id'])) {
-                Util::paymillLog('No payment (' . $this->name . ') created: ' . var_export($payment, true) . " with params " . var_export($paymentParams, true));
-                return false;
-            } else {
-                Util::paymillLog('Payment (' . $this->name . ') created: ' . $payment['id']);
-            }
-
-            $transaction = $requestService->createTransaction(
-                    Util::getCreateTransactionParams($order, $payment), $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key'], $endpoint
-            );
-            if (isset($transaction['data']['response_code'])) {
-                Util::paymillLog("An Error occured: " . var_export($transaction, true));
-                return false;
-            }
-            if (!isset($transaction['id'])) {
-                Util::paymillLog('No transaction created' . var_export($transaction, true));
-                return false;
-            } else {
-                Util::paymillLog('Transaction created: ' . $transaction['id']);
-            }
-
-            if ($_SESSION['PigmbhPaymill']['authorizedAmount'] != $amount) {
-                if ($_SESSION['PigmbhPaymill']['authorizedAmount'] > $amount) {
-                    // basketamount is lower than the authorized amount
-                    $refundParams = array(
-                        'transactionId' => $transaction['id'],
-                        'params' => array(
-                            'amount' => $_SESSION['PigmbhPaymill']['authorizedAmount'] - $amount
-                        )
-                    );
-                    $refund = $requestService->createRefund(
-                            $refundParams, $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key'], $endpoint
-                    );
-
-                    if (isset($refund['data']['response_code']) && $refund['data']['response_code'] !== 20000) {
-                        Util::paymillLog("An Error occured: " . var_export($refund, true));
-                        return false;
-                    }
-                    if (!isset($refund['data']['id'])) {
-                        Util::paymillLog('No Refund created' . var_export($refund, true));
-                        return false;
-                    } else {
-                        Util::paymillLog('Refund created: ' . $transaction['id']);
-                    }
+            $result = $paymill->processPayment();
+            if (!$result) {
+                if ($this->finalizeOrder($order)) {
+                    unset($_SESSION['pi']);
+                    unset($_SESSION['PigmbhPaymill']);
                 } else {
-                    // basketamount is higher than the authorized amount (paymentfee etc.)
-                    $secoundTransactionParams = array(
-                        'amount' => $amount - $_SESSION['PigmbhPaymill']['authorizedAmount'],
-                        'currency' => $order->Waehrung->cISO,
-                        'description' => $Einstellungen['global']['global_shopname'] . 'Bestellnummer: ' . baueBestellnummer() . ', ' . $order->oRechnungsadresse->cMail,
-                        'client' => $client['id'],
-                        'payment' => $payment['id']
-                    );
-
-                    $transaction = $requestService->createTransaction(
-                            $secoundTransactionParams, $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key'], $endpoint
-                    );
-                    if (isset($transaction['data']['response_code'])) {
-                        Util::paymillLog("An Error occured: " . var_export($transaction, true));
-                        return false;
-                    }
-                    if (!isset($transaction['id'])) {
-                        Util::paymillLog('No transaction created' . var_export($transaction, true));
-                        return false;
-                    } else {
-                        Util::paymillLog('Transaction created: ' . $transaction['id']);
-                    }
+                    $_SESSION['pi_error']['error'] = $oPlugin->oPluginSprachvariableAssoc_arr['Order_Generate_Error'];
+                    header("Location: " . gibShopURL() . '/bestellvorgang.php?editZahlungsart=1');
                 }
-            }
-
-            if ($this->finalizeOrder($order)) {
-                unset($_SESSION['pi']);
-                unset($_SESSION['PigmbhPaymill']);
             } else {
                 $_SESSION['pi_error']['error'] = $oPlugin->oPluginSprachvariableAssoc_arr['Order_Generate_Error'];
                 header("Location: " . gibShopURL() . '/bestellvorgang.php?editZahlungsart=1');
@@ -153,6 +83,11 @@ class Paymill extends PaymentMethod
         }
 
         return false;
+    }
+    
+    public function log($message, $debugInfo)
+    {
+        Util::paymillLog($message . $debugInfo);
     }
 
 }
