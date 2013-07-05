@@ -63,16 +63,6 @@
                         <Option value="1" sort="1">On</Option>
                     </SelectboxOptions>
                 </Setting>
-                <Setting type="text" initialValue="https://bridge.paymill.de/" sort="4" conf="Y">
-                    <Name>Paymill bridge URL</Name>
-                    <Description>Die URL zur Payment bridge</Description>
-                    <ValueName>pi_paymill_payment_bridge</ValueName>
-                </Setting>
-                <Setting type="text" initialValue="https://api.paymill.de/v2/" sort="5" conf="Y">
-                    <Name>Paymill API Endpoint</Name>
-                    <Description>Der Paymill api endpoint</Description>
-                    <ValueName>pi_paymill_api_endpoint</ValueName>
-                </Setting>
                 <Setting type="selectbox" initialValue="v2" sort="6" conf="Y">
                     <Name>Paymill Label anzeigen</Name>
                     <Description>Paymill label im Checkout anzeigen</Description>
