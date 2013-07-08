@@ -49,7 +49,9 @@ class PaymentSelection
         $amount = round((float) $_SESSION["Warenkorb"]->gibGesamtsummeWaren(true) * 100);
         $_SESSION['PigmbhPaymill']['authorizedAmount'] = $amount;
         $currency = key($_SESSION["Warenkorb"]->PositionenArr[0]->cGesamtpreisLocalized[0]);
-        $html = file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '.tpl');
+        if (self::canPamillFastCheckout($code, $oPlugin)) {
+            $html = file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '.tpl');
+        }
         $html = str_replace('{__paymentId__}', $paymentId, $html);
         $html = str_replace('{__amount__}', $amount, $html);
         $html = str_replace('{__currency__}', $currency, $html);
@@ -146,5 +148,38 @@ class PaymentSelection
         }
 
         return $html;
+    }
+    
+    public static function canPamillFastCheckout($code, $oPlugin)
+    {
+        if ($code === 'cc') {
+            return self::canPaymillCcFastCheckout($oPlugin);
+        } elseif ($code === 'elv') {
+            return self::canPaymillElvFastCheckout($oPlugin);
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Is fast checkout for paymill cc available
+     * 
+     * @return boolean
+     */
+    public static function canPaymillCcFastCheckout($oPlugin)
+    {
+        print_r($_SESSION['Kunde']->kKunde);
+        exit;
+        return $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_fast_checkout'] && false;
+    }
+    
+    /**
+     * Is fast checkout for paymill elv available
+     * 
+     * @return boolean
+     */
+    public static function canPaymillElvFastCheckout($oPlugin)
+    {
+        return $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_fast_checkout'] && false;
     }
 }

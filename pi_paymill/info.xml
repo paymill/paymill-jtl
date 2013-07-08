@@ -39,6 +39,7 @@
             <CreateDate>2013-04-17</CreateDate>
         </Version>
         <Version nr="110">
+            <SQL>install.sql</SQL>
             <CreateDate>2013-07-05</CreateDate>
         </Version>
         <Adminmenu>
@@ -53,6 +54,15 @@
                     <Name>Paymill Public Key</Name>
                     <Description>Der Public Key, welchen Sie von Paymill erhalten haben.</Description>
                     <ValueName>pi_paymill_public_key</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y">
+                    <Name>Paymill Fast Checkout</Name>
+                    <Description>Verkürzter Bestellprozess</Description>
+                    <ValueName>pi_paymill_fast_checkout</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
                 </Setting>
                 <Setting type="selectbox" initialValue="0" sort="3" conf="Y">
                     <Name>Paymill debug mode</Name>
