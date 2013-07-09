@@ -1,6 +1,7 @@
 
 $(document).ready(function () 
 {
+    
     function paymillElvResponseHandler(error, result) 
     {
         if (flag) {
@@ -115,17 +116,25 @@ $(document).ready(function ()
     }
     
     $(".submit").click(function (event) {
+        var form = $("#zahlung");
         var payment = $("input[name='Zahlungsart']:checked").val();
         if (payment === $("#paymill_cc").val()) {
             paymillDebug('Paymill Creditcard: Payment method triggered');
-            return paymillCc();
+            if (!fastCheckoutCc) {
+                return paymillCc();
+            } else {
+                form.append("<input type='hidden' name='paymillToken' value='dummyToken'/>");
+            }
         } else if(payment === $("#paymill_elv").val()) {
             paymillDebug('Paymill ELV: Payment method triggered');
-            return paymillElv();
-        } else {
-            $("#zahlung").get(0).submit();
+            if (!fastCheckoutElv) {
+                return paymillElv();
+            } else {
+                form.append("<input type='hidden' name='paymillToken' value='dummyToken'/>");
+            }
         }
         
+        $("#zahlung").get(0).submit();
     });
     
     function paymillDebug(message)

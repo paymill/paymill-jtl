@@ -1,6 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__) . '/../helpers/Util.php');
+require_once(dirname(__FILE__) . '/../helpers/FastCheckout.php');
 require_once(dirname(__FILE__) . '/../lib/Services/Paymill/PaymentProcessor.php');
 require_once(dirname(__FILE__) . '/../lib/Services/Paymill/LoggingInterface.php');
 require_once(PFAD_ROOT . PFAD_INCLUDES_MODULES . 'PaymentMethod.class.php');
@@ -9,12 +10,19 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
 {
 
     private $_apiUrl = 'https://api.paymill.com/v2/';
+    
+    /**
+     *
+     * @var \FastCheckout
+     */
+    private $_fastCheckout;
 
 
     function init($moduleID)
     {
         parent::init($moduleID);
         $this->name = 'PayMILL';
+        $this->_fastCheckout = new FastCheckout();
     }
 
     /**
@@ -40,10 +48,41 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             $paymill->setLogger($this);
             //$paymill->setSource($this->version . '_' . str_replace(' ','_', PROJECT_VERSION));
 
+            
+            if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde)) {
+                $data = $this->_fastCheckout->loadFastCheckoutData();
+                $paymill->setClientId($data['clientID']);
+                if (!empty($data['paymentID_CC'])) {
+                    $paymill->setPaymentId($data['paymentID_CC']);
+                }
+            }
+            
+            if ($this->_fastCheckout->canCustomerFastCheckoutElv($order->oRechnungsadresse->kKunde)) {
+                $data = $this->_fastCheckout->loadFastCheckoutData();
+                $paymill->setClientId($data['clientID']);
+                if ($data['paymentID_ELV']) {
+                    $paymill->setPaymentId($data['paymentID_ELV']);
+                }
+            }
+            
+            print_r($paymill->toArray());
+            exit;
+
             $result = $paymill->processPayment();
             
             if ($result) {
                 if ($this->finalizeOrder($order)) {
+                    if ((boolean) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_fast_checkout']) {
+                        
+                        if ($order->Zahlungsart->cName == 'paymill_cc') {
+                            $this->_fastCheckout->saveCcIds($order->oRechnungsadresse->kKunde, $paymill->getClientId(), $paymill->getPaymentId());
+                        }
+                        
+                        if ($order->Zahlungsart->cName == 'paymill_elv') {
+                            $this->_fastCheckout->saveCcIds($order->oRechnungsadresse->kKunde, $paymill->getClientId(), $paymill->getPaymentId());
+                        }
+                    }
+                    
                     unset($_SESSION['pi']);
                     unset($_SESSION['PigmbhPaymill']);
                 } else {

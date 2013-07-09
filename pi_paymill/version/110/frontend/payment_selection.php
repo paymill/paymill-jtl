@@ -1,5 +1,4 @@
 <?php
-
 unset($_SESSION['pi']);
 require_once(dirname(__FILE__) . '/../paymentmethod/classes/helpers/PaymentSelection.php');
 $pluginPath = gibShopUrl() . "/" . PFAD_PLUGIN . $oPlugin->cVerzeichnis . "/" . PFAD_PLUGIN_VERSION . $oPlugin->nVersion . "/paymentmethod";
@@ -13,9 +12,15 @@ foreach ($oPlugin->oPluginEinstellungAssoc_arr as $key => $value) {
     $$key = $value;
 }
 
+
+$fastCheckoutElv = !PaymentSelection::canPamillFastCheckout('elv') ? 'false' : 'true';
+$fastCheckoutCc = !PaymentSelection::canPamillFastCheckout('cc') ? 'false' : 'true';
+
 $js = <<<HTML
 <script type="text/javascript">
     var flag = true;
+    var fastCheckoutCc = $fastCheckoutCc;
+    var fastCheckoutElv = $fastCheckoutElv;
     var PAYMILL_PUBLIC_KEY = '$pi_paymill_public_key';
     var debug = "$debug";
     var lang = new Array();

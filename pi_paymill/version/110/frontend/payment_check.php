@@ -2,6 +2,7 @@
 
 require_once(dirname(__FILE__) . '/../paymentmethod/classes/helpers/Util.php');
 require_once(dirname(__FILE__) . '/../paymentmethod/classes/helpers/PaymentCheck.php');
+
 $payment = PaymentCheck::getPayment();
 if (Util::isPaymillPayment($payment->cName, $oPlugin)) {
     $posted = array_key_exists('paymillToken', $_POST) && PaymentCheck::checkToken($_POST['paymillToken']);
