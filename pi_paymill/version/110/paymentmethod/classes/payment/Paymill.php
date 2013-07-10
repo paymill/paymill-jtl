@@ -49,25 +49,22 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             //$paymill->setSource($this->version . '_' . str_replace(' ','_', PROJECT_VERSION));
 
             
-            if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde)) {
-                $data = $this->_fastCheckout->loadFastCheckoutData();
-                $paymill->setClientId($data['clientID']);
-                if (!empty($data['paymentID_CC'])) {
-                    $paymill->setPaymentId($data['paymentID_CC']);
+            if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde) && $order->Zahlungsart->cName == 'paymill_cc') {
+                $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
+                $paymill->setClientId($data->clientID);
+                if (!empty($data->paymentID_CC)) {
+                    $paymill->setPaymentId($data->paymentID_CC);
                 }
             }
             
-            if ($this->_fastCheckout->canCustomerFastCheckoutElv($order->oRechnungsadresse->kKunde)) {
-                $data = $this->_fastCheckout->loadFastCheckoutData();
-                $paymill->setClientId($data['clientID']);
-                if ($data['paymentID_ELV']) {
-                    $paymill->setPaymentId($data['paymentID_ELV']);
+            if ($this->_fastCheckout->canCustomerFastCheckoutElv($order->oRechnungsadresse->kKunde) && $order->Zahlungsart->cName == 'paymill_elv') {
+                $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
+                $paymill->setClientId($data->clientID);
+                if ($data->paymentID_ELV) {
+                    $paymill->setPaymentId($data->paymentID_ELV);
                 }
             }
             
-            print_r($paymill->toArray());
-            exit;
-
             $result = $paymill->processPayment();
             
             if ($result) {
@@ -79,7 +76,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
                         }
                         
                         if ($order->Zahlungsart->cName == 'paymill_elv') {
-                            $this->_fastCheckout->saveCcIds($order->oRechnungsadresse->kKunde, $paymill->getClientId(), $paymill->getPaymentId());
+                            $this->_fastCheckout->saveElvIds($order->oRechnungsadresse->kKunde, $paymill->getClientId(), $paymill->getPaymentId());
                         }
                     }
                     

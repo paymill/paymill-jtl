@@ -16,7 +16,7 @@ class FastCheckout
     {
         $data = $this->loadFastCheckoutData($userId);
         if (!empty($data)) {
-            $sql = "UPDATE `paymill_fastcheckout`SET `paymentID_CC` = $newPaymentId WHERE `userID` = '$userId'";
+            $sql = "UPDATE `paymill_fastcheckout`SET `paymentID_CC` = '$newPaymentId' WHERE `userID` = '$userId'";
         } else {
             $sql = "INSERT INTO `paymill_fastcheckout` (`userID`, `clientID`, `paymentID_CC`) VALUES ('$userId', '$newClientId', '$newPaymentId')";
         }
@@ -28,7 +28,7 @@ class FastCheckout
     {   
         $data = $this->loadFastCheckoutData($userId);
         if (!empty($data)) {
-            $sql = "UPDATE `paymill_fastcheckout`SET `paymentID_ELV` = $newPaymentId WHERE `userID` = '$userId'";
+            $sql = "UPDATE `paymill_fastcheckout`SET `paymentID_ELV` = '$newPaymentId' WHERE `userID` = '$userId'";
         } else {
             $sql = "INSERT INTO `paymill_fastcheckout` (`userID`, `clientID`, `paymentID_ELV`) VALUES ('$userId', '$newClientId', '$newPaymentId')";
         }
