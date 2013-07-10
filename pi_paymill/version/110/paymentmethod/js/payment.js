@@ -48,28 +48,34 @@ $(document).ready(function ()
     {
         paymillDebug('Paymill Creditcard: Start form validation');
         
+        var ccErrorFlag = true;
+        
         if (false === paymill.validateCardNumber($('.card-number').val())) {
-            $("#payment-errors-cc").text(lang['card_number_invalid']);
-            $("#payment-errors-cc").css('display', 'block');
-            return false;
+            $("#payment-error-cc-1").text(lang['card_number_invalid']);
+            $("#payment-error-cc-1").css('display', 'block');
+            ccErrorFlag = false;
         }
 
         if (false === paymill.validateExpiry($('.card-expiry-month').val(), $('.card-expiry-year').val())) {
-            $("#payment-errors-cc").text(lang['expiration_date_invalid']);
-            $("#payment-errors-cc").css('display', 'block');
-            return false;
+            $("#payment-error-cc-4").text(lang['expiration_date_invalid']);
+            $("#payment-error-cc-4").css('display', 'block');
+            ccErrorFlag = false;
         }
         
         if (false === paymill.validateCvc($('.card-cvc').val())) {
-            $("#payment-errors-cc").text(lang['verfication_number_invalid']);
-            $("#payment-errors-cc").css('display', 'block');
-            return false;
+            $("#payment-error-cc-2").text(lang['verfication_number_invalid']);
+            $("#payment-error-cc-2").css('display', 'block');
+            ccErrorFlag = false;
         }
         
         if ($('.card-holdername').val() === "") {
-            $("#payment-errors-cc").text(lang['card_holder_invalid']);
-            $("#payment-errors-cc").css('display', 'block');
-            return false;
+            $("#payment-error-cc-3").text(lang['card_holder_invalid']);
+            $("#payment-error-cc-3").css('display', 'block');
+            ccErrorFlag = false;
+        }
+        
+        if (!ccErrorFlag) {
+            return ccErrorFlag;
         }
         
         paymill.createToken({
@@ -88,22 +94,29 @@ $(document).ready(function ()
     function paymillElv()
     {
         paymillDebug('Paymill ELV: Start form validation');
+        
+        var elvErrorFlag = true;
+        
         if (false === paymill.validateAccountNumber($('.account-number').val())) {
-            $("#payment-errors-elv").text(lang['account_number_invalid']);
-            $("#payment-errors-elv").css('display', 'block');
-            return false;
+            $("#payment-error-elv-1").text(lang['account_number_invalid']);
+            $("#payment-error-elv-1").css('display', 'block');
+            elvErrorFlag = false;
         }
         
         if (false === paymill.validateBankCode($('.bank-code').val())) {
-            $("#payment-errors-elv").text(lang['sort_code_invalid']);
-            $("#payment-errors-elv").css('display', 'block');
-            return false;
+            $("#payment-error-elv-2").text(lang['sort_code_invalid']);
+            $("#payment-error-elv-2").css('display', 'block');
+            elvErrorFlag = false;
         }
         
         if ($('.bank-owner').val() === "") {
-            $("#payment-errors-elv").text(lang['account_owner_invalid']);
-            $("#payment-errors-elv").css('display', 'block');
-            return false; 
+            $("#payment-error-elv-3").text(lang['account_owner_invalid']);
+            $("#payment-error-elv-3").css('display', 'block');
+            elvErrorFlag = false; 
+        }
+        
+        if (!elvErrorFlag) {
+            return elvErrorFlag;
         }
         
         paymill.createToken({
