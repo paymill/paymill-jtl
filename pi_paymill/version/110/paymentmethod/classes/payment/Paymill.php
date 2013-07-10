@@ -42,7 +42,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             $paymill->setAmount((int)(string) ($amount * 100));
             $paymill->setApiUrl((string) $this->_apiUrl);
             $paymill->setCurrency((string) strtoupper($order->Waehrung->cISO));
-            $paymill->setDescription((string) ($Einstellungen['global']['global_shopname'] . 'Bestellnummer: ' . baueBestellnummer()));
+            $paymill->setDescription((string) ($Einstellungen['global']['global_shopname'] . ' Bestellnummer: ' . baueBestellnummer()));
             $paymill->setEmail((string)  $order->oRechnungsadresse->cMail);
             $paymill->setName((string) ($order->oRechnungsadresse->cNachname . ', ' . $order->oRechnungsadresse->cVorname));
             $paymill->setPrivateKey((string) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']);
@@ -68,6 +68,8 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             }
             
             $result = $paymill->processPayment();
+            
+            $_SESSION['pi_error']['method'] = $order->Zahlungsart->cName;
             
             if ($result) {
                 if ($this->finalizeOrder($order)) {

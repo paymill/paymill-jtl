@@ -87,7 +87,6 @@
         <Hooks>
             <Hook id="8">payment_selection.php</Hook>
             <Hook id="10">payment_check.php</Hook>
-            <Hook id="140">payment_error.php</Hook>
         </Hooks>
         <PaymentMethod>
             <Method>

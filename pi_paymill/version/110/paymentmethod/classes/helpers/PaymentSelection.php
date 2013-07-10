@@ -47,14 +47,24 @@ class PaymentSelection
      */
     public static function getPaymillPaymentForm($code, $paymentId, $pluginPath, $oPlugin, $js)
     {
+        $methods = array(
+            'paymill_cc' => 'cc',
+            'paymill_elv' => 'elv'
+        );
+        
         $amount = round((float) $_SESSION["Warenkorb"]->gibGesamtsummeWaren(true) * 100);
         $_SESSION['PigmbhPaymill']['authorizedAmount'] = $amount;
         $currency = key($_SESSION["Warenkorb"]->PositionenArr[0]->cGesamtpreisLocalized[0]);
         
+        $html = '';
+        if ($methods[$_SESSION['pi_error']['method']] == $code) {
+            $html = self::getPaymentError($html);
+        }
+        
         if (!self::canPamillFastCheckout($code)) {
-            $html = file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '.tpl');
+            $html .= file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '.tpl');
         } else {
-            $html = file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '_hidden.tpl');
+            $html .= file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '_hidden.tpl');
         }
         
         $html = str_replace('{__paymentId__}', $paymentId, $html);
@@ -74,6 +84,16 @@ class PaymentSelection
             $html = self::addElvMultiLang($html, $oPlugin);
         }
 
+        return $html;
+    }
+    
+    private static function getPaymentError($html)
+    {
+        if (array_key_exists('pi_error', $_SESSION) && array_key_exists('error', $_SESSION['pi_error'])) {
+            $html .= '<div class="payment-error payment-error-checkout">' . $_SESSION['pi_error']['error'] . '</div>';
+            unset($_SESSION['pi_error']);
+        }
+        
         return $html;
     }
 
