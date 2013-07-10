@@ -23,6 +23,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
         parent::init($moduleID);
         $this->name = 'PayMILL';
         $this->_fastCheckout = new FastCheckout();
+        
     }
 
     /**
@@ -34,6 +35,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
     public function preparePaymentProcess(&$order)
     {
         global $oPlugin, $Einstellungen;
+        
         if (array_key_exists('pi', $_SESSION) && array_key_exists('paymillToken', $_SESSION['pi'])) {
             $amount = (float) $order->fGesamtsummeKundenwaehrung;
             $paymill = new Services_Paymill_PaymentProcessor();
@@ -46,7 +48,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             $paymill->setPrivateKey((string) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']);
             $paymill->setToken((string) $_SESSION['pi']['paymillToken']);
             $paymill->setLogger($this);
-            //$paymill->setSource($this->version . '_' . str_replace(' ','_', PROJECT_VERSION));
+            $paymill->setSource($oPlugin->nVersion . '_JTL_' . JTL_VERSION);
 
             
             if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde) && $order->Zahlungsart->cName == 'paymill_cc') {
