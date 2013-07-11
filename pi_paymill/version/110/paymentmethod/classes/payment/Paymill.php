@@ -16,6 +16,8 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
      * @var \FastCheckout
      */
     private $_fastCheckout;
+    
+    private $_orderId;
 
 
     function init($moduleID)
@@ -37,12 +39,15 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
         global $oPlugin, $Einstellungen;
         
         if (array_key_exists('pi', $_SESSION) && array_key_exists('paymillToken', $_SESSION['pi'])) {
+            
+            $this->_orderId = baueBestellnummer();
+            
             $amount = (float) $order->fGesamtsummeKundenwaehrung;
             $paymill = new Services_Paymill_PaymentProcessor();
             $paymill->setAmount((int)(string) ($amount * 100));
             $paymill->setApiUrl((string) $this->_apiUrl);
             $paymill->setCurrency((string) strtoupper($order->Waehrung->cISO));
-            $paymill->setDescription((string) ($Einstellungen['global']['global_shopname'] . ' Bestellnummer: ' . baueBestellnummer()));
+            $paymill->setDescription((string) ($Einstellungen['global']['global_shopname'] . ' Bestellnummer: ' . $this->_orderId));
             $paymill->setEmail((string)  $order->oRechnungsadresse->cMail);
             $paymill->setName((string) ($order->oRechnungsadresse->cNachname . ', ' . $order->oRechnungsadresse->cVorname));
             $paymill->setPrivateKey((string) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']);
@@ -111,8 +116,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
     function finalizeOrder($order, $hash, $args)
     {
         parent::finalizeOrder($order, $hash, $args);
-        $order->cBestellNr = baueBestellnummer();
-        $order = finalisiereBestellung($order->cBestellNr);
+        $order = finalisiereBestellung($this->_orderId);
         $incomingPayment = new stdClass();
         $incomingPayment->fBetrag = $order->fGesamtsummeKundenwaehrung;
         $incomingPayment->cISO = $order->Waehrung->cISO;
