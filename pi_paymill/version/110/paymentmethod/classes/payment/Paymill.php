@@ -34,7 +34,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
      * @global object $oPlugin
      * @param object $order
      */
-    public function preparePaymentProcess(&$order)
+    public function preparePaymentProcess($order)
     {
         global $oPlugin, $Einstellungen;
         
@@ -56,7 +56,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             $paymill->setSource($oPlugin->nVersion . '_JTL_' . JTL_VERSION);
 
             
-            if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde) && $order->Zahlungsart->cName == 'paymill_cc') {
+            if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde, $oPlugin) && $order->Zahlungsart->cName == 'paymill_cc') {
                 $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
                 $paymill->setClientId($data->clientID);
                 if (!empty($data->paymentID_CC)) {
@@ -64,7 +64,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
                 }
             }
             
-            if ($this->_fastCheckout->canCustomerFastCheckoutElv($order->oRechnungsadresse->kKunde) && $order->Zahlungsart->cName == 'paymill_elv') {
+            if ($this->_fastCheckout->canCustomerFastCheckoutElv($order->oRechnungsadresse->kKunde, $oPlugin) && $order->Zahlungsart->cName == 'paymill_elv') {
                 $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
                 $paymill->setClientId($data->clientID);
                 if ($data->paymentID_ELV) {
@@ -116,7 +116,8 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
     function finalizeOrder($order, $hash, $args)
     {
         parent::finalizeOrder($order, $hash, $args);
-        $order = finalisiereBestellung($this->_orderId);
+        $this->cBestellNr = $this->_orderId;
+        $order = finalisiereBestellung($this->cBestellN);
         $incomingPayment = new stdClass();
         $incomingPayment->fBetrag = $order->fGesamtsummeKundenwaehrung;
         $incomingPayment->cISO = $order->Waehrung->cISO;

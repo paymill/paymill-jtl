@@ -2,14 +2,14 @@
 
 class FastCheckout
 {
-    public function canCustomerFastCheckoutCc($userId)
+    public function canCustomerFastCheckoutCc($userId, $oPlugin)
     {
-        return $this->hasCcPaymentId($userId);
+        return $this->hasCcPaymentId($userId) && (boolean) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_fast_checkout'];
     }
     
-    public function canCustomerFastCheckoutElv($userId)
+    public function canCustomerFastCheckoutElv($userId, $oPlugin)
     {
-        return $this->hasElvPaymentId($userId);
+        return $this->hasElvPaymentId($userId) && (boolean) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_fast_checkout'];
     }
     
     public function saveCcIds($userId, $newClientId, $newPaymentId)

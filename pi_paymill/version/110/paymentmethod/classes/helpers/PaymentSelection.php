@@ -61,7 +61,7 @@ class PaymentSelection
             $html = self::getPaymentError($html);
         }
         
-        if (!self::canPamillFastCheckout($code)) {
+        if (!self::canPamillFastCheckout($code, $oPlugin)) {
             $html .= file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '.tpl');
         } else {
             $html .= file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '_hidden.tpl');
@@ -175,13 +175,13 @@ class PaymentSelection
         return $html;
     }
     
-    public static function canPamillFastCheckout($code)
+    public static function canPamillFastCheckout($code, $oPlugin)
     {
         $fastCheckoutHelper = new FastCheckout();
         if ($code === 'cc') {
-            return $fastCheckoutHelper->canCustomerFastCheckoutCc($_SESSION['Kunde']->kKunde);
+            return $fastCheckoutHelper->canCustomerFastCheckoutCc($_SESSION['Kunde']->kKunde, $oPlugin);
         } elseif ($code === 'elv') {
-            return $fastCheckoutHelper->canCustomerFastCheckoutElv($_SESSION['Kunde']->kKunde);
+            return $fastCheckoutHelper->canCustomerFastCheckoutElv($_SESSION['Kunde']->kKunde, $oPlugin);
         }
         
         return false;
