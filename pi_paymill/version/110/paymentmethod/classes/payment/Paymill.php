@@ -18,6 +18,8 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
     private $_fastCheckout;
     
     private $_orderId;
+    
+    public $name;
 
 
     function init($moduleID)
@@ -42,7 +44,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             
             $this->_orderId = baueBestellnummer();
             
-            $amount = (float) $order->fGesamtsummeKundenwaehrung;
+            $amount = (float) $order->fGesamtsumme;
             $paymill = new Services_Paymill_PaymentProcessor();
             $paymill->setAmount((int)(string) ($amount * 100));
             $paymill->setApiUrl((string) $this->_apiUrl);
@@ -91,6 +93,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
                     
                     unset($_SESSION['pi']);
                     unset($_SESSION['PigmbhPaymill']);
+                    unset($_SESSION['pi_error']);
                 } else {
                     $_SESSION['pi_error']['error'] = $oPlugin->oPluginSprachvariableAssoc_arr['Order_Generate_Error'];
                     header("Location: " . gibShopURL() . '/bestellvorgang.php?editZahlungsart=1');
@@ -117,7 +120,8 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
     {
         parent::finalizeOrder($order, $hash, $args);
         $this->cBestellNr = $this->_orderId;
-        $order = finalisiereBestellung($this->cBestellN);
+        $order = finalisiereBestellung($this->cBestellNr);
+        
         $incomingPayment = new stdClass();
         $incomingPayment->fBetrag = $order->fGesamtsummeKundenwaehrung;
         $incomingPayment->cISO = $order->Waehrung->cISO;
@@ -128,7 +132,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             return true;
         }
 
-        return false;
+        return true;
     }
     
     public function log($message, $debugInfo)

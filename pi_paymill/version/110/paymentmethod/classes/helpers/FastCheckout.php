@@ -16,9 +16,9 @@ class FastCheckout
     {
         $data = $this->loadFastCheckoutData($userId);
         if (!empty($data)) {
-            $sql = "UPDATE `paymill_fastcheckout`SET `paymentID_CC` = '$newPaymentId' WHERE `userID` = '$userId'";
+            $sql = "UPDATE `xplugin_pi_paymill_tfastcheckout`SET `paymentID_CC` = '$newPaymentId' WHERE `userID` = '$userId'";
         } else {
-            $sql = "INSERT INTO `paymill_fastcheckout` (`userID`, `clientID`, `paymentID_CC`) VALUES ('$userId', '$newClientId', '$newPaymentId')";
+            $sql = "INSERT INTO `xplugin_pi_paymill_tfastcheckout` (`userID`, `clientID`, `paymentID_CC`) VALUES ('$userId', '$newClientId', '$newPaymentId')";
         }
         
         $GLOBALS['DB']->executeQuery($sql);
@@ -28,9 +28,9 @@ class FastCheckout
     {   
         $data = $this->loadFastCheckoutData($userId);
         if (!empty($data)) {
-            $sql = "UPDATE `paymill_fastcheckout`SET `paymentID_ELV` = '$newPaymentId' WHERE `userID` = '$userId'";
+            $sql = "UPDATE `xplugin_pi_paymill_tfastcheckout`SET `paymentID_ELV` = '$newPaymentId' WHERE `userID` = '$userId'";
         } else {
-            $sql = "INSERT INTO `paymill_fastcheckout` (`userID`, `clientID`, `paymentID_ELV`) VALUES ('$userId', '$newClientId', '$newPaymentId')";
+            $sql = "INSERT INTO `xplugin_pi_paymill_tfastcheckout` (`userID`, `clientID`, `paymentID_ELV`) VALUES ('$userId', '$newClientId', '$newPaymentId')";
         }
         
         $GLOBALS['DB']->executeQuery($sql);
@@ -38,7 +38,7 @@ class FastCheckout
     
     public function loadFastCheckoutData($userId)
     {
-        $sql = "SELECT * FROM `paymill_fastcheckout` WHERE `userID` = '$userId'";
+        $sql = "SELECT * FROM `xplugin_pi_paymill_tfastcheckout` WHERE `userID` = '$userId'";
         
         return $GLOBALS['DB']->executeQuery($sql, true);
     }

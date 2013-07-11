@@ -101,7 +101,6 @@
                 <Sockets>0</Sockets>
                 <ClassFile>classes/payment/Paymill.php</ClassFile>
                 <ClassName>Paymill</ClassName>
-                <TemplateFile>template/finish.tpl</TemplateFile>
                 <MethodLanguage iso="GER">
                     <Name>Kreditkartenzahlung</Name>
                     <ChargeName>Paymill CC Gebühr</ChargeName>
@@ -123,7 +122,6 @@
                 <Sockets>0</Sockets>
                 <ClassFile>classes/payment/Paymill.php</ClassFile>
                 <ClassName>Paymill</ClassName>
-                <TemplateFile>template/finish.tpl</TemplateFile>
                 <MethodLanguage iso="GER">
                     <Name>Elektronisches Lastschriftverfahren</Name>
                     <ChargeName>Paymill ELV Gebühr</ChargeName>
