@@ -1,9 +1,9 @@
 {__js__}
-    <input type='hidden' name='paymill_elv' id="paymill_elv" value='{__paymentId__}'/>
-
-    <div class="elv-logo">
-        <img src="{__pluginPath__}/img/icon_elv.png" alt="Elektronisches Lastschriftverfahren"/>
-    </div>
+<input type='hidden' name='paymill_elv' id="paymill_elv" value='{__paymentId__}'/>
+<div id="payment-errors-elv" class="payment-error"></div>
+<div class="elv-logo">
+    <img src="{__pluginPath__}/img/icon_elv.png" alt="Elektronisches Lastschriftverfahren"/>
+</div>
 </label>
 <label>
     <div class="form-row">
