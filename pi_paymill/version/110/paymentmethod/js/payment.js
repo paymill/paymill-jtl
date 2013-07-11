@@ -44,9 +44,18 @@ $(document).ready(function ()
         }
     }
     
+    function hideErrorBoxes(payment, limit)
+    {
+        for (i = 0; i <= limit; i++) {
+            $("#payment-error-" + payment + "-" + i).css('display', 'none');
+        }
+    }
+    
     function paymillCc()
     {
         paymillDebug('Paymill Creditcard: Start form validation');
+        
+        hideErrorBoxes('cc', 4);
         
         var ccErrorFlag = true;
         
@@ -94,6 +103,8 @@ $(document).ready(function ()
     function paymillElv()
     {
         paymillDebug('Paymill ELV: Start form validation');
+        
+        hideErrorBoxes('elv', 3);
         
         var elvErrorFlag = true;
         

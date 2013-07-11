@@ -228,7 +228,7 @@
             <Variable>
                 <Name>Invalid_Token_Error</Name>
                 <Description>Invalid token error</Description>
-                <VariableLocalized iso="GER">Bei der erstellung Ihres Token trat ein Fehler auf.</VariableLocalized>
+                <VariableLocalized iso="GER">Bei der Erstellung Ihres Token trat ein Fehler auf.</VariableLocalized>
                 <VariableLocalized iso="ENG">During the creation of your token, an error occurred.</VariableLocalized>
             </Variable>
             <Variable>
@@ -240,13 +240,13 @@
             <Variable>
                 <Name>Paymill_Label_Direct_Debit</Name>
                 <Description>Paymill elv label text</Description>
-                <VariableLocalized iso="GER">Sicheres Lastschriftverfahren powered by</VariableLocalized>
-                <VariableLocalized iso="ENG">Secure direct debit payment powered by</VariableLocalized>
+                <VariableLocalized iso="GER">Lastschrift powered by</VariableLocalized>
+                <VariableLocalized iso="ENG">Direct debit payment powered by</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Order_Generate_Error</Name>
                 <Description>Generate order error</Description>
-                <VariableLocalized iso="GER">Bei der erstellung der Bestellung trat ein Fehler auf, bitte kontaktieren Sie den Shopbetreiber.</VariableLocalized>
+                <VariableLocalized iso="GER">Bei der Erstellung der Bestellung trat ein Fehler auf, bitte kontaktieren Sie den Shopbetreiber.</VariableLocalized>
                 <VariableLocalized iso="ENG">With the creation of the order was an error, please contact the store owner.</VariableLocalized>
             </Variable>
         </Locales>
