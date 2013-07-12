@@ -52,7 +52,9 @@ class PaymentSelection
             'paymill_elv' => 'elv'
         );
         
-        $amount = round((float) $_SESSION["Warenkorb"]->gibGesamtsummeWaren(true) * 100);
+        $amountFloat = $_SESSION["Warenkorb"]->gibGesamtsummeWaren(true) + Util::getDifferentAmount($oPlugin);
+        
+        $amount = round((float) $amountFloat * 100);
         $_SESSION['PigmbhPaymill']['authorizedAmount'] = $amount;
         $currency = key($_SESSION["Warenkorb"]->PositionenArr[0]->cGesamtpreisLocalized[0]);
         

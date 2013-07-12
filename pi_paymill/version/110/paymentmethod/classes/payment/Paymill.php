@@ -9,19 +9,36 @@ require_once(PFAD_ROOT . PFAD_INCLUDES_MODULES . 'PaymentMethod.class.php');
 class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
 {
 
+    /**
+     * Api endpoint
+     * @var string
+     */
     private $_apiUrl = 'https://api.paymill.com/v2/';
     
     /**
-     *
+     * FastCheckout helper
      * @var \FastCheckout
      */
     private $_fastCheckout;
     
+    /**
+     * OrderId
+     * @var string
+     */
     private $_orderId;
     
+    /**
+     * Module name
+     * @var string
+     */
     public $name;
 
 
+    /**
+     * Initialize payment object
+     * 
+     * @param string $moduleID
+     */
     function init($moduleID)
     {
         parent::init($moduleID);
@@ -56,7 +73,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             $paymill->setToken((string) $_SESSION['pi']['paymillToken']);
             $paymill->setLogger($this);
             $paymill->setSource($oPlugin->nVersion . '_JTL_' . JTL_VERSION);
-
+            $paymill->setDifferentAmount(Util::getDifferentAmount($oPlugin) * 100);
             
             if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde, $oPlugin) && $order->Zahlungsart->cName == 'paymill_cc') {
                 $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
@@ -137,6 +154,12 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
         return true;
     }
     
+    /**
+     * Paymill log wrapper
+     * 
+     * @param string $message
+     * @param string $debugInfo
+     */
     public function log($message, $debugInfo)
     {
         Util::paymillLog($message . $debugInfo);

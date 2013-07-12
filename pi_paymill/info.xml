@@ -55,6 +55,11 @@
                     <Description>Der Public Key, welchen Sie von Paymill erhalten haben.</Description>
                     <ValueName>pi_paymill_public_key</ValueName>
                 </Setting>
+                <Setting type="text" initialValue="" sort="2" conf="Y">
+                    <Name>Paymill Different Amount</Name>
+                    <Description>Falls sich der Gesamtbestellwert nach der Zahlartenauswahl ändern kann, z.B. bei Zahlartenaufschlägen, muss hier der maximale Wert drin stehen..</Description>
+                    <ValueName>pi_paymill_different_amount</ValueName>
+                </Setting>
                 <Setting type="selectbox" initialValue="0" sort="3" conf="Y">
                     <Name>Paymill Fast Checkout</Name>
                     <Description>Verkürzter Bestellprozess</Description>

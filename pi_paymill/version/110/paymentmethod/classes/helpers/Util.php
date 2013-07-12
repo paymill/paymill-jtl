@@ -39,40 +39,12 @@ class Util
         return self::isPaymillCc($paymentName, $oPlugin) || self::isPaymillElv($paymentName, $oPlugin);
     }
 
-    public static function getCreateClientParams($order)
-    {
-        return array(
-            'email' => $order->oRechnungsadresse->cMail,
-            'description' => $order->oRechnungsadresse->cVorname . ' ' . $order->oRechnungsadresse->cNachname
-        );
-    }
-
-    public static function getCreatePaymentParams($token, $client)
-    {
-        return array(
-            'token' => $token,
-            'client' => $client['id']
-        );
-    }
-
     /**
-     * Retrieve all needed transaction params
-     *
-     * @param object $order
-     * @param string $token
-     * @return array
+     * Paymill log function
+     * 
+     * @global object $oPlugin
+     * @param string $message
      */
-    public static function getCreateTransactionParams($order, $payment)
-    {
-        global $Einstellungen;
-        return array(
-            'amount'      => $_SESSION['PigmbhPaymill']['authorizedAmount'],
-            'currency'    => $order->Waehrung->cISO,
-            'description' => $Einstellungen['global']['global_shopname'] . 'Bestellnummer: ' . baueBestellnummer() . ', ' . $order->oRechnungsadresse->cMail,
-            'payment'     => $payment['id']
-        );
-    }
-
     public static function paymillLog($message)
     {
         global $oPlugin;
@@ -80,5 +52,21 @@ class Util
         if ($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_debug_mode']) {
             Jtllog::writeLog($message, JTLLOG_LEVEL_DEBUG);
         }
+    }
+    
+    /**
+     * Return different amount save
+     * 
+     * @param object $oPlugin
+     * @return float
+     */
+    public static function getDifferentAmount($oPlugin)
+    {
+        $differentAmount = $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_different_amount'];
+        if (empty($differentAmount) || !is_numeric($differentAmount)) {
+            $differentAmount = 0;
+        }
+        
+        return $differentAmount;
     }
 }
