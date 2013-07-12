@@ -16,12 +16,14 @@ foreach ($oPlugin->oPluginEinstellungAssoc_arr as $key => $value) {
 $fastCheckoutElv = !PaymentSelection::canPamillFastCheckout('elv', $oPlugin) ? 'false' : 'true';
 $fastCheckoutCc = !PaymentSelection::canPamillFastCheckout('cc', $oPlugin) ? 'false' : 'true';
 
+$publicKey =  trim($pi_paymill_public_key);
+
 $js = <<<HTML
 <script type="text/javascript">
     var flag = true;
     var fastCheckoutCc = $fastCheckoutCc;
     var fastCheckoutElv = $fastCheckoutElv;
-    var PAYMILL_PUBLIC_KEY = '$pi_paymill_public_key';
+    var PAYMILL_PUBLIC_KEY = '$publicKey';
     var debug = "$debug";
     var lang = new Array();
     // Paymill cc js lang

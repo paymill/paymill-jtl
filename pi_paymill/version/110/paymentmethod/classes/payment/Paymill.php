@@ -69,7 +69,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             $paymill->setDescription((string) ($Einstellungen['global']['global_shopname'] . ' Bestellnummer: ' . $this->_orderId));
             $paymill->setEmail((string)  $order->oRechnungsadresse->cMail);
             $paymill->setName((string) ($order->oRechnungsadresse->cNachname . ', ' . $order->oRechnungsadresse->cVorname));
-            $paymill->setPrivateKey((string) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']);
+            $paymill->setPrivateKey(trim((string) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']));
             $paymill->setToken((string) $_SESSION['pi']['paymillToken']);
             $paymill->setLogger($this);
             $paymill->setSource($oPlugin->nVersion . '_JTL_' . JTL_VERSION);
