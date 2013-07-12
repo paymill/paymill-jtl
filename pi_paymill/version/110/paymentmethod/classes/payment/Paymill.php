@@ -119,8 +119,10 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
     function finalizeOrder($order, $hash, $args)
     {
         parent::finalizeOrder($order, $hash, $args);
-        $this->cBestellNr = $this->_orderId;
-        $order = finalisiereBestellung($this->cBestellNr);
+        
+        $order->cBestellNr = $this->_orderId;
+        $order = finalisiereBestellung($this->_orderId);
+        
         
         $incomingPayment = new stdClass();
         $incomingPayment->fBetrag = $order->fGesamtsummeKundenwaehrung;
