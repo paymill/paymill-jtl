@@ -73,7 +73,10 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             $paymill->setToken((string) $_SESSION['pi']['paymillToken']);
             $paymill->setLogger($this);
             $paymill->setSource($oPlugin->nVersion . '_JTL_' . JTL_VERSION);
-            $paymill->setDifferentAmount(Util::getDifferentAmount($oPlugin) * 100);
+            
+            if (array_key_exists('authorized_amount', $_SESSION['pi'])) {
+                $paymill->setPreAuthAmount($_SESSION['pi']['authorized_amount']);
+            }
             
             if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde, $oPlugin) && $order->Zahlungsart->cName == 'paymill_cc') {
                 $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
@@ -112,14 +115,17 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
                     unset($_SESSION['PigmbhPaymill']);
                     unset($_SESSION['pi_error']);
                 } else {
+                    unset($_SESSION['pi']);
                     $_SESSION['pi_error']['error'] = $oPlugin->oPluginSprachvariableAssoc_arr['Order_Generate_Error'];
                     header("Location: " . gibShopURL() . '/bestellvorgang.php?editZahlungsart=1');
                 }
             } else {
+                unset($_SESSION['pi']);
                 $_SESSION['pi_error']['error'] = $oPlugin->oPluginSprachvariableAssoc_arr['Order_Generate_Error'];
                 header("Location: " . gibShopURL() . '/bestellvorgang.php?editZahlungsart=1');
             }
         } else {
+            unset($_SESSION['pi']);
             $_SESSION['pi_error']['error'] = $oPlugin->oPluginSprachvariableAssoc_arr['Invalid_Token_Error'];
             header("Location: " . gibShopURL() . '/bestellvorgang.php?editZahlungsart=1');
         }

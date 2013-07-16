@@ -5,7 +5,12 @@ require_once(dirname(__FILE__) . '/../paymentmethod/classes/helpers/PaymentCheck
 
 $payment = PaymentCheck::getPayment();
 if (Util::isPaymillPayment($payment->cName, $oPlugin)) {
-    $posted = array_key_exists('paymillToken', $_POST) && PaymentCheck::checkToken($_POST['paymillToken']);
+    
+    if ($payment->cName === 'paymill_cc') {
+        $_SESSION['pi']['authorized_amount'] = $_POST['paymill_amount'];
+    }
+    
+    $posted  = array_key_exists('paymillToken', $_POST) && PaymentCheck::checkToken($_POST['paymillToken']);
     $session = array_key_exists('paymillToken', $_SESSION['pi']) && PaymentCheck::checkToken($_SESSION['pi']['paymillToken']);
     if ($posted || $session) {
         PaymentCheck::setToken(!empty($_SESSION['pi']['paymillToken']) ? $_SESSION['pi']['paymillToken'] : $_POST['paymillToken']);
