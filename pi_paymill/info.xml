@@ -43,7 +43,6 @@
             <CreateDate>2013-07-05</CreateDate>
         </Version>
         <Version nr="111">
-            <SQL>install.sql</SQL>
             <CreateDate>2013-07-16</CreateDate>
         </Version>
         <Adminmenu>
