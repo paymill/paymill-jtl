@@ -4,6 +4,7 @@ require_once(dirname(__FILE__) . '/../helpers/Util.php');
 require_once(dirname(__FILE__) . '/../helpers/FastCheckout.php');
 require_once(dirname(__FILE__) . '/../lib/Services/Paymill/PaymentProcessor.php');
 require_once(dirname(__FILE__) . '/../lib/Services/Paymill/LoggingInterface.php');
+require_once(dirname(__FILE__) . '/../lib/Services/Paymill/Clients.php');
 require_once(PFAD_ROOT . PFAD_INCLUDES_MODULES . 'PaymentMethod.class.php');
 
 class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
@@ -78,10 +79,15 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
                 $paymill->setPreAuthAmount($_SESSION['pi']['authorized_amount']);
             }
             
+            $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
+            if (!empty($data->clientID)) {
+                $clientId = $this->_getUpdatedClientId($data, $order);
+                $paymill->setClientId($clientId);
+            }
+            
             if ($_SESSION['pi']['paymillToken'] === 'dummyToken') {
                 if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde, $oPlugin) && $order->Zahlungsart->cName == 'paymill_cc') {
                     $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
-                    $paymill->setClientId($data->clientID);
                     if (!empty($data->paymentID_CC)) {
                         $paymill->setPaymentId($data->paymentID_CC);
                     }
@@ -89,7 +95,6 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
 
                 if ($this->_fastCheckout->canCustomerFastCheckoutElv($order->oRechnungsadresse->kKunde, $oPlugin) && $order->Zahlungsart->cName == 'paymill_elv') {
                     $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
-                    $paymill->setClientId($data->clientID);
                     if ($data->paymentID_ELV) {
                         $paymill->setPaymentId($data->paymentID_ELV);
                     }
@@ -133,6 +138,27 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
         }
     }
 
+    private function _getUpdatedClientId($data, $order)
+    {
+        global $oPlugin;
+        $clients = new Services_Paymill_Clients(
+            trim((string) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']),
+            (string) $this->apiUrl
+        );
+        
+        $client = $clients->getOne($data->clientID);
+        if ($client['email'] !== $order->oRechnungsadresse->cMail) {
+            $clients->update(
+                array(
+                    'id' => $data->clientID,
+                    'email' => $order->oRechnungsadresse->cMail
+                )
+            );
+        }
+
+        return $client['id'];
+    }
+    
     /**
      * Finalizes order if everything is ok
      *
