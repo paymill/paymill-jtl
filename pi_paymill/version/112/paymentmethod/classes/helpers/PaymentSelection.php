@@ -2,6 +2,8 @@
 
 require_once('Util.php');
 require_once('FastCheckout.php');
+require_once(dirname(__FILE__) . '/../lib/Services/Paymill/Payments.php');
+require_once(dirname(__FILE__) . '/../payment/Paymill.php');
 
 class PaymentSelection
 {
@@ -63,17 +65,19 @@ class PaymentSelection
             $html = self::getPaymentError($html);
         }
         
-        if (!self::canPamillFastCheckout($code, $oPlugin)) {
-            $html .= file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '.tpl');
+        $html .= file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '.tpl');
+        
+        if (self::canPamillFastCheckout($code, $oPlugin)) {
+            $html = self::setFastCheckoutData($code, $html, $oPlugin);
         } else {
-            $html .= file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '_hidden.tpl');
+            $html = str_replace('{__options_month__}', self::getMonthOptions(), $html);
+            $html = str_replace('{__options_year__}', self::getYearOptions(), $html);
         }
         
         $html = str_replace('{__paymentId__}', $paymentId, $html);
         $html = str_replace('{__amount__}', $amount, $html);
         $html = str_replace('{__currency__}', $currency, $html);
         $html = str_replace('{__pluginPath__}', $pluginPath, $html);
-        $html = str_replace('{__options__}', self::getYearOptions(), $html);
         $html = str_replace('{__js__}', $js, $html);
         
         if ($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_show_label'] == 1) {
@@ -87,6 +91,71 @@ class PaymentSelection
         }
 
         return $html;
+    }
+    
+    private static function setFastCheckoutData($code, $html, $oPlugin)
+    {
+        $fastCheckoutHelper = new FastCheckout();
+        $data = $fastCheckoutHelper->loadFastCheckoutData($_SESSION['Kunde']->kKunde);
+        
+        if ($code === 'cc') {
+            $html = self::setCcFastCheckoutData($data, $html, $fastCheckoutHelper, $oPlugin);
+        }
+        
+        if ($code === 'elv') {
+            $html = self::setElvFastCheckoutData($data, $html, $fastCheckoutHelper, $oPlugin);
+        }
+        
+        return $html;
+    }
+    
+    private static function setCcFastCheckoutData($data, $html, $fastCheckoutHelper, $oPlugin)
+    {
+        $paymill = new Paymill();
+        
+        $toReplace = array('{__cc_number__}', '{__cc_cvc__}', '{__cc_holder__}');
+        $replace = array('', '', '', '', '');
+        
+        if ($fastCheckoutHelper->hasCcPaymentId($_SESSION['Kunde']->kKunde)) {
+            $payments = new Services_Paymill_Payments(
+                $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key'],
+                $paymill->apiUrl
+            );
+            
+            $payment = $payments->getOne($data->paymentID_CC);
+            
+            $replace[0] = '************' . $payment['last4'];;
+            $replace[1] = '***';
+            $replace[2] = $payment['card_holder'];
+            
+            $html = str_replace('{__options_month__}', self::getMonthOptions($payment['expire_month']), $html);
+            $html = str_replace('{__options_year__}', self::getYearOptions($payment['expire_year']), $html);
+        }
+        
+        return str_replace($toReplace, $replace, $html);
+    }
+    
+    private static function setElvFastCheckoutData($data, $html, $fastCheckoutHelper, $oPlugin)
+    {
+        $paymill = new Paymill();
+        
+        $toReplace = array('{__elv_number__}', '{__elv_bankcode__}', '{__elv_owner__}');
+        $replace = array('', '', '', '', '');
+        
+        if ($fastCheckoutHelper->hasElvPaymentId($_SESSION['Kunde']->kKunde)) {
+            $payments = new Services_Paymill_Payments(
+                $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key'],
+                $paymill->apiUrl
+            );
+            
+            $payment = $payments->getOne($data->paymentID_ELV);
+            
+            $replace[0] = $payment['account'];
+            $replace[1] = $payment['code'];
+            $replace[2] = $payment['holder'];
+        }
+        
+        return str_replace($toReplace, $replace, $html);
     }
     
     private static function getPaymentError($html)
@@ -104,16 +173,33 @@ class PaymentSelection
      *
      * @return string
      */
-    private static function getYearOptions()
+    private static function getYearOptions($selected = false)
     {
         $options = '';
         $start = (int) date("Y");
         $end = (int) date("Y") + 10;
 
         for ($i = $start; $i<=$end; $i++) {
-            $options .= '<option>' . $i . '</option>';
+            if ($selected == $i) {
+                $options .= '<option selected="selected">' . $i . '</option>';
+            } else {
+                $options .= '<option>' . $i . '</option>';
+            }
         }
 
+        return $options;
+    }
+    
+    private static function getMonthOptions($selected = false)
+    {
+        for ($i = 1; $i<=12; $i++) {
+            if ($selected == $i) {
+                $options .= '<option selected="selected">' . $i . '</option>';
+            } else {
+                $options .= '<option>' . $i . '</option>';
+            }
+        }
+        
         return $options;
     }
 

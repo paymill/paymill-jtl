@@ -100,6 +100,29 @@ $(document).ready(function ()
         return false;
     }
     
+    $('.card-number').focus(function() {
+        fastCheckoutCc = 'false';
+        $('.card-number').val('');
+    });
+    
+    $('.card-expiry-month').focus(function() {
+        fastCheckoutCc = 'false';
+    });
+    
+    $('.card-expiry-month').focus(function() {
+        fastCheckoutCc = 'false';
+    });
+    
+    $('.card-cvc').focus(function() {
+        fastCheckoutCc = 'false';
+        $('.card-cvc').val('');
+    });
+    
+    $('.card-holdername').focus(function() {
+        fastCheckoutCc = 'false';
+        $('.card-holdername').val('');
+    });
+    
     function paymillElv()
     {
         paymillDebug('Paymill ELV: Start form validation');
@@ -139,19 +162,36 @@ $(document).ready(function ()
         return false;
     }
     
+    $('.account-number').focus(function() {
+        fastCheckoutElv = 'false';
+        $('.account-number').val('');
+    });
+    
+    
+    $('.bank-code').focus(function() {
+        fastCheckoutElv = 'false';
+        $('.bank-code').val('');
+    });
+    
+    
+    $('.bank-owner').focus(function() {
+        fastCheckoutElv = 'false';
+        $('.bank-owner').val('');
+    });
+    
     $(".submit").click(function (event) {
         var form = $("#zahlung");
         var payment = $("input[name='Zahlungsart']:checked").val();
         if (payment === $("#paymill_cc").val()) {
             paymillDebug('Paymill Creditcard: Payment method triggered');
-            if (!fastCheckoutCc) {
+            if (fastCheckoutCc == 'false') {
                 return paymillCc();
             } else {
                 form.append("<input type='hidden' name='paymillToken' value='dummyToken'/>");
             }
         } else if(payment === $("#paymill_elv").val()) {
             paymillDebug('Paymill ELV: Payment method triggered');
-            if (!fastCheckoutElv) {
+            if (fastCheckoutElv == 'false') {
                 return paymillElv();
             } else {
                 form.append("<input type='hidden' name='paymillToken' value='dummyToken'/>");

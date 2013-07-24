@@ -13,7 +13,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
      * Api endpoint
      * @var string
      */
-    private $_apiUrl = 'https://api.paymill.com/v2/';
+    public $apiUrl = 'https://api.paymill.com/v2/';
     
     /**
      * FastCheckout helper
@@ -64,7 +64,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             $amount = (float) $order->fGesamtsumme;
             $paymill = new Services_Paymill_PaymentProcessor();
             $paymill->setAmount((int)(string) ($amount * 100));
-            $paymill->setApiUrl((string) $this->_apiUrl);
+            $paymill->setApiUrl((string) $this->apiUrl);
             $paymill->setCurrency((string) strtoupper($order->Waehrung->cISO));
             $paymill->setDescription((string) ($Einstellungen['global']['global_shopname'] . ' Bestellnummer: ' . $this->_orderId));
             $paymill->setEmail((string)  $order->oRechnungsadresse->cMail);
@@ -78,19 +78,21 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
                 $paymill->setPreAuthAmount($_SESSION['pi']['authorized_amount']);
             }
             
-            if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde, $oPlugin) && $order->Zahlungsart->cName == 'paymill_cc') {
-                $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
-                $paymill->setClientId($data->clientID);
-                if (!empty($data->paymentID_CC)) {
-                    $paymill->setPaymentId($data->paymentID_CC);
+            if ($_SESSION['pi']['paymillToken'] === 'dummyToken') {
+                if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde, $oPlugin) && $order->Zahlungsart->cName == 'paymill_cc') {
+                    $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
+                    $paymill->setClientId($data->clientID);
+                    if (!empty($data->paymentID_CC)) {
+                        $paymill->setPaymentId($data->paymentID_CC);
+                    }
                 }
-            }
-            
-            if ($this->_fastCheckout->canCustomerFastCheckoutElv($order->oRechnungsadresse->kKunde, $oPlugin) && $order->Zahlungsart->cName == 'paymill_elv') {
-                $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
-                $paymill->setClientId($data->clientID);
-                if ($data->paymentID_ELV) {
-                    $paymill->setPaymentId($data->paymentID_ELV);
+
+                if ($this->_fastCheckout->canCustomerFastCheckoutElv($order->oRechnungsadresse->kKunde, $oPlugin) && $order->Zahlungsart->cName == 'paymill_elv') {
+                    $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
+                    $paymill->setClientId($data->clientID);
+                    if ($data->paymentID_ELV) {
+                        $paymill->setPaymentId($data->paymentID_ELV);
+                    }
                 }
             }
             

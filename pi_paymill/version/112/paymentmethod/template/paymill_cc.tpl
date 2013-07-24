@@ -11,21 +11,21 @@
 <label>
     <div class="form-row">
         <label>___Credit_Card_Number___</label>
-        <input class="card-number" type="text" size="20" value=""/>
+        <input class="card-number" type="text" size="20" value="{__cc_number__}"/>
     </div>
     <div id="payment-error-cc-1" class="payment-error"></div>
 </label>
 <label>
     <div class="form-row">
         <label>___Card_Verification_Number___</label>
-        <input class="card-cvc" type="text" size="20" value=""/>
+        <input class="card-cvc" type="text" size="20" value="{__cc_cvc__}"/>
     </div>
     <div id="payment-error-cc-2" class="payment-error"></div>
 </label>
 <label>
     <div class="form-row">
         <label>___Credit_Card_Holder___</label>
-        <input class="card-holdername" type="text" size="20" value=""/>
+        <input class="card-holdername" type="text" size="20" value="{__cc_holder__}"/>
     </div>
     <div id="payment-error-cc-3" class="payment-error"></div>
 </label>
@@ -33,22 +33,11 @@
 <div class="form-row">
     <label>___Expiration_Date___</label>
     <select class="card-expiry-month">
-        <option>01</option>
-        <option>02</option>
-        <option>03</option>
-        <option>04</option>
-        <option>05</option>
-        <option>06</option>
-        <option>07</option>
-        <option>08</option>
-        <option>09</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
+        {__options_month__}
     </select>
     <span> / </span>
     <select class="card-expiry-year">
-        {__options__}
+        {__options_year__}
     </select>
     <div id="payment-error-cc-4" class="payment-error"></div>
 </div>
