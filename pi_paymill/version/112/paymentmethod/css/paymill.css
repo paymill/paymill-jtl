@@ -89,4 +89,5 @@
 .card-icon
 {
     margin-left: 5px;
+    position: absolute;
 }

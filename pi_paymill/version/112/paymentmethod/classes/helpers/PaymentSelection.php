@@ -70,8 +70,9 @@ class PaymentSelection
         if (self::canPamillFastCheckout($code, $oPlugin)) {
             $html = self::setFastCheckoutData($code, $html, $oPlugin);
         } else {
-            $html = str_replace('{__options_month__}', self::getMonthOptions(), $html);
-            $html = str_replace('{__options_year__}', self::getYearOptions(), $html);
+            $toReplace = array('{__cc_brand_logo__}', '{__cc_number__}', '{__cc_cvc__}', '{__cc_holder__}', '{__options_month__}', '{__options_year__}', '{__elv_number__}', '{__elv_bankcode__}', '{__elv_owner__}');
+            $replace = array('', '', '', '', self::getMonthOptions(), self::getYearOptions(), '', '', '');
+            $html = str_replace($toReplace, $replace, $html);
         }
         
         $html = str_replace('{__paymentId__}', $paymentId, $html);
@@ -128,6 +129,7 @@ class PaymentSelection
             $replace[1] = '***';
             $replace[2] = $payment['card_holder'];
             
+            $html = str_replace('{__cc_brand_logo__}', '<img src="includes/plugins/pi_paymill/version/112/paymentmethod/img/32x20_' . $payment['card_type'] . '.png" >', $html);
             $html = str_replace('{__options_month__}', self::getMonthOptions($payment['expire_month']), $html);
             $html = str_replace('{__options_year__}', self::getYearOptions($payment['expire_year']), $html);
         }

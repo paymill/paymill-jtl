@@ -12,7 +12,7 @@
     <div class="form-row">
         <label>___Credit_Card_Number___</label>
         <input class="card-number" id="paymill-card-number" type="text" size="20" value="{__cc_number__}"/>
-        <span class="card-icon"></span>
+        <span class="card-icon">{__cc_brand_logo__}</span>
     </div>
     <div id="payment-error-cc-1" class="payment-error"></div>
 </label>
