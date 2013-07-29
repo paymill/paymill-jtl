@@ -59,25 +59,25 @@ $(document).ready(function ()
         
         var ccErrorFlag = true;
         
-        if (false === paymill.validateCardNumber($('.card-number').val())) {
+        if (false === paymill.validateCardNumber($('#paymill-card-number').val())) {
             $("#payment-error-cc-1").text(lang['card_number_invalid']);
             $("#payment-error-cc-1").css('display', 'block');
             ccErrorFlag = false;
         }
 
-        if (false === paymill.validateExpiry($('.card-expiry-month').val(), $('.card-expiry-year').val())) {
+        if (false === paymill.validateExpiry($('#paymill-card-expiry-month').val(), $('#paymill-card-expiry-year').val())) {
             $("#payment-error-cc-4").text(lang['expiration_date_invalid']);
             $("#payment-error-cc-4").css('display', 'block');
             ccErrorFlag = false;
         }
         
-        if (false === paymill.validateCvc($('.card-cvc').val())) {
+        if (false === paymill.validateCvc($('#paymill-card-cvc').val())) {
             $("#payment-error-cc-2").text(lang['verfication_number_invalid']);
             $("#payment-error-cc-2").css('display', 'block');
             ccErrorFlag = false;
         }
         
-        if ($('.card-holdername').val() === "") {
+        if ($('#paymill-card-holdername').val() === "") {
             $("#payment-error-cc-3").text(lang['card_holder_invalid']);
             $("#payment-error-cc-3").css('display', 'block');
             ccErrorFlag = false;
@@ -88,11 +88,11 @@ $(document).ready(function ()
         }
         
         paymill.createToken({
-            number : $('.card-number').val(),
-            exp_month : $('.card-expiry-month').val(),
-            exp_year : $('.card-expiry-year').val(),
-            cvc : $('.card-cvc').val(),
-            cardholdername : $('.card-holdername').val(),
+            number : $('#paymill-card-number').val(),
+            exp_month : $('#paymill-card-expiry-month').val(),
+            exp_year : $('#paymill-card-expiry-year').val(),
+            cvc : $('#paymill-card-cvc').val(),
+            cardholdername : $('#paymill-card-holdername').val(),
             amount_int : $('#paymill_amount').val(),
             currency : $('#paymill_currency').val()
         }, paymillCcResponseHandler);
@@ -100,27 +100,27 @@ $(document).ready(function ()
         return false;
     }
     
-    $('.card-number').focus(function() {
+    $('#paymill-card-number').focus(function() {
         fastCheckoutCc = 'false';
-        $('.card-number').val('');
+        $('#paymill-card-number').val('');
     });
     
-    $('.card-expiry-month').focus(function() {
-        fastCheckoutCc = 'false';
-    });
-    
-    $('.card-expiry-month').focus(function() {
+    $('#paymill-card-expiry-month').focus(function() {
         fastCheckoutCc = 'false';
     });
     
-    $('.card-cvc').focus(function() {
+    $('#paymill-card-expiry-month').focus(function() {
         fastCheckoutCc = 'false';
-        $('.card-cvc').val('');
     });
     
-    $('.card-holdername').focus(function() {
+    $('#paymill-card-cvc').focus(function() {
         fastCheckoutCc = 'false';
-        $('.card-holdername').val('');
+        $('#paymill-card-cvc').val('');
+    });
+    
+    $('#paymill-card-holdername').focus(function() {
+        fastCheckoutCc = 'false';
+        $('#paymill-card-holdername').val('');
     });
     
     function paymillElv()
@@ -131,19 +131,19 @@ $(document).ready(function ()
         
         var elvErrorFlag = true;
         
-        if (false === paymill.validateAccountNumber($('.account-number').val())) {
+        if (false === paymill.validateAccountNumber($('#paymill-account-number').val())) {
             $("#payment-error-elv-1").text(lang['account_number_invalid']);
             $("#payment-error-elv-1").css('display', 'block');
             elvErrorFlag = false;
         }
         
-        if (false === paymill.validateBankCode($('.bank-code').val())) {
+        if (false === paymill.validateBankCode($('#paymill-bank-code').val())) {
             $("#payment-error-elv-2").text(lang['sort_code_invalid']);
             $("#payment-error-elv-2").css('display', 'block');
             elvErrorFlag = false;
         }
         
-        if ($('.bank-owner').val() === "") {
+        if ($('#paymill-bank-owner').val() === "") {
             $("#payment-error-elv-3").text(lang['account_owner_invalid']);
             $("#payment-error-elv-3").css('display', 'block');
             elvErrorFlag = false; 
@@ -154,27 +154,27 @@ $(document).ready(function ()
         }
         
         paymill.createToken({
-            number:        $('.account-number').val(),
-            bank:          $('.bank-code').val(),
-            accountholder: $('.bank-owner').val()
+            number:        $('#paymill-account-number').val(),
+            bank:          $('#paymill-bank-code').val(),
+            accountholder: $('#paymill-bank-owner').val()
         }, paymillElvResponseHandler);
         
         return false;
     }
     
-    $('.account-number').focus(function() {
+    $('#paymill-account-number').focus(function() {
         fastCheckoutElv = 'false';
-        $('.account-number').val('');
+        $('#paymill-account-number').val('');
     });
     
     
-    $('.bank-code').focus(function() {
+    $('#paymill-bank-code').focus(function() {
         fastCheckoutElv = 'false';
-        $('.bank-code').val('');
+        $('#paymill-bank-code').val('');
     });
     
     
-    $('.bank-owner').focus(function() {
+    $('#paymill-bank-owner').focus(function() {
         fastCheckoutElv = 'false';
         $('.bank-owner').val('');
     });
@@ -184,14 +184,14 @@ $(document).ready(function ()
         var payment = $("input[name='Zahlungsart']:checked").val();
         if (payment === $("#paymill_cc").val()) {
             paymillDebug('Paymill Creditcard: Payment method triggered');
-            if (fastCheckoutCc == 'false') {
+            if (fastCheckoutCc === 'false') {
                 return paymillCc();
             } else {
                 form.append("<input type='hidden' name='paymillToken' value='dummyToken'/>");
             }
         } else if(payment === $("#paymill_elv").val()) {
             paymillDebug('Paymill ELV: Payment method triggered');
-            if (fastCheckoutElv == 'false') {
+            if (fastCheckoutElv === 'false') {
                 return paymillElv();
             } else {
                 form.append("<input type='hidden' name='paymillToken' value='dummyToken'/>");
