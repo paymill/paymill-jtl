@@ -3,10 +3,6 @@
 <input type='hidden' name='paymill_amount' id='paymill_amount' value='{__amount__}'/>
 <input type='hidden' name='paymill_currency' id='paymill_currency' value='{__currency__}'/>
 <div id="payment-errors-cc" class="payment-error"></div>
-<div>
-    <img src="{__pluginPath__}/img/icon_mastercard.png" alt="Mastercard"/>
-    <img src="{__pluginPath__}/img/icon_visa.png" alt="Mastercard"/>
-</div>
 </label>
 <label>
     <div class="form-row">
