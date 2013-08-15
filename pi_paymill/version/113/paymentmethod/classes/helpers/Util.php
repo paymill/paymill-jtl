@@ -63,7 +63,12 @@ class Util
     public static function getDifferentAmount($oPlugin)
     {
         $differentAmount = $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_different_amount'];
-        if (empty($differentAmount) || !is_numeric($differentAmount)) {
+        if (!empty($differentAmount) && preg_match('/^[0-9]+(\.[0-9][0-9][0-9])?(,[0-9]{1,2})?$/', $differentAmount)) {
+            $differentAmount = str_replace(".", "", $differentAmount);
+            $differentAmount = str_replace(",", ".", $differentAmount);
+        } else if (!empty($differentAmount) && preg_match('/^[0-9]+(\,[0-9][0-9][0-9])?(.[0-9]{1,2})?$/', $differentAmount)) {
+            $differentAmount = str_replace(",", "", $differentAmount);
+        } else {
             $differentAmount = 0;
         }
         
