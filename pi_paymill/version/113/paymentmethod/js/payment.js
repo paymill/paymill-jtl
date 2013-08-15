@@ -20,7 +20,7 @@ $(document).ready(function()
 				$('.card-icon').show();
 				break;
 			case 'maestro':
-				$('.card-icon').html('<img src="includes/plugin/pi_paymill/version/112/paymentmethod/img/32x20_maestro.png" >');
+				$('.card-icon').html('<img src="includes/plugins/pi_paymill/version/112/paymentmethod/img/32x20_maestro.png" >');
 				$('.card-icon').show();
 				break;
 			case 'diners club':
