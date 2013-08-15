@@ -190,7 +190,7 @@
                 <Name>___Sort_Code___</Name>
                 <Description>Sort code</Description>
                 <VariableLocalized iso="GER">Bankleitzahl</VariableLocalized>
-                <VariableLocalized iso="ENG">Sort code</VariableLocalized>
+                <VariableLocalized iso="ENG">Bank Code</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Credit_Card_Number_Invalid</Name>
