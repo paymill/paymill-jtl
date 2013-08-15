@@ -133,7 +133,7 @@ $(document).ready(function()
 			exp_month: $('#paymill-card-expiry-month').val(),
 			exp_year: $('#paymill-card-expiry-year').val(),
 			cvc: $('#paymill-card-cvc').val(),
-			cardholdername: $('#paymill-card-holdername').val(),
+			cardholder: $('#paymill-card-holdername').val(),
 			amount_int: $('#paymill_amount').val(),
 			currency: $('#paymill_currency').val()
 		}, paymillCcResponseHandler);
