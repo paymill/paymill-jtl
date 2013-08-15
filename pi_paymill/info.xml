@@ -49,6 +49,9 @@
             <SQL>update.sql</SQL>
             <CreateDate>2013-07-16</CreateDate>
         </Version>
+        <Version nr="113">
+            <CreateDate>2013-08-15</CreateDate>
+        </Version>
         <Adminmenu>
             <Settingslink sort="1">
                 <Name>Einstellungen</Name>
