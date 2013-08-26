@@ -86,14 +86,14 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             }
             
             if ($_SESSION['pi']['paymillToken'] === 'dummyToken') {
-                if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde, $oPlugin) && $order->Zahlungsart->cName == 'paymill_cc') {
+                if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde) && $order->Zahlungsart->cName == 'paymill_cc') {
                     $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
                     if (!empty($data->paymentID_CC)) {
                         $paymill->setPaymentId($data->paymentID_CC);
                     }
                 }
 
-                if ($this->_fastCheckout->canCustomerFastCheckoutElv($order->oRechnungsadresse->kKunde, $oPlugin) && $order->Zahlungsart->cName == 'paymill_elv') {
+                if ($this->_fastCheckout->canCustomerFastCheckoutElv($order->oRechnungsadresse->kKunde) && $order->Zahlungsart->cName == 'paymill_elv') {
                     $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
                     if ($data->paymentID_ELV) {
                         $paymill->setPaymentId($data->paymentID_ELV);

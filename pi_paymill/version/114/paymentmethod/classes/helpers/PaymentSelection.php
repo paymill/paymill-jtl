@@ -265,13 +265,13 @@ class PaymentSelection
         return $html;
     }
     
-    public static function canPamillFastCheckout($code, $oPlugin)
+    public static function canPamillFastCheckout($code)
     {
         $fastCheckoutHelper = new FastCheckout();
         if ($code === 'cc') {
-            return $fastCheckoutHelper->canCustomerFastCheckoutCc($_SESSION['Kunde']->kKunde, $oPlugin);
+            return $fastCheckoutHelper->canCustomerFastCheckoutCc($_SESSION['Kunde']->kKunde);
         } elseif ($code === 'elv') {
-            return $fastCheckoutHelper->canCustomerFastCheckoutElv($_SESSION['Kunde']->kKunde, $oPlugin);
+            return $fastCheckoutHelper->canCustomerFastCheckoutElv($_SESSION['Kunde']->kKunde);
         }
         
         return false;
