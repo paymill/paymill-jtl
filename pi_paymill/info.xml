@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding="ISO-8859-1"?>
 <jtlshop3plugin>
     <Name>Paymill</Name>
-    <Description>Fügt Ihrem Shop die Paymill Zahlweisen Kreditkarte und das Elektronische Lastschriftverfahren hinzu.</Description>
+    <Description>Fügt Ihrem Shop die Paymill Zahlweisen Kreditkarte und ELV hinzu.</Description>
     <Author>PayIntelligent GmbH</Author>
     <URL>http://www.payintelligent.de</URL>
     <XMLVersion>100</XMLVersion>
@@ -54,6 +54,9 @@
         </Version>
         <Version nr="114">
             <CreateDate>2013-08-26</CreateDate>
+        </Version>
+        <Version nr="115">
+            <CreateDate>2013-11-15</CreateDate>
         </Version>
         <Adminmenu>
             <Settingslink sort="1">
@@ -143,7 +146,7 @@
                 <ClassName>Paymill</ClassName>
                 <TemplateFile>template/finish.tpl</TemplateFile>
                 <MethodLanguage iso="GER">
-                    <Name>Elektronisches Lastschriftverfahren</Name>
+                    <Name>ELV</Name>
                     <ChargeName>Paymill ELV Gebühr</ChargeName>
                 </MethodLanguage>
                 <MethodLanguage iso="ENG">
