@@ -91,7 +91,7 @@ $(document).ready(function()
             } 
         }
 
-        if ($('#paymill-card-holdername').val() === "") {
+        if (!paymill.validateHolder($('#paymill-card-holdername').val())) {
             $("#payment-error-cc-3").text(lang['card_holder_invalid']);
             $("#payment-error-cc-3").css('display', 'block');
             ccErrorFlag = false;
