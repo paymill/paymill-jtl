@@ -3,8 +3,8 @@ PAYMILL - JTL
 
 PAYMILL extension (credit card and direct debit) for JTL (Version 3.1.5).
 
-![Paymill creditcard payment form](https://raw.github.com/Paymill/Paymill-JTL/master/paymill_cc_form_de.png)
-![Paymill creditcard payment form](https://raw.github.com/Paymill/Paymill-JTL/master/paymill_elv_form_de.png)
+![PAYMILL creditcard payment form](https://raw.github.com/Paymill/Paymill-JTL/master/paymill_cc_form_de.png)
+![PAYMILL creditcard payment form](https://raw.github.com/Paymill/Paymill-JTL/master/paymill_elv_form_de.png)
 
 # Installation
 
@@ -23,9 +23,9 @@ Afterwards merge the contents of the PAYMILL-JTL-Module directory with your JTL 
 - In the main menu goto **Plugins -> Plugins -> PAYMILL**
 - Enter your PAYMILL Test- or Livekeys and click on **Speichern**
 
-# Activate Paymill Payment
+# Activate PAYMILL Payment
 
-To activate Paymill payment follow these steps:
+To activate PAYMILL payment follow these steps:
 
 - In the main menu goto **Kaufabwicklung > Zahlungsarten**
 - In the main menu goto **Kaufabwicklung > Versandarten**
