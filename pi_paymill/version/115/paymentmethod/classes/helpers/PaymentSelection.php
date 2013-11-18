@@ -220,6 +220,7 @@ class PaymentSelection
             '___Card_Verification_Number___',
             '___Expiration_Date___',
             '___Credit_Card_Holder___',
+            '__CVC_TOOLTIP__',
             'Paymill_Label_Credit_Card'
 
         );

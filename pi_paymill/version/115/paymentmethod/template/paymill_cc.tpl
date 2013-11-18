@@ -14,7 +14,7 @@
 </label>
 <label>
     <div class="form-row">
-        <label>___Card_Verification_Number___</label>
+        <label>___Card_Verification_Number___</label><span class="tooltip" title="__CVC_TOOLTIP__">?</span>
         <input class="card-cvc" id="paymill-card-cvc" type="text" size="20" value="{__cc_cvc__}"/>
     </div>
     <div id="payment-error-cc-2" class="payment-error"></div>

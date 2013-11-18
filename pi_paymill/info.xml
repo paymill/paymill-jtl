@@ -1,7 +1,8 @@
-<?xml version='1.0' encoding="ISO-8859-1"?>
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!-- was: <?xml version='1.0' encoding="ISO-8859-1"?> -->
 <jtlshop3plugin>
     <Name>Paymill</Name>
-    <Description>Fügt Ihrem Shop die Paymill Zahlweisen Kreditkarte und ELV hinzu.</Description>
+    <Description>FÃ¼gt Ihrem Shop die Paymill Zahlweisen Kreditkarte und ELV hinzu.</Description>
     <Author>PayIntelligent GmbH</Author>
     <URL>http://www.payintelligent.de</URL>
     <XMLVersion>100</XMLVersion>
@@ -73,12 +74,12 @@
                 </Setting>
                 <Setting type="text" initialValue="" sort="2" conf="Y">
                     <Name>Paymill Different Amount</Name>
-                    <Description>Falls sich der Gesamtbestellwert nach der Zahlartenauswahl ändern kann, z.B. bei Zahlartenaufschlägen, muss hier der maximale Wert drin stehen..</Description>
+                    <Description>Falls sich der Gesamtbestellwert nach der Zahlartenauswahl Ã¤ndern kann, z.B. bei ZahlartenaufschlÃ¤gen, muss hier der maximale Wert drin stehen..</Description>
                     <ValueName>pi_paymill_different_amount</ValueName>
                 </Setting>
                 <Setting type="selectbox" initialValue="0" sort="3" conf="Y">
                     <Name>Paymill Fast Checkout</Name>
-                    <Description>Verkürzter Bestellprozess</Description>
+                    <Description>VerkÃ¼rzter Bestellprozess</Description>
                     <ValueName>pi_paymill_fast_checkout</ValueName>
                     <SelectboxOptions>
                         <Option value="0" sort="2">Off</Option>
@@ -87,7 +88,7 @@
                 </Setting>
                 <Setting type="selectbox" initialValue="0" sort="3" conf="Y">
                     <Name>Paymill debug mode</Name>
-                    <Description>Debug Modus, für die schnelle Fehlerfindung.</Description>
+                    <Description>Debug Modus, fÃ¼r die schnelle Fehlerfindung.</Description>
                     <ValueName>pi_paymill_debug_mode</ValueName>
                     <SelectboxOptions>
                         <Option value="0" sort="2">Off</Option>
@@ -125,7 +126,7 @@
                 <TemplateFile>template/finish.tpl</TemplateFile>
                 <MethodLanguage iso="GER">
                     <Name>Kreditkartenzahlung</Name>
-                    <ChargeName>Paymill CC Gebühr</ChargeName>
+                    <ChargeName>Paymill CC GebÃ¼hr</ChargeName>
                 </MethodLanguage>
                 <MethodLanguage iso="ENG">
                     <Name>Creditcard payment</Name>
@@ -147,7 +148,7 @@
                 <TemplateFile>template/finish.tpl</TemplateFile>
                 <MethodLanguage iso="GER">
                     <Name>ELV</Name>
-                    <ChargeName>Paymill ELV Gebühr</ChargeName>
+                    <ChargeName>Paymill ELV GebÃ¼hr</ChargeName>
                 </MethodLanguage>
                 <MethodLanguage iso="ENG">
                     <Name>Direct debit</Name>
@@ -165,13 +166,13 @@
             <Variable>
                 <Name>___Card_Verification_Number___</Name>
                 <Description>Card Verification Number</Description>
-                <VariableLocalized iso="GER">Kreditkarten-Prüfnummer</VariableLocalized>
+                <VariableLocalized iso="GER">Kreditkarten-PrÃ¼fnummer</VariableLocalized>
                 <VariableLocalized iso="ENG">Card Verification Number</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>___Expiration_Date___</Name>
                 <Description>Expiration Date</Description>
-                <VariableLocalized iso="GER">Gültigkeitsdatum</VariableLocalized>
+                <VariableLocalized iso="GER">GÃ¼ltigkeitsdatum</VariableLocalized>
                 <VariableLocalized iso="ENG">Expiration Date</VariableLocalized>
             </Variable>
             <Variable>
@@ -201,19 +202,19 @@
             <Variable>
                 <Name>Credit_Card_Number_Invalid</Name>
                 <Description>Invalid credit card error</Description>
-                <VariableLocalized iso="GER">Deine Kreditkartennummer ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="GER">Deine Kreditkartennummer ist ungÃ¼ltig.</VariableLocalized>
                 <VariableLocalized iso="ENG">Your credit card number is invalid.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Credit_Card_Expiration_Date_Invalid</Name>
                 <Description>Invalid expiration date error</Description>
-                <VariableLocalized iso="GER">Das Gültigkeitsdatum ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="GER">Das GÃ¼ltigkeitsdatum ist ungÃ¼ltig.</VariableLocalized>
                 <VariableLocalized iso="ENG">The expiration date is invalid.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Credit_Card_Verfication_Number_Invalid</Name>
                 <Description>Invalid verfication number error</Description>
-                <VariableLocalized iso="GER">Die Kartenprüfnummer ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="GER">Die KartenprÃ¼fnummer ist ungÃ¼ltig.</VariableLocalized>
                 <VariableLocalized iso="ENG">The verification number is invalid.</VariableLocalized>
             </Variable>
             <Variable>
@@ -225,25 +226,25 @@
             <Variable>
                 <Name>Account_Holder_Invalid</Name>
                 <Description>Invalid account holder error</Description>
-                <VariableLocalized iso="GER">Der Kontoinhaber muss ausgefüllt sein.</VariableLocalized>
+                <VariableLocalized iso="GER">Der Kontoinhaber muss ausgefÃ¼llt sein.</VariableLocalized>
                 <VariableLocalized iso="ENG">The account holder must be filled out.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Sort_Code_Invalid</Name>
                 <Description>Invalid sort code error</Description>
-                <VariableLocalized iso="GER">Die Bankleitzahl ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="GER">Die Bankleitzahl ist ungÃ¼ltig.</VariableLocalized>
                 <VariableLocalized iso="ENG">The sort code is invalid.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Account_Number_Invalid</Name>
                 <Description>Invalid account number error</Description>
-                <VariableLocalized iso="GER">Die Kontonummer ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="GER">Die Kontonummer ist ungÃ¼ltig.</VariableLocalized>
                 <VariableLocalized iso="ENG">The account number is invalid.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Payment_Processing_Error</Name>
                 <Description>Payment processingr error</Description>
-                <VariableLocalized iso="GER">Die Zahlung konnte nicht ausgeführt werden, bitte versuche es später erneut. Fehler: </VariableLocalized>
+                <VariableLocalized iso="GER">Die Zahlung konnte nicht ausgefÃ¼hrt werden, bitte versuche es spÃ¤ter erneut. Fehler: </VariableLocalized>
                 <VariableLocalized iso="ENG">Your payment was not processed. Please try again later. Error: </VariableLocalized>
             </Variable>
             <Variable>
@@ -269,6 +270,12 @@
                 <Description>Generate order error</Description>
                 <VariableLocalized iso="GER">Bei der Erstellung der Bestellung trat ein Fehler auf, bitte kontaktieren Sie den Shopbetreiber.</VariableLocalized>
                 <VariableLocalized iso="ENG">With the creation of the order was an error, please contact the store owner.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>__CVC_TOOLTIP__</Name>
+                <Description>CVC Tooltip</Description>
+                <VariableLocalized iso="GER">Hinter dem CVV-Code bzw. CVC verbirgt sich ein Sicherheitsmerkmal von Kreditkarten, Ã¼blicherweise handelt es sich dabei um eine drei- bis vierstelligen Nummer. Der CVV-Code befindet sich auf VISA-Kreditkarten. Der gleiche Code ist auch auf MasterCard-Kreditkarten zu finden, hier allerdings unter dem Namen CVC. Die AbkÃ¼rzung CVC steht dabei fÃ¼r Card Validation Code. Bei VISA wird der Code als Card Verification Value-Code bezeichnet. Ã„hnlich wie bei Mastercard und VISA gibt es auch bei Diners Club, Discover und JCB eine dreistellige  Nummer, die meist auf der RÃ¼ckseite der Karte zu finden ist. Bei Maestro-Karten gibt es mit und ohne dreistelligen CVV. Wird eine Maestro-Karte ohne CVV verwendet kann einfach 000 eingetragen werden. American Express verwendet die CID (Card Identification Number). Dabei handelt es sich um eine vierstellige Nummer, die meist auf der Vorderseite der Karte, rechts oberhalb der Kartennummer zu finden ist.</VariableLocalized>
+                <VariableLocalized iso="ENG">What is a CVV/CVC number? Prospective credit cards will have a 3 to 4-digit number, usually on the back of the card. It ascertains that the payment is carried out by the credit card holder and the card account is legitimate. On Visa the CVV (Card Verification Value) appears after and to the right of your card number. Same goes for Mastercardâ€™s CVC (Card Verfication Code), which also appears after and to the right of  your card number, and has 3-digits. Diners Club, Discover, and JCB credit and debit cards have a three-digit card security code which also appears after and to the right of your card number. The American Express CID (Card Identification Number) is a 4-digit number printed on the front of your card. It appears above and to the right of your card number. On Maestro the CVV appears after and to the right of your number. If you donâ€™t have a CVV for your Maestro card you can use 000.</VariableLocalized>
             </Variable>
         </Locales>
     </Install>
