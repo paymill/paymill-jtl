@@ -1,28 +1,3 @@
-.paymill_powered 
-{
-    border: 1px solid #ccc;
-    width: 330px;
-    height: 35px;
-    padding: 4px;
-    background: white url('../img/icon_paymill.png') no-repeat center right;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    padding-top: 15px;
-    font-size: 10px;
-}
-
-.paymill_powered > .paymill_credits 
-{
-    width: 160px;
-    color: #666;
-}
-
-.paymill_powered > a 
-{
-    color: #666;
-    text-decoration: underline;
-}
-
 .form-row
 {
     padding-bottom: 10px;

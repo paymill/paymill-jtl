@@ -94,15 +94,6 @@
                         <Option value="1" sort="1">On</Option>
                     </SelectboxOptions>
                 </Setting>
-                <Setting type="selectbox" initialValue="v2" sort="6" conf="Y">
-                    <Name>Paymill Label anzeigen</Name>
-                    <Description>Paymill label im Checkout anzeigen</Description>
-                    <ValueName>pi_paymill_show_label</ValueName>
-                    <SelectboxOptions>
-                        <Option value="0" sort="2">Off</Option>
-                        <Option value="1" sort="1">On</Option>
-                    </SelectboxOptions>
-                </Setting>
             </Settingslink>
         </Adminmenu>
         <Hooks>

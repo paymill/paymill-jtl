@@ -88,10 +88,6 @@ class PaymentSelection
         $html = str_replace('{__currency__}', $currency, $html);
         $html = str_replace('{__pluginPath__}', $pluginPath, $html);
         $html = str_replace('{__js__}', $js, $html);
-        
-        if ($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_show_label'] == 1) {
-            $html .= file_get_contents(dirname(__FILE__) . '/../../template/powered_by_' . $code . '.tpl');
-        }
 
         if ($code == 'cc') {
             $html = self::addCcMultiLang($html, $oPlugin);
