@@ -8,13 +8,12 @@
     <div class="form-row">
         <label>___Credit_Card_Number___</label>
         <input class="card-number" id="paymill-card-number" type="text" size="20" value="{__cc_number__}"/>
-        <span class="card-icon">{__cc_brand_logo__}</span>
     </div>
     <div id="payment-error-cc-1" class="payment-error"></div>
 </label>
 <label>
     <div class="form-row">
-        <label>___Card_Verification_Number___</label><span class="tooltip" title="__CVC_TOOLTIP__">?</span>
+        <label>___Card_Verification_Number___<span class="tooltip" title="__CVC_TOOLTIP__">?</span></label>
         <input class="card-cvc" id="paymill-card-cvc" type="text" size="20" value="{__cc_cvc__}"/>
     </div>
     <div id="payment-error-cc-2" class="payment-error"></div>

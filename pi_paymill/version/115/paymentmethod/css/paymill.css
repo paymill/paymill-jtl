@@ -95,3 +95,48 @@
     border-radius: 100px;
     background: #636363;
 }
+
+.card-expiry-month, .card-expiry-year 
+{
+    width: 90px;
+}
+
+.paymill-card-number-visa
+{
+    background: url('../img/32x20_visa.png') no-repeat center right !important;
+}
+
+.paymill-card-number-mastercard
+{
+    background: url('../img/32x20_mastercard.png') no-repeat center right !important;
+}
+
+.paymill-card-number-amex
+{
+    background: url('../img/32x20_amex.png') no-repeat center right !important;
+}
+
+.paymill-card-number-jcb
+{
+    background: url('../img/32x20_jcb.png') no-repeat center right !important;
+}
+
+.paymill-card-number-maestro
+{
+    background: url('../img/32x20_maestro.png') no-repeat center right !important;
+}
+
+.paymill-card-number-carte-bleue
+{
+    background: url('../img/32x20_unionpay.png') no-repeat center right !important;
+}
+
+.paymill-card-number-diners
+{
+    background: url('../img/32x20_dinersclub.png') no-repeat center right !important;
+}
+
+.paymill-card-number-discover
+{
+    background: url('../img/32x20_discover.png') no-repeat center right !important;
+}

@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
-<!-- was: <?xml version='1.0' encoding="ISO-8859-1"?> -->
+<?xml version='1.0' encoding="ISO-8859-1"?>
 <jtlshop3plugin>
     <Name>Paymill</Name>
     <Description>Fügt Ihrem Shop die Paymill Zahlweisen Kreditkarte und ELV hinzu.</Description>
