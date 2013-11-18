@@ -16,13 +16,21 @@ class PaymentSelection
      */
     public static function setPaymillInfoTexts($smarty, $oPlugin, $pluginPath, $js)
     {
-        foreach (self::getPayments($smarty) as $payment) {
+        foreach (self::getPayments($smarty) as $key => $payment) {
             if (Util::isPaymillCc($payment->cName, $oPlugin)) {
-                $payment->cHinweisText[$_SESSION['cISOSprache']] .= self::getPaymillPaymentForm('cc', $payment->kZahlungsart, $pluginPath, $oPlugin, $js);
+                if (!empty($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']) && !empty($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_public_key'])) {
+                    $payment->cHinweisText[$_SESSION['cISOSprache']] .= self::getPaymillPaymentForm('cc', $payment->kZahlungsart, $pluginPath, $oPlugin, $js);
+                } else {
+                    unset($smarty->_tpl_vars['Zahlungsarten'][$key]);
+                }
             }
 
             if(Util::isPaymillElv($payment->cName, $oPlugin)) {
-                $payment->cHinweisText[$_SESSION['cISOSprache']] .= self::getPaymillPaymentForm('elv', $payment->kZahlungsart, $pluginPath, $oPlugin, $js);
+                if (!empty($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']) && !empty($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_public_key'])) {
+                    $payment->cHinweisText[$_SESSION['cISOSprache']] .= self::getPaymillPaymentForm('elv', $payment->kZahlungsart, $pluginPath, $oPlugin, $js);
+                } else {
+                    unset($smarty->_tpl_vars['Zahlungsarten'][$key]);
+                }
             }
         }
     }
