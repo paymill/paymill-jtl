@@ -129,13 +129,18 @@ class PaymentSelection
             
             $payment = $payments->getOne($data->paymentID_CC);
             
-            $replace[0] = '************' . $payment['last4'];;
-            $replace[1] = '***';
-            $replace[2] = $payment['card_holder'];
-            
-            $html = str_replace('{__cc_brand_logo__}', '<img src="includes/plugins/pi_paymill/version/112/paymentmethod/img/32x20_' . $payment['card_type'] . '.png" >', $html);
-            $html = str_replace('{__options_month__}', self::getMonthOptions($payment['expire_month']), $html);
-            $html = str_replace('{__options_year__}', self::getYearOptions($payment['expire_year']), $html);
+            if (array_key_exists('last4', $payment)) {
+                $replace[0] = '************' . $payment['last4'];
+                $replace[1] = '***';
+                $replace[2] = $payment['card_holder'];
+                $html = str_replace('{__options_month__}', self::getMonthOptions($payment['expire_month']), $html);
+                $html = str_replace('{__options_year__}', self::getYearOptions($payment['expire_year']), $html);
+                $brand = $payment['card_type'];
+                if ($payment['card_type'] === 'american express') {
+                    $brand = 'amex';
+                }
+                $html = str_replace('{__brand__}', 'paymill-card-number-' . $brand, $html);
+            }
         }
         
         return str_replace($toReplace, $replace, $html);
@@ -155,10 +160,11 @@ class PaymentSelection
             );
             
             $payment = $payments->getOne($data->paymentID_ELV);
-            
-            $replace[0] = $payment['account'];
-            $replace[1] = $payment['code'];
-            $replace[2] = $payment['holder'];
+            if (array_key_exists('account', $payment)) {
+                $replace[0] = $payment['account'];
+                $replace[1] = $payment['code'];
+                $replace[2] = $payment['holder'];
+            }
         }
         
         return str_replace($toReplace, $replace, $html);
@@ -270,13 +276,22 @@ class PaymentSelection
         return $html;
     }
     
-    public static function canPamillFastCheckout($code)
+    public static function canPamillFastCheckout($code, $oPlugin)
     {
+        $paymill = new Paymill();
+        $payments = new Services_Paymill_Payments(
+            $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key'],
+            $paymill->apiUrl
+        );
         $fastCheckoutHelper = new FastCheckout();
-        if ($code === 'cc') {
-            return $fastCheckoutHelper->canCustomerFastCheckoutCc($_SESSION['Kunde']->kKunde);
-        } elseif ($code === 'elv') {
-            return $fastCheckoutHelper->canCustomerFastCheckoutElv($_SESSION['Kunde']->kKunde);
+        $data = $fastCheckoutHelper->loadFastCheckoutData($_SESSION['Kunde']->kKunde);
+        
+        if ($code === 'cc' && $fastCheckoutHelper->canCustomerFastCheckoutCc($_SESSION['Kunde']->kKunde)) {            
+            $payment = $payments->getOne($data->paymentID_CC);
+            return array_key_exists('last4', $payment);
+        } elseif ($code === 'elv' && $fastCheckoutHelper->canCustomerFastCheckoutElv($_SESSION['Kunde']->kKunde)) {
+            $payment = $payments->getOne($data->paymentID_ELV);
+            return array_key_exists('account', $payment);
         }
         
         return false;

@@ -13,8 +13,8 @@ foreach ($oPlugin->oPluginEinstellungAssoc_arr as $key => $value) {
 }
 
 
-$fastCheckoutElv = !PaymentSelection::canPamillFastCheckout('elv') ? 'false' : 'true';
-$fastCheckoutCc = !PaymentSelection::canPamillFastCheckout('cc') ? 'false' : 'true';
+$fastCheckoutElv = !PaymentSelection::canPamillFastCheckout('elv', $oPlugin) ? 'false' : 'true';
+$fastCheckoutCc = !PaymentSelection::canPamillFastCheckout('cc', $oPlugin) ? 'false' : 'true';
 
 $publicKey =  trim($pi_paymill_public_key);
 

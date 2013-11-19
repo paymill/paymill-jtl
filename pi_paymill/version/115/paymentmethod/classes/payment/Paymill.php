@@ -135,7 +135,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             header("Location: " . gibShopURL() . '/bestellvorgang.php?editZahlungsart=1');
         }
     }
-    
+
     private function _getErrorMessage($oPlugin, $code)
     {
         if (array_key_exists('PAYMILL_' . $code, $oPlugin->oPluginSprachvariableAssoc_arr)) {
