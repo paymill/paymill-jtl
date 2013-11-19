@@ -39,18 +39,27 @@ class Util
         return self::isPaymillCc($paymentName, $oPlugin) || self::isPaymillElv($paymentName, $oPlugin);
     }
 
-    /**
+     /**
      * Paymill log function
      * 
      * @global object $oPlugin
      * @param string $message
      */
-    public static function paymillLog($message)
+    public static function paymillLog($message, $debugInfo)
     {
         global $oPlugin;
 
         if ($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_debug_mode']) {
-            Jtllog::writeLog($message, JTLLOG_LEVEL_DEBUG);
+            if (array_key_exists('paymill_identifier', $_SESSION)) {
+                 $GLOBALS['DB']->executeQuery("INSERT INTO `xplugin_pi_paymill_log` "
+                            . "(debug, message, identifier) "
+                            . "VALUES('" 
+                              . $debugInfo . "', '" 
+                              . $message . "', '" 
+                              . $_SESSION['paymill_identifier'] 
+                            . "')"
+                );
+            }
         }
     }
     

@@ -56,8 +56,8 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
     {
         global $oPlugin, $Einstellungen;
 
+        $_SESSION['paymill_identifier'] = time();
         if (array_key_exists('pi', $_SESSION) && array_key_exists('paymillToken', $_SESSION['pi'])) {
-
             $this->_orderId = baueBestellnummer();
 
             $amount = (float) $order->fGesamtsumme;
@@ -202,7 +202,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
      */
     public function log($message, $debugInfo)
     {
-        Util::paymillLog($message . $debugInfo);
+        Util::paymillLog($message, $debugInfo);
     }
 
 }

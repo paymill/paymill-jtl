@@ -95,6 +95,10 @@
                     </SelectboxOptions>
                 </Setting>
             </Settingslink>
+            <Customlink sort="1">
+                <Name>Log</Name>
+                <Filename>log.php</Filename>
+            </Customlink>
         </Adminmenu>
         <Hooks>
             <Hook id="8">payment_selection.php</Hook>
