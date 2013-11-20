@@ -2,6 +2,12 @@
 
 global $smarty, $oPlugin;
 
+$smarty->assign("stepPlugin", 'Log');
+
+if (array_key_exists('stepPlugin', $_REQUEST)) {
+    $smarty->assign("stepPlugin", $_REQUEST['stepPlugin']);
+}
+
 if (array_key_exists('id', $_GET)) {
     $sql = "SELECT * FROM `xplugin_pi_paymill_log` WHERE id = '" . $_GET['id'] . "'";
     $log = $GLOBALS['DB']->executeQuery($sql, true);
@@ -57,7 +63,7 @@ if (array_key_exists('id', $_GET)) {
     $queryData = $_GET;
 }
 
-$smarty->assign('pageUrl', gibShopURL() . '/admin/plugin.php?' . http_build_query($queryData));
+$smarty->assign('pageUrl', gibShopURL() . '/admin/plugin.php');
 
 print($smarty->fetch($template));
 ?>
