@@ -180,7 +180,6 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
         $order->cBestellNr = $this->_orderId;
         $order = finalisiereBestellung($this->_orderId);
 
-
         $incomingPayment = new stdClass();
         $incomingPayment->fBetrag = $order->fGesamtsummeKundenwaehrung;
         $incomingPayment->cISO = $order->Waehrung->cISO;
