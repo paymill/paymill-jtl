@@ -86,6 +86,15 @@
                     </SelectboxOptions>
                 </Setting>
                 <Setting type="selectbox" initialValue="0" sort="3" conf="Y">
+                    <Name>SEPA</Name>
+                    <Description>SEPA Bezahlformular</Description>
+                    <ValueName>pi_paymill_sepa</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y">
                     <Name>Paymill debug mode</Name>
                     <Description>Debug Modus, für die schnelle Fehlerfindung.</Description>
                     <ValueName>pi_paymill_debug_mode</ValueName>
@@ -194,6 +203,18 @@
                 <VariableLocalized iso="ENG">Bank Code</VariableLocalized>
             </Variable>
             <Variable>
+                <Name>___IBAN___</Name>
+                <Description>IBAN</Description>
+                <VariableLocalized iso="GER">IBAN</VariableLocalized>
+                <VariableLocalized iso="ENG">IBAN</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>___BIC___</Name>
+                <Description>BIC</Description>
+                <VariableLocalized iso="GER">BIC</VariableLocalized>
+                <VariableLocalized iso="ENG">BIC</VariableLocalized>
+            </Variable>
+            <Variable>
                 <Name>Credit_Card_Number_Invalid</Name>
                 <Description>Invalid credit card error</Description>
                 <VariableLocalized iso="GER">Deine Kreditkartennummer ist ungültig.</VariableLocalized>
@@ -234,6 +255,18 @@
                 <Description>Invalid account number error</Description>
                 <VariableLocalized iso="GER">Die Kontonummer ist ungültig.</VariableLocalized>
                 <VariableLocalized iso="ENG">The account number is invalid.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Iban_Invalid</Name>
+                <Description>Invalid IBAN error</Description>
+                <VariableLocalized iso="GER">Die IBAN ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="ENG">The IBAN is invalid.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>Bic_Invalid</Name>
+                <Description>Invalid BIC</Description>
+                <VariableLocalized iso="GER">Die BIC ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="ENG">The BIC is invalid.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Payment_Processing_Error</Name>

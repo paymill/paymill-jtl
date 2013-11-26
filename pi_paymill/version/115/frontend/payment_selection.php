@@ -35,6 +35,8 @@ $js = <<<HTML
     lang['account_owner_invalid'] = '$Account_Holder_Invalid';
     lang['sort_code_invalid'] = '$Sort_Code_Invalid';
     lang['account_number_invalid'] = '$Account_Number_Invalid';
+    lang['iban_invalid'] = '$Iban_Invalid';
+    lang['bic_invalid'] = '$Bic_Invalid';
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://bridge.paymill.com/"></script>
