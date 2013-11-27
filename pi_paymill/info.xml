@@ -223,7 +223,7 @@
             <Variable>
                 <Name>Credit_Card_Expiration_Date_Invalid</Name>
                 <Description>Invalid expiration date error</Description>
-                <VariableLocalized iso="GER">Das GÃ¼ltigkeitsdatum ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="GER">Das Gültigkeitsdatum ist ungültig.</VariableLocalized>
                 <VariableLocalized iso="ENG">The expiration date is invalid.</VariableLocalized>
             </Variable>
             <Variable>

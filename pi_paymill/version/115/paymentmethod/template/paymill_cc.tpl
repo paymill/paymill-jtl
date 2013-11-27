@@ -4,6 +4,7 @@
 <input type='hidden' name='paymill_currency' id='paymill_currency' value='{__currency__}'/>
 <div id="payment-errors-cc" class="payment-error"></div>
 </label>
+<br/>
 <label>
     <div class="form-row">
         <label>___Credit_Card_Number___</label>

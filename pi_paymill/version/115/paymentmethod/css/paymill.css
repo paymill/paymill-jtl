@@ -21,12 +21,12 @@
 
 .card-expiry-month
 {
-    width: 155px;
+    width: 149px;
 }
 
 .card-expiry-year
 {
-    width: 82px;
+    width: 99px;
 }
 
 .payment-error
@@ -71,10 +71,6 @@
     background: #636363;
 }
 
-.card-expiry-month, .card-expiry-year 
-{
-    width: 90px;
-}
 
 .paymill-card-number-visa
 {
