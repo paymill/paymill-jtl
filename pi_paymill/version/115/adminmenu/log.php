@@ -2,6 +2,8 @@
 
 global $smarty, $oPlugin;
 
+$smarty->assign("oPlugin", $oPlugin);
+
 $smarty->assign("stepPlugin", 'Log');
 
 if (array_key_exists('stepPlugin', $_REQUEST)) {
@@ -56,7 +58,6 @@ if (array_key_exists('id', $_GET)) {
     $smarty->assign("pageCount", $pageCount);
     $smarty->assign("page", $page);
     $smarty->assign("data", $data);
-    $smarty->assign("oPlugin", $oPlugin);
 
     $template = $oPlugin->cAdminmenuPfad . "template/log.tpl";
     

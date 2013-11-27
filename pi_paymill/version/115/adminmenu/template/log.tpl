@@ -40,7 +40,7 @@
                             <pre>{$log->debug}</pre>
                         {else}
                             <center>
-                                <form method="POST" style="float: right;" action="{$pageUrl}&id={$log->id}&kPlugin={$oPlugin->kPlugin}&cPluginTab=Log">
+                                <form method="POST" style="float: right;" action="{$pageUrl}?id={$log->id}&kPlugin={$oPlugin->kPlugin}&cPluginTab=Log">
                                     <input type="submit" value="See more" name="send"/>
                                     <input type="hidden" name="cPluginTab" value="Log" />
                                     <input name="kPlugin" type="hidden" value="{$oPlugin->kPlugin}" />
@@ -71,7 +71,7 @@
                 {if $page == $b}
                     <span style="font-weight: bold;">{$b}</span>
                 {else}
-                    <span style="font-weight: bold;"><a href="{$pageUrl}?kPlugin={$oPlugin->kPlugin}&seite={$b}">{$b}</a></span>
+                    <span style="font-weight: bold;"><a href="{$pageUrl}?kPlugin={$oPlugin->kPlugin}&seite={$b}&cPluginTab=Log">{$b}</a></span>
                 {/if}
                 {assign var=b value=$b+1}
             {/section}
