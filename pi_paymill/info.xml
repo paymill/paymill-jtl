@@ -169,8 +169,8 @@
             <Variable>
                 <Name>___Card_Verification_Number___</Name>
                 <Description>Card Verification Number</Description>
-                <VariableLocalized iso="GER">Kreditkarten-Prüfnummer</VariableLocalized>
-                <VariableLocalized iso="ENG">Card Verification Number</VariableLocalized>
+                <VariableLocalized iso="GER">CVC</VariableLocalized>
+                <VariableLocalized iso="ENG">CVC</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>___Expiration_Date___</Name>
