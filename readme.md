@@ -14,7 +14,7 @@ Use the following link to download the module:
 
     https://github.com/Paymill/Paymill-JTL/archive/master.zip
 
-Afterwards merge the contents of the PAYMILL-JTL-Module directory with your JTL plugins folder (<shop_root>/includes/plugins).
+Extract the content of the zip file and merge the content of the folder "paymill-jtl-master" with your JTL plugins folder (<shop_root>/includes/plugins).
 
 # Configuration
 
