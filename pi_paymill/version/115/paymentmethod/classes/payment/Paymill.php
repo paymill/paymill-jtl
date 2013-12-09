@@ -65,7 +65,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             $paymill->setAmount((int) (string) ($amount * 100));
             $paymill->setApiUrl((string) $this->apiUrl);
             $paymill->setCurrency((string) strtoupper($order->Waehrung->cISO));
-            $paymill->setDescription((string) ($Einstellungen['global']['global_shopname'] . ' Bestellnummer: ' . $this->_orderId));
+            $paymill->setDescription((string) ($Einstellungen['global']['global_shopname'] . ' Bestellnummer: ' . $this->_orderId . ' ' . $order->oRechnungsadresse->cNachname . ', ' . $order->oRechnungsadresse->cVorname));
             $paymill->setEmail((string) $order->oRechnungsadresse->cMail);
             $paymill->setName((string) ($order->oRechnungsadresse->cNachname . ', ' . $order->oRechnungsadresse->cVorname));
             $paymill->setPrivateKey(trim((string) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']));
