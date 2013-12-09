@@ -1,4 +1,7 @@
 ## v1.1.5
+ * fast checkout guest checkout bugfix
+
+## v1.1.5
  * remove paymill label
  * show cc icons inside the input field
  * don't show paymill if one or both keys are empty
