@@ -5,7 +5,7 @@ class FastCheckout
     public function canCustomerFastCheckoutCc($userId)
     {
         if(!empty($userId)) {
-            $userId = "-1";
+            return false;
         }
         
         return $this->hasCcPaymentId($userId);
@@ -14,7 +14,7 @@ class FastCheckout
     public function canCustomerFastCheckoutElv($userId)
     {
         if(!empty($userId)) {
-            $userId = "-1";
+            return false;
         }
         
         return $this->hasElvPaymentId($userId);
