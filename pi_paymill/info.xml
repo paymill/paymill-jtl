@@ -59,6 +59,7 @@
             <CreateDate>2013-11-15</CreateDate>
         </Version>
         <Version nr="116">
+            <SQL>update.sql</SQL>
             <CreateDate>2013-12-09</CreateDate>
         </Version>
         <Adminmenu>
