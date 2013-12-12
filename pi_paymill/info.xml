@@ -62,6 +62,10 @@
             <SQL>update.sql</SQL>
             <CreateDate>2013-12-09</CreateDate>
         </Version>
+        <Version nr="117">
+            <SQL>update.sql</SQL>
+            <CreateDate>2013-12-09</CreateDate>
+        </Version>
         <Adminmenu>
             <Settingslink sort="1">
                 <Name>Einstellungen</Name>
@@ -529,6 +533,90 @@
                 <Description>Error Code</Description>
                 <VariableLocalized iso="GER">Doppelte Transaktion.</VariableLocalized>
                 <VariableLocalized iso="ENG">Duplicate transaction.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_internal_server_error</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Kommunikation mit dem PSP fehlgeschlagen</VariableLocalized>
+                <VariableLocalized iso="ENG">Communication with PSP failed</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_invalid_public_key</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Public Key ungültig</VariableLocalized>
+                <VariableLocalized iso="ENG">Public Key is invalid</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_invalid_payment_data</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Für diesen Zahlungsmodus, Kreditkartentyp, Währung oder Land nicht zugelassen</VariableLocalized>
+                <VariableLocalized iso="ENG">Payment mode, card type, currency or country not accepted.</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_unknown_error</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Unbekannter Fehler</VariableLocalized>
+                <VariableLocalized iso="ENG">Unknown Error</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_3ds_cancelled</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">3-D Secure Prozess wurde vom User abgebrochen</VariableLocalized>
+                <VariableLocalized iso="ENG">3-D Secure process has been aborted</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_field_invalid_card_number</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Fehlende oder ungültige Kreditkartennummer</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid or missing card number</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_field_invalid_card_exp_year</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Fehlendes oder ungültiges Ablaufjahr</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid or missing expiry year</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_field_invalid_card_exp_month</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Fehlender oder ungültiger Ablaufmonat</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid or missing expiry month</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_field_invalid_card_exp</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Karte nicht mehr gültig oder noch nicht gültig</VariableLocalized>
+                <VariableLocalized iso="ENG">Card no longer (or not yet) valid</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_field_invalid_card_cvc</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Ungültige Prüfziffer</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid CVC</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_field_invalid_card_holder</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Ungültiger Karteninhaber</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid card holder</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_field_invalid_amount_int</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Fehlender oder ungültiger Betrag für 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid or missing amount for 3-D Secure</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_field_field_invalid_amount</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Fehlender oder ungültiger Betrag für 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid or missing amount for 3-D Secure</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_field_field_field_invalid_currency</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Fehlende oder ungültige Währung für 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid or missing currency for 3-D Secure</VariableLocalized>
             </Variable>
         </Locales>
     </Install>

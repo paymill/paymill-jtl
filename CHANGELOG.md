@@ -1,4 +1,7 @@
-## v1.1.5
+## v1.1.7
+ * add bridge error translations
+
+## v1.1.6
  * fast checkout guest checkout bugfix
 
 ## v1.1.5
