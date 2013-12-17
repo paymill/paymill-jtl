@@ -4,7 +4,7 @@ class FastCheckout
 {
     public function canCustomerFastCheckoutCc($userId)
     {
-        if(!empty($userId)) {
+        if(empty($userId)) {
             return false;
         }
         
@@ -13,7 +13,7 @@ class FastCheckout
     
     public function canCustomerFastCheckoutElv($userId)
     {
-        if(!empty($userId)) {
+        if(empty($userId)) {
             return false;
         }
         
