@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding="ISO-8859-1"?>
 <jtlshop3plugin>
     <Name>Paymill</Name>
-    <Description>Fügt Ihrem Shop die Paymill Zahlweisen Kreditkarte und ELV hinzu.</Description>
+    <Description>
+        Fügt Ihrem Shop die Paymill Zahlweisen Kreditkarte und ELV hinzu.
+</Description>
     <Author>PayIntelligent GmbH</Author>
     <URL>http://www.payintelligent.de</URL>
     <XMLVersion>100</XMLVersion>
@@ -65,22 +67,31 @@
         <Version nr="117">
             <CreateDate>2013-12-09</CreateDate>
         </Version>
+        <Version nr="118">
+            <CreateDate>2014-03-13</CreateDate>
+        </Version>
         <Adminmenu>
             <Settingslink sort="1">
                 <Name>Einstellungen</Name>
                 <Setting type="text" initialValue="" sort="1" conf="Y">
                     <Name>Paymill Private Key</Name>
-                    <Description>Der Private Key, welchen Sie von Paymill erhalten haben.</Description>
+                    <Description>
+                        Der Private Key, welchen Sie von Paymill erhalten haben.
+</Description>
                     <ValueName>pi_paymill_private_key</ValueName>
                 </Setting>
                 <Setting type="text" initialValue="" sort="2" conf="Y">
                     <Name>Paymill Public Key</Name>
-                    <Description>Der Public Key, welchen Sie von Paymill erhalten haben.</Description>
+                    <Description>
+                        Der Public Key, welchen Sie von Paymill erhalten haben.
+</Description>
                     <ValueName>pi_paymill_public_key</ValueName>
                 </Setting>
                 <Setting type="text" initialValue="" sort="2" conf="Y">
                     <Name>Paymill Different Amount</Name>
-                    <Description>Falls sich der Gesamtbestellwert nach der Zahlartenauswahl Ändern kann, z.B. bei Zahlartenaufschlägen, muss hier der maximale Wert drin stehen.</Description>
+                    <Description>
+                        Falls sich der Gesamtbestellwert nach der Zahlartenauswahl Ändern kann, z.B. bei Zahlartenaufschlägen, muss hier der maximale Wert drin stehen.
+</Description>
                     <ValueName>pi_paymill_different_amount</ValueName>
                 </Setting>
                 <Setting type="selectbox" initialValue="0" sort="3" conf="Y">
@@ -170,452 +181,846 @@
             <Variable>
                 <Name>___Credit_Card_Number___</Name>
                 <Description>Credit Card Number</Description>
-                <VariableLocalized iso="GER">Kreditkartennummer</VariableLocalized>
-                <VariableLocalized iso="ENG">Credit Card Number</VariableLocalized>
+                <VariableLocalized iso="GER">Kartennummer</VariableLocalized>
+                <VariableLocalized iso="ENG">Card number</VariableLocalized>
+                <VariableLocalized iso="ESP">Número de tarjeta</VariableLocalized>
+                <VariableLocalized iso="FRE">Numéro de carte</VariableLocalized>
+                <VariableLocalized iso="ITA">Numero carta</VariableLocalized>
+                <VariableLocalized iso="POR">Número do cartão</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>___Card_Verification_Number___</Name>
                 <Description>Card Verification Number</Description>
                 <VariableLocalized iso="GER">CVC</VariableLocalized>
                 <VariableLocalized iso="ENG">CVC</VariableLocalized>
+                <VariableLocalized iso="ESP">Código CVC</VariableLocalized>
+                <VariableLocalized iso="FRE">CVC</VariableLocalized>
+                <VariableLocalized iso="ITA">CVC</VariableLocalized>
+                <VariableLocalized iso="POR">CVC</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>___Expiration_Date___</Name>
                 <Description>Expiration Date</Description>
-                <VariableLocalized iso="GER">Gültigkeitsdatum</VariableLocalized>
-                <VariableLocalized iso="ENG">Expiration Date</VariableLocalized>
+                <VariableLocalized iso="GER">Gültig bis</VariableLocalized>
+                <VariableLocalized iso="ENG">Valid until</VariableLocalized>
+                <VariableLocalized iso="ESP">Válida hasta</VariableLocalized>
+                <VariableLocalized iso="FRE">Valable jusqu'au</VariableLocalized>
+                <VariableLocalized iso="ITA">Valida fino al</VariableLocalized>
+                <VariableLocalized iso="POR">Válido até</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>___Credit_Card_Holder___</Name>
                 <Description>Credit card holder</Description>
                 <VariableLocalized iso="GER">Karteninhaber</VariableLocalized>
-                <VariableLocalized iso="ENG">Credit Card Holder</VariableLocalized>
+                <VariableLocalized iso="ENG">Card holder</VariableLocalized>
+                <VariableLocalized iso="ESP">Titular de la tarjeta</VariableLocalized>
+                <VariableLocalized iso="FRE">Titulaire de la carte</VariableLocalized>
+                <VariableLocalized iso="ITA">Titolare carta</VariableLocalized>
+                <VariableLocalized iso="POR">Titular do cartão</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>___Account_Owner___</Name>
                 <Description>Account owner</Description>
                 <VariableLocalized iso="GER">Kontoinhaber</VariableLocalized>
-                <VariableLocalized iso="ENG">Account owner</VariableLocalized>
+                <VariableLocalized iso="ENG">Account holder</VariableLocalized>
+                <VariableLocalized iso="ESP">Titular de la cuenta</VariableLocalized>
+                <VariableLocalized iso="FRE">Titulaire du compte</VariableLocalized>
+                <VariableLocalized iso="ITA">Titolare conto</VariableLocalized>
+                <VariableLocalized iso="POR">Titular da conta</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>___Account_Number___</Name>
                 <Description>Account number</Description>
                 <VariableLocalized iso="GER">Kontonummer</VariableLocalized>
-                <VariableLocalized iso="ENG">Account owner</VariableLocalized>
+                <VariableLocalized iso="ENG">Account number</VariableLocalized>
+                <VariableLocalized iso="ESP">Número de cuenta</VariableLocalized>
+                <VariableLocalized iso="FRE">Numéro de compte</VariableLocalized>
+                <VariableLocalized iso="ITA">Numero conto</VariableLocalized>
+                <VariableLocalized iso="POR">Número da conta</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>___Sort_Code___</Name>
                 <Description>Sort code</Description>
                 <VariableLocalized iso="GER">Bankleitzahl</VariableLocalized>
-                <VariableLocalized iso="ENG">Bank Code</VariableLocalized>
+                <VariableLocalized iso="ENG">Bank code</VariableLocalized>
+                <VariableLocalized iso="ESP">Código bancario</VariableLocalized>
+                <VariableLocalized iso="FRE">Code bancaire</VariableLocalized>
+                <VariableLocalized iso="ITA">Codice bancario</VariableLocalized>
+                <VariableLocalized iso="POR">Código do banco</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>___IBAN___</Name>
                 <Description>IBAN</Description>
                 <VariableLocalized iso="GER">IBAN</VariableLocalized>
                 <VariableLocalized iso="ENG">IBAN</VariableLocalized>
+                <VariableLocalized iso="ESP">IBAN</VariableLocalized>
+                <VariableLocalized iso="FRE">IBAN</VariableLocalized>
+                <VariableLocalized iso="ITA">IBAN</VariableLocalized>
+                <VariableLocalized iso="POR">IBAN</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>___BIC___</Name>
                 <Description>BIC</Description>
                 <VariableLocalized iso="GER">BIC</VariableLocalized>
                 <VariableLocalized iso="ENG">BIC</VariableLocalized>
+                <VariableLocalized iso="ESP">BIC</VariableLocalized>
+                <VariableLocalized iso="FRE">BIC</VariableLocalized>
+                <VariableLocalized iso="ITA">BIC</VariableLocalized>
+                <VariableLocalized iso="POR">BIC</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Credit_Card_Number_Invalid</Name>
                 <Description>Invalid credit card error</Description>
-                <VariableLocalized iso="GER">Deine Kreditkartennummer ist ungültig.</VariableLocalized>
-                <VariableLocalized iso="ENG">Your credit card number is invalid.</VariableLocalized>
+                <VariableLocalized iso="GER">
+                    Bitte geben Sie eine gültige Kreditkartennummer ein.
+</VariableLocalized>
+                <VariableLocalized iso="ENG">Please enter a valid credit card number.</VariableLocalized>
+                <VariableLocalized iso="ESP">
+                    Por favor, introduce un número válido de tarjeta de crédito.
+</VariableLocalized>
+                <VariableLocalized iso="FRE">
+                    Veuillez saisir un numéro de carte de crédit valide.
+</VariableLocalized>
+                <VariableLocalized iso="ITA">Inserire un numero di carta di credito valido.</VariableLocalized>
+                <VariableLocalized iso="POR">
+                    Por favor, introduza um número de cartão de crédito válido.
+</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Credit_Card_Expiration_Date_Invalid</Name>
                 <Description>Invalid expiration date error</Description>
-                <VariableLocalized iso="GER">Das Gültigkeitsdatum ist ungültig.</VariableLocalized>
-                <VariableLocalized iso="ENG">The expiration date is invalid.</VariableLocalized>
+                <VariableLocalized iso="GER">Ungültiges Ablaufdatum</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid expiration date</VariableLocalized>
+                <VariableLocalized iso="ESP">Fecha de expiración inválida</VariableLocalized>
+                <VariableLocalized iso="FRE">Date d'expiration invalide</VariableLocalized>
+                <VariableLocalized iso="ITA">Data scadenza non valida</VariableLocalized>
+                <VariableLocalized iso="POR">Data de validade inválida</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Credit_Card_Verfication_Number_Invalid</Name>
                 <Description>Invalid verfication number error</Description>
-                <VariableLocalized iso="GER">Die Kartenprüfnummer ist ungültig.</VariableLocalized>
-                <VariableLocalized iso="ENG">The verification number is invalid.</VariableLocalized>
+                <VariableLocalized iso="GER">Ungültige CVC</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid CVC</VariableLocalized>
+                <VariableLocalized iso="ESP">CVC inválido</VariableLocalized>
+                <VariableLocalized iso="FRE">CVC invalide</VariableLocalized>
+                <VariableLocalized iso="ITA">CVC non valido</VariableLocalized>
+                <VariableLocalized iso="POR">CVC inválido</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Credit_Card_Holder_Invalid</Name>
                 <Description>Invalid credit card holder error</Description>
-                <VariableLocalized iso="GER">Bitte geben Sie den Karteninhaber an.</VariableLocalized>
-                <VariableLocalized iso="ENG">Credit Card Holder is missing.</VariableLocalized>
+                <VariableLocalized iso="GER">Bitte geben Sie einen Inhabernamen an.</VariableLocalized>
+                <VariableLocalized iso="ENG">Please enter the card holder's name.</VariableLocalized>
+                <VariableLocalized iso="ESP">
+                    Por favor, introduce el nombre del titular de la tarjeta
+</VariableLocalized>
+                <VariableLocalized iso="FRE">Veuillez saisir le nom du titulaire de la carte.</VariableLocalized>
+                <VariableLocalized iso="ITA">Inserire il nome del titolare della carta.</VariableLocalized>
+                <VariableLocalized iso="POR">Por favor, introduza o nome do titular do cartão.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Account_Holder_Invalid</Name>
                 <Description>Invalid account holder error</Description>
-                <VariableLocalized iso="GER">Der Kontoinhaber muss ausgefällt sein.</VariableLocalized>
-                <VariableLocalized iso="ENG">The account holder must be filled out.</VariableLocalized>
+                <VariableLocalized iso="GER">Bitte geben Sie den Namen des Kontoinhabers an</VariableLocalized>
+                <VariableLocalized iso="ENG">
+                    Please enter the name of the direct debit account holder
+</VariableLocalized>
+                <VariableLocalized iso="ESP">
+                    Por favor, introduce el nombre del titular de la cuenta para la domiciliación bancaria.
+</VariableLocalized>
+                <VariableLocalized iso="FRE">
+                    Veuillez saisir le nom du titulaire du compte de débit direct
+</VariableLocalized>
+                <VariableLocalized iso="ITA">
+                    Inserire il nome del titolare del conto di addebito diretto
+</VariableLocalized>
+                <VariableLocalized iso="POR">
+                    Por favor, introduza o nome do titular da conta de débito direto
+</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Sort_Code_Invalid</Name>
                 <Description>Invalid sort code error</Description>
-                <VariableLocalized iso="GER">Die Bankleitzahl ist ungültig.</VariableLocalized>
-                <VariableLocalized iso="ENG">The sort code is invalid.</VariableLocalized>
+                <VariableLocalized iso="GER">Bitte geben Sie eine gültige Bankleitzahl an</VariableLocalized>
+                <VariableLocalized iso="ENG">Please enter a valid direct debit bank code.</VariableLocalized>
+                <VariableLocalized iso="ESP">
+                    Por favor, introduce un código bancario válido de domiciliación bancaria.
+</VariableLocalized>
+                <VariableLocalized iso="FRE">
+                    Veuillez saisir un code bancaire de débit direct valide.
+</VariableLocalized>
+                <VariableLocalized iso="ITA">
+                    Inserire un codice di addebito bancario diretto valido.
+</VariableLocalized>
+                <VariableLocalized iso="POR">
+                    Por favor, introduza um código bancário de débito direto válido.
+</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Account_Number_Invalid</Name>
                 <Description>Invalid account number error</Description>
-                <VariableLocalized iso="GER">Die Kontonummer ist ungültig.</VariableLocalized>
-                <VariableLocalized iso="ENG">The account number is invalid.</VariableLocalized>
+                <VariableLocalized iso="GER">Bitte geben Sie eine gültige Kontonummer ein</VariableLocalized>
+                <VariableLocalized iso="ENG">Please enter a valid direct debit account number</VariableLocalized>
+                <VariableLocalized iso="ESP">
+                    Por favor, introduce un número válido de la cuenta para la domiciliación bancaria.
+</VariableLocalized>
+                <VariableLocalized iso="FRE">
+                    Veuillez saisir un numéro de compte de débit direct valide
+</VariableLocalized>
+                <VariableLocalized iso="ITA">
+                    Inserire un numero di conto di addebito diretto valido
+</VariableLocalized>
+                <VariableLocalized iso="POR">
+                    Por favor, introduza um número de conta de débito direto válido
+</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Iban_Invalid</Name>
                 <Description>Invalid IBAN error</Description>
-                <VariableLocalized iso="GER">Die IBAN ist ungültig.</VariableLocalized>
-                <VariableLocalized iso="ENG">The IBAN is invalid.</VariableLocalized>
+                <VariableLocalized iso="GER">Invalid IBAN</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid IBAN</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid IBAN</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid IBAN</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid IBAN</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid IBAN</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Bic_Invalid</Name>
                 <Description>Invalid BIC</Description>
-                <VariableLocalized iso="GER">Die BIC ist ungültig.</VariableLocalized>
-                <VariableLocalized iso="ENG">The BIC is invalid.</VariableLocalized>
+                <VariableLocalized iso="GER">Invalid BIC</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid BIC</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid BIC</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid BIC</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid BIC</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid BIC</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Payment_Processing_Error</Name>
                 <Description>Payment processingr error</Description>
-                <VariableLocalized iso="GER">Die Zahlung konnte nicht ausgeführt werden, bitte versuche es später erneut. Fehler: </VariableLocalized>
-                <VariableLocalized iso="ENG">Your payment was not processed. Please try again later. Error: </VariableLocalized>
+                <VariableLocalized iso="GER">Während Ihrer Zahlung ist ein Fehler aufgetreten.</VariableLocalized>
+                <VariableLocalized iso="ENG">
+                    An error has occurred while processing your payment.
+</VariableLocalized>
+                <VariableLocalized iso="ESP">
+                    Ha ocurrido un error mientras procesábamos tu pago.
+</VariableLocalized>
+                <VariableLocalized iso="FRE">
+                    Une erreur s'est produit pendant le traiement de votre paiement.
+</VariableLocalized>
+                <VariableLocalized iso="ITA">
+                    Si è verificato un errore durante l'elaborazione del pagamento.
+</VariableLocalized>
+                <VariableLocalized iso="POR">
+                    Ocorreu um erro durante o processamento do seu pagamento.
+</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Invalid_Token_Error</Name>
                 <Description>Invalid token error</Description>
-                <VariableLocalized iso="GER">Bei der Erstellung Ihres Token trat ein Fehler auf.</VariableLocalized>
-                <VariableLocalized iso="ENG">During the creation of your token, an error occurred.</VariableLocalized>
+                <VariableLocalized iso="GER">Während Ihrer Zahlung ist ein Fehler aufgetreten.</VariableLocalized>
+                <VariableLocalized iso="ENG">An error has occurred during token creation.</VariableLocalized>
+                <VariableLocalized iso="ESP">
+                    Ha ocurrido un error durante la creación del indicador.
+</VariableLocalized>
+                <VariableLocalized iso="FRE">
+                    Une erreur est survenue durant la création du token.
+</VariableLocalized>
+                <VariableLocalized iso="ITA">
+                    Si è verificato un errore durante la creazione del token
+</VariableLocalized>
+                <VariableLocalized iso="POR">Ocorreu um erro ao criar o token</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Paymill_Label_Credit_Card</Name>
                 <Description>Paymill cc label text</Description>
                 <VariableLocalized iso="GER">Sichere Kreditkartenzahlung powered by</VariableLocalized>
-                <VariableLocalized iso="ENG">Secure credit card payment powered by</VariableLocalized>
+                <VariableLocalized iso="ENG">Secure credit card payments powered by</VariableLocalized>
+                <VariableLocalized iso="ESP">
+                    Pagos seguros con tarjeta de crédito gestionados por
+</VariableLocalized>
+                <VariableLocalized iso="FRE">
+                    Paiements par carte de crédit sécurisés fonctionnant avec
+</VariableLocalized>
+                <VariableLocalized iso="ITA">
+                    Pagamenti sicuri con carta di credito con tecnologia
+</VariableLocalized>
+                <VariableLocalized iso="POR">
+                    Pagamentos com cartão de crédito seguros fornecidos por
+</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Paymill_Label_Direct_Debit</Name>
                 <Description>Paymill elv label text</Description>
-                <VariableLocalized iso="GER">Lastschrift powered by</VariableLocalized>
-                <VariableLocalized iso="ENG">Direct debit payment powered by</VariableLocalized>
+                <VariableLocalized iso="GER">ELV powered by</VariableLocalized>
+                <VariableLocalized iso="ENG">Direct debit powered by</VariableLocalized>
+                <VariableLocalized iso="ESP">Domiciliación bancaria gestionada por</VariableLocalized>
+                <VariableLocalized iso="FRE">Débit direct fonctionnant avec</VariableLocalized>
+                <VariableLocalized iso="ITA">Addebito diretto con tecnologia</VariableLocalized>
+                <VariableLocalized iso="POR">Débito direto fornecido por</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Order_Generate_Error</Name>
                 <Description>Generate order error</Description>
-                <VariableLocalized iso="GER">Bei der Erstellung der Bestellung trat ein Fehler auf, bitte kontaktieren Sie den Shopbetreiber.</VariableLocalized>
-                <VariableLocalized iso="ENG">With the creation of the order was an error, please contact the store owner.</VariableLocalized>
+                <VariableLocalized iso="GER">Während Ihrer Zahlung ist ein Fehler aufgetreten.</VariableLocalized>
+                <VariableLocalized iso="ENG">
+                    An error has occurred while processing your payment.
+</VariableLocalized>
+                <VariableLocalized iso="ESP">
+                    Ha ocurrido un error mientras procesábamos tu pago.
+</VariableLocalized>
+                <VariableLocalized iso="FRE">
+                    Une erreur s'est produit pendant le traiement de votre paiement.
+</VariableLocalized>
+                <VariableLocalized iso="ITA">
+                    Si è verificato un errore durante l'elaborazione del pagamento.
+</VariableLocalized>
+                <VariableLocalized iso="POR">
+                    Ocorreu um erro durante o processamento do seu pagamento.
+</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>__CVC_TOOLTIP__</Name>
                 <Description>CVC Tooltip</Description>
-                <VariableLocalized iso="GER">Hinter dem CVV-Code bzw. CVC verbirgt sich ein Sicherheitsmerkmal von Kreditkarten, üblicherweise handelt es sich dabei um eine drei- bis vierstelligen Nummer. Der CVV-Code befindet sich auf VISA-Kreditkarten. Der gleiche Code ist auch auf MasterCard-Kreditkarten zu finden, hier allerdings unter dem Namen CVC. Die Abkürzung CVC steht dabei für Card Validation Code. Bei VISA wird der Code als Card Verification Value-Code bezeichnet. Ähnlich wie bei Mastercard und VISA gibt es auch bei Diners Club, Discover und JCB eine dreistellige  Nummer, die meist auf der Rückseite der Karte zu finden ist. Bei Maestro-Karten gibt es mit und ohne dreistelligen CVV. Wird eine Maestro-Karte ohne CVV verwendet kann einfach 000 eingetragen werden. American Express verwendet die CID (Card Identification Number). Dabei handelt es sich um eine vierstellige Nummer, die meist auf der Vorderseite der Karte, rechts oberhalb der Kartennummer zu finden ist.</VariableLocalized>
-                <VariableLocalized iso="ENG">What is a CVV/CVC number? Prospective credit cards will have a 3 to 4-digit number, usually on the back of the card. It ascertains that the payment is carried out by the credit card holder and the card account is legitimate. On Visa the CVV (Card Verification Value) appears after and to the right of your card number. Same goes for Mastercards CVC (Card Verfication Code), which also appears after and to the right of  your card number, and has 3-digits. Diners Club, Discover, and JCB credit and debit cards have a three-digit card security code which also appears after and to the right of your card number. The American Express CID (Card Identification Number) is a 4-digit number printed on the front of your card. It appears above and to the right of your card number. On Maestro the CVV appears after and to the right of your number. If you don't have a CVV for your Maestro card you can use 000.</VariableLocalized>
+                <VariableLocalized iso="GER">
+                    Hinter dem CVV-Code bzw. CVC verbirgt sich ein Sicherheitsmerkmal von Kreditkarten, üblicherweise handelt es sich dabei um eine drei- bis vierstelligen Nummer. Der CVV-Code befindet sich auf VISA-Kreditkarten. Der gleiche Code ist auch auf MasterCard-Kreditkarten zu finden, hier allerdings unter dem Namen CVC. Die Abkürzung CVC steht dabei für Card Validation Code. Bei VISA wird der Code als Card Verification Value-Code bezeichnet. Ähnlich wie bei Mastercard und VISA gibt es auch bei Diners Club, Discover und JCB eine dreistellige Nummer, die meist auf der Rückseite der Karte zu finden ist. Bei Maestro-Karten gibt es mit und ohne dreistelligen CVV. Wird eine Maestro-Karte ohne CVV verwendet kann einfach 000 eingetragen werden. American Express verwendet die CID (Card Identification Number). Dabei handelt es sich um eine vierstellige Nummer, die meist auf der Vorderseite der Karte, rechts oberhalb der Kartennummer zu finden ist.
+</VariableLocalized>
+                <VariableLocalized iso="ENG">
+                    The CVV code or CVC is a security feature of credit cards. It usually is a three to four digit long number. On VISA credit cards, it is called CVV code. The same code can be found on MasterCard credit cards - where however it is called CVC. CVC is an abbreviation for "Card Validation Code". CVV code on the other hand is an abbreviation for "Card Validation Value code". Similar to MasterCard and Visa, other brands such as Diners Club, Discover and JCB contain a three digit number that can usually be found on the back of the credit card. MAESTRO cards exist with and without a three digit CVV. In case a MAESTRO card without a CVV will be used, it is possible to enter 000 to the form instead. American Express uses the CID (card identification number). The CID is a four digit number that can usually be found on the front of the card, top right from the credit card number.
+</VariableLocalized>
+                <VariableLocalized iso="ESP">
+                    El código CVV o CVC es una medida de seguridad de las tarjetas de crédito. Normalmente es un número de tres a cuatro dígitos de longitud. En las tarjetas de crédito VISA, se le llama código CVV. Se puede encontrar este mismo código en las tarjetas de crédito MasterCard -donde se le llama CVC. CVC es la abreviatura de "código de validez de la tarjeta". El código CVV, por otro lado, es la abreviatura de "código de valor de verificación de la tarjeta". Parecidas a MasterCard y Visa, otras tarjetas como Diners Club, Discover y JCB contienen un número de tres dígitos que se encuentra normalmente en el reverso de la tarjeta de crédito. Las tarjetas MAESTRO pueden tener o no el código CVV de tres dígitos. En caso de usar una tarjeta MAESTRO sin CVV, puede introducir 000 en el formulario en su lugar. American Express usa el CID (número de identificación de la tarjeta). El CID es un número de cuatro dígitos que normalmente se encuentra en el anverso de la tarjeta, arriba a la derecha del número de la tarjeta de crédito.
+</VariableLocalized>
+                <VariableLocalized iso="FRE">
+                    Le code CVV ou CVC est une fonctionnalité de sécurité des cartes de crédit. Il se compose en général d'un nombre de trois à quatre chiffres. Sur les cartes de crédit VISA, il est appelé code CVV. On trouve le même code sur les cartes de crédit MasterCard, où il est appelé cependant CVC. CVC signifie « Card Validation Code » (« Code de validation de carte »). Le code CVV signifie quant à lui « Card Validation Value code » (« code de Valeur de validation de carte »). Similaires à MasterCard et Visa, les autres marques telles que Diners Club, Discover et JCB contiennent un nombre à trois chiffres que l'on retrouve généralement au dos de la carte de crédit. Les cartes MAESTRO existent avec et sans le CVV à trois chiffres. Si vous utilisez une carte MAESTRO sans CVV, vous pourrez saisir 000 dans le formulaire. American Express utilise le CID (card identification number - numéro d'identification de carte). Le CID est un nombre à quatre chiffres que l'on retrouve généralement à l'avant de la carte, en haut à droite du numéro de carte de crédit.
+</VariableLocalized>
+                <VariableLocalized iso="ITA">
+                    Il codice CVV o CVC è una funzione di sicurezza delle carte di credito. Di solito, è un numero composto da tre o quattro cifre. Sulle carte di credito VISA, è indicato come codice CVV. Lo stesso codice può essere trovato sulle carte di credito MasterCard, dove però è denominato CVC. CVC è l'abbreviazione di "Card Validation Code" (Codice di validazione della carta). Il codice CVV, invece, è l'abbreviazione di "Card Validation Value code" (Codice del valore di verifica della carta). Similmente alla MasterCard e alla Visa, altre marche come la Diners Club, la Discover e la JCB contengono un numero a tre cifre che di solito può essere trovato sul retro della carta di credito. Esistono carte MAESTRO con o senza un codice CVV a tre cifre. Nel caso in cui venga utilizzata una carta MAESTRO priva di CVV, è possibile inserire 000 nel modulo. L'American Express utilizza il CID (Numero di identificazione della carta). Il CID è un numero a quattro cifre che di solito si trova sulla parte anteriore della carta, in alto a destra dal numero della carta di credito.
+</VariableLocalized>
+                <VariableLocalized iso="POR">
+                    O código CVV ou CVC é uma funcionalidade de segurança dos cartões de crédito. Normalmente é um número com três ou quatro dígitos. Nos cartões de crédito VISA, é chamado de código CVV. O mesmo código pode ser encontrado nos cartões de crédito MasterCard - onde no entanto é chamado de CVC. CVC é uma abreviatura para "Código de Validação do Cartão". O código CVV, por outro lado, é uma abreviatura para "Código para Valor de Validação do Cartão". De forma semelhante à MasterCard e à Visa, outras marcas tais como o Diners Club, Discover e JCB contêm um número de três dígitos que normalmente pode ser encontrado na parte de trás do cartão de crédito. Existem cartões MAESTRO com e sem um CVV de três dígitos. No caso de ser utilizado um cartão MAESTRO sem CVV, é possível introduzir 000 no formulário. A American Express utiliza o CID (número de identificação do cartão). O CID é um número de quatro dígitos que pode ser encontrado na parte da frente do cartão, no topo à direita do número do cartão de crédito.
+</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_10001</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Genereller Fehler, bitte wenden Sie sich an den Support.</VariableLocalized>
+                <VariableLocalized iso="GER">General undefined response.</VariableLocalized>
                 <VariableLocalized iso="ENG">General undefined response.</VariableLocalized>
+                <VariableLocalized iso="ESP">General undefined response.</VariableLocalized>
+                <VariableLocalized iso="FRE">General undefined response.</VariableLocalized>
+                <VariableLocalized iso="ITA">General undefined response.</VariableLocalized>
+                <VariableLocalized iso="POR">General undefined response.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_10002</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Wir warten noch immer auf etwas.</VariableLocalized>
+                <VariableLocalized iso="GER">Still waiting on something.</VariableLocalized>
                 <VariableLocalized iso="ENG">Still waiting on something.</VariableLocalized>
+                <VariableLocalized iso="ESP">Still waiting on something.</VariableLocalized>
+                <VariableLocalized iso="FRE">Still waiting on something.</VariableLocalized>
+                <VariableLocalized iso="ITA">Still waiting on something.</VariableLocalized>
+                <VariableLocalized iso="POR">Still waiting on something.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_20000</Name>
                 <Description>Error Code</Description>
                 <VariableLocalized iso="GER">General success response.</VariableLocalized>
                 <VariableLocalized iso="ENG">General success response.</VariableLocalized>
+                <VariableLocalized iso="ESP">General success response.</VariableLocalized>
+                <VariableLocalized iso="FRE">General success response.</VariableLocalized>
+                <VariableLocalized iso="ITA">General success response.</VariableLocalized>
+                <VariableLocalized iso="POR">General success response.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40000</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Generelles Problem mit den Daten.</VariableLocalized>
+                <VariableLocalized iso="GER">General problem with data.</VariableLocalized>
                 <VariableLocalized iso="ENG">General problem with data.</VariableLocalized>
+                <VariableLocalized iso="ESP">General problem with data.</VariableLocalized>
+                <VariableLocalized iso="FRE">General problem with data.</VariableLocalized>
+                <VariableLocalized iso="ITA">General problem with data.</VariableLocalized>
+                <VariableLocalized iso="POR">General problem with data.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40001</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Es gibt ein Problem mit den Payment Daten.</VariableLocalized>
+                <VariableLocalized iso="GER">General problem with payment data.</VariableLocalized>
                 <VariableLocalized iso="ENG">General problem with payment data.</VariableLocalized>
+                <VariableLocalized iso="ESP">General problem with payment data.</VariableLocalized>
+                <VariableLocalized iso="FRE">General problem with payment data.</VariableLocalized>
+                <VariableLocalized iso="ITA">General problem with payment data.</VariableLocalized>
+                <VariableLocalized iso="POR">General problem with payment data.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40100</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Es existieren Probleme mit der Kreditkarte. Nähere Details können nicht übergeben werden.</VariableLocalized>
+                <VariableLocalized iso="GER">Problem with credit card data.</VariableLocalized>
                 <VariableLocalized iso="ENG">Problem with credit card data.</VariableLocalized>
+                <VariableLocalized iso="ESP">Problem with credit card data.</VariableLocalized>
+                <VariableLocalized iso="FRE">Problem with credit card data.</VariableLocalized>
+                <VariableLocalized iso="ITA">Problem with credit card data.</VariableLocalized>
+                <VariableLocalized iso="POR">Problem with credit card data.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40101</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Der CVV ist nicht korrekt.</VariableLocalized>
+                <VariableLocalized iso="GER">Problem with cvv.</VariableLocalized>
                 <VariableLocalized iso="ENG">Problem with cvv.</VariableLocalized>
+                <VariableLocalized iso="ESP">Problem with cvv.</VariableLocalized>
+                <VariableLocalized iso="FRE">Problem with cvv.</VariableLocalized>
+                <VariableLocalized iso="ITA">Problem with cvv.</VariableLocalized>
+                <VariableLocalized iso="POR">Problem with cvv.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40102</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Die Kreditkarte ist abgelaufen oder noch gültig.</VariableLocalized>
+                <VariableLocalized iso="GER">Card expired or not yet valid.</VariableLocalized>
                 <VariableLocalized iso="ENG">Card expired or not yet valid.</VariableLocalized>
+                <VariableLocalized iso="ESP">Card expired or not yet valid.</VariableLocalized>
+                <VariableLocalized iso="FRE">Card expired or not yet valid.</VariableLocalized>
+                <VariableLocalized iso="ITA">Card expired or not yet valid.</VariableLocalized>
+                <VariableLocalized iso="POR">Card expired or not yet valid.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40103</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Das Umsatzimit der Kreditkarte wurde mit dieser Transaktion überschritten oder ist bereits überschritten.</VariableLocalized>
+                <VariableLocalized iso="GER">Limit exceeded.</VariableLocalized>
                 <VariableLocalized iso="ENG">Limit exceeded.</VariableLocalized>
+                <VariableLocalized iso="ESP">Limit exceeded.</VariableLocalized>
+                <VariableLocalized iso="FRE">Limit exceeded.</VariableLocalized>
+                <VariableLocalized iso="ITA">Limit exceeded.</VariableLocalized>
+                <VariableLocalized iso="POR">Limit exceeded.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40104</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Die Kreditkarte ist ungültig</VariableLocalized>
+                <VariableLocalized iso="GER">Card invalid.</VariableLocalized>
                 <VariableLocalized iso="ENG">Card invalid.</VariableLocalized>
+                <VariableLocalized iso="ESP">Card invalid.</VariableLocalized>
+                <VariableLocalized iso="FRE">Card invalid.</VariableLocalized>
+                <VariableLocalized iso="ITA">Card invalid.</VariableLocalized>
+                <VariableLocalized iso="POR">Card invalid.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40105</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Das Kreditkartenablaufdatum ist nicht korrekt.</VariableLocalized>
+                <VariableLocalized iso="GER">Expiry date not valid.</VariableLocalized>
                 <VariableLocalized iso="ENG">Expiry date not valid.</VariableLocalized>
+                <VariableLocalized iso="ESP">Expiry date not valid.</VariableLocalized>
+                <VariableLocalized iso="FRE">Expiry date not valid.</VariableLocalized>
+                <VariableLocalized iso="ITA">Expiry date not valid.</VariableLocalized>
+                <VariableLocalized iso="POR">Expiry date not valid.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40106</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Kreditkarten-Anbieter ist erforderlich.</VariableLocalized>
+                <VariableLocalized iso="GER">Credit card brand required.</VariableLocalized>
                 <VariableLocalized iso="ENG">Credit card brand required.</VariableLocalized>
+                <VariableLocalized iso="ESP">Credit card brand required.</VariableLocalized>
+                <VariableLocalized iso="FRE">Credit card brand required.</VariableLocalized>
+                <VariableLocalized iso="ITA">Credit card brand required.</VariableLocalized>
+                <VariableLocalized iso="POR">Credit card brand required.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40200</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Probleme mit den Konto Daten.</VariableLocalized>
+                <VariableLocalized iso="GER">Problem with bank account data.</VariableLocalized>
                 <VariableLocalized iso="ENG">Problem with bank account data.</VariableLocalized>
+                <VariableLocalized iso="ESP">Problem with bank account data.</VariableLocalized>
+                <VariableLocalized iso="FRE">Problem with bank account data.</VariableLocalized>
+                <VariableLocalized iso="ITA">Problem with bank account data.</VariableLocalized>
+                <VariableLocalized iso="POR">Problem with bank account data.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40201</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Daten stimmen nicht mit dem Bank-Account überein.</VariableLocalized>
+                <VariableLocalized iso="GER">Bank account data combination mismatch.</VariableLocalized>
                 <VariableLocalized iso="ENG">Bank account data combination mismatch.</VariableLocalized>
+                <VariableLocalized iso="ESP">Bank account data combination mismatch.</VariableLocalized>
+                <VariableLocalized iso="FRE">Bank account data combination mismatch.</VariableLocalized>
+                <VariableLocalized iso="ITA">Bank account data combination mismatch.</VariableLocalized>
+                <VariableLocalized iso="POR">Bank account data combination mismatch.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40202</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Die Benutzer-Authentifizierung ist fehlgeschlagen.</VariableLocalized>
+                <VariableLocalized iso="GER">User authentication failed.</VariableLocalized>
                 <VariableLocalized iso="ENG">User authentication failed.</VariableLocalized>
+                <VariableLocalized iso="ESP">User authentication failed.</VariableLocalized>
+                <VariableLocalized iso="FRE">User authentication failed.</VariableLocalized>
+                <VariableLocalized iso="ITA">User authentication failed.</VariableLocalized>
+                <VariableLocalized iso="POR">User authentication failed.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40300</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Es gibt es Problem mit den 3DSecure Daten.</VariableLocalized>
+                <VariableLocalized iso="GER">Problem with 3d secure data.</VariableLocalized>
                 <VariableLocalized iso="ENG">Problem with 3d secure data.</VariableLocalized>
+                <VariableLocalized iso="ESP">Problem with 3d secure data.</VariableLocalized>
+                <VariableLocalized iso="FRE">Problem with 3d secure data.</VariableLocalized>
+                <VariableLocalized iso="ITA">Problem with 3d secure data.</VariableLocalized>
+                <VariableLocalized iso="POR">Problem with 3d secure data.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40301</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Währung oder Betrag stimmen nicht überein.</VariableLocalized>
+                <VariableLocalized iso="GER">Currency / amount mismatch</VariableLocalized>
                 <VariableLocalized iso="ENG">Currency / amount mismatch</VariableLocalized>
+                <VariableLocalized iso="ESP">Currency / amount mismatch</VariableLocalized>
+                <VariableLocalized iso="FRE">Currency / amount mismatch</VariableLocalized>
+                <VariableLocalized iso="ITA">Currency / amount mismatch</VariableLocalized>
+                <VariableLocalized iso="POR">Currency / amount mismatch</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40400</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Es gibt ein Problem mit den Eingabe Daten.</VariableLocalized>
+                <VariableLocalized iso="GER">Problem with input data.</VariableLocalized>
                 <VariableLocalized iso="ENG">Problem with input data.</VariableLocalized>
+                <VariableLocalized iso="ESP">Problem with input data.</VariableLocalized>
+                <VariableLocalized iso="FRE">Problem with input data.</VariableLocalized>
+                <VariableLocalized iso="ITA">Problem with input data.</VariableLocalized>
+                <VariableLocalized iso="POR">Problem with input data.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40401</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Der Betrag ist zu niedrig oder null.</VariableLocalized>
+                <VariableLocalized iso="GER">Amount too low or zero.</VariableLocalized>
                 <VariableLocalized iso="ENG">Amount too low or zero.</VariableLocalized>
+                <VariableLocalized iso="ESP">Amount too low or zero.</VariableLocalized>
+                <VariableLocalized iso="FRE">Amount too low or zero.</VariableLocalized>
+                <VariableLocalized iso="ITA">Amount too low or zero.</VariableLocalized>
+                <VariableLocalized iso="POR">Amount too low or zero.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40402</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Der Verwendungszweck ist zu lang.</VariableLocalized>
+                <VariableLocalized iso="GER">Usage field too long.</VariableLocalized>
                 <VariableLocalized iso="ENG">Usage field too long.</VariableLocalized>
+                <VariableLocalized iso="ESP">Usage field too long.</VariableLocalized>
+                <VariableLocalized iso="FRE">Usage field too long.</VariableLocalized>
+                <VariableLocalized iso="ITA">Usage field too long.</VariableLocalized>
+                <VariableLocalized iso="POR">Usage field too long.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_40403</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Die Währung ist nicht für den Kunden konfigurierten.</VariableLocalized>
+                <VariableLocalized iso="GER">Currency not allowed.</VariableLocalized>
                 <VariableLocalized iso="ENG">Currency not allowed.</VariableLocalized>
+                <VariableLocalized iso="ESP">Currency not allowed.</VariableLocalized>
+                <VariableLocalized iso="FRE">Currency not allowed.</VariableLocalized>
+                <VariableLocalized iso="ITA">Currency not allowed.</VariableLocalized>
+                <VariableLocalized iso="POR">Currency not allowed.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50000</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Generelles Problem mit dem Backend.</VariableLocalized>
+                <VariableLocalized iso="GER">General problem with backend.</VariableLocalized>
                 <VariableLocalized iso="ENG">General problem with backend.</VariableLocalized>
+                <VariableLocalized iso="ESP">General problem with backend.</VariableLocalized>
+                <VariableLocalized iso="FRE">General problem with backend.</VariableLocalized>
+                <VariableLocalized iso="ITA">General problem with backend.</VariableLocalized>
+                <VariableLocalized iso="POR">General problem with backend.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50001</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Die Kreditkarte ist auf einer Schwarzen Liste.</VariableLocalized>
+                <VariableLocalized iso="GER">Country blacklisted.</VariableLocalized>
                 <VariableLocalized iso="ENG">Country blacklisted.</VariableLocalized>
+                <VariableLocalized iso="ESP">Country blacklisted.</VariableLocalized>
+                <VariableLocalized iso="FRE">Country blacklisted.</VariableLocalized>
+                <VariableLocalized iso="ITA">Country blacklisted.</VariableLocalized>
+                <VariableLocalized iso="POR">Country blacklisted.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50100</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Technisches Problem mit der Kreditkarte.</VariableLocalized>
+                <VariableLocalized iso="GER">Technical error with credit card.</VariableLocalized>
                 <VariableLocalized iso="ENG">Technical error with credit card.</VariableLocalized>
+                <VariableLocalized iso="ESP">Technical error with credit card.</VariableLocalized>
+                <VariableLocalized iso="FRE">Technical error with credit card.</VariableLocalized>
+                <VariableLocalized iso="ITA">Technical error with credit card.</VariableLocalized>
+                <VariableLocalized iso="POR">Technical error with credit card.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50101</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Limit überschritten.</VariableLocalized>
+                <VariableLocalized iso="GER">Error limit exceeded.</VariableLocalized>
                 <VariableLocalized iso="ENG">Error limit exceeded.</VariableLocalized>
+                <VariableLocalized iso="ESP">Error limit exceeded.</VariableLocalized>
+                <VariableLocalized iso="FRE">Error limit exceeded.</VariableLocalized>
+                <VariableLocalized iso="ITA">Error limit exceeded.</VariableLocalized>
+                <VariableLocalized iso="POR">Error limit exceeded.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50102</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Diese Karte wurde ohne weitere Gründe abgelehnt.</VariableLocalized>
+                <VariableLocalized iso="GER">Card declined by authorization system.</VariableLocalized>
                 <VariableLocalized iso="ENG">Card declined by authorization system.</VariableLocalized>
+                <VariableLocalized iso="ESP">Card declined by authorization system.</VariableLocalized>
+                <VariableLocalized iso="FRE">Card declined by authorization system.</VariableLocalized>
+                <VariableLocalized iso="ITA">Card declined by authorization system.</VariableLocalized>
+                <VariableLocalized iso="POR">Card declined by authorization system.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50103</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Diese Karte wurde wegen Kartenmanipulationen abgelehnt.</VariableLocalized>
+                <VariableLocalized iso="GER">Manipulation or stolen card.</VariableLocalized>
                 <VariableLocalized iso="ENG">Manipulation or stolen card.</VariableLocalized>
+                <VariableLocalized iso="ESP">Manipulation or stolen card.</VariableLocalized>
+                <VariableLocalized iso="FRE">Manipulation or stolen card.</VariableLocalized>
+                <VariableLocalized iso="ITA">Manipulation or stolen card.</VariableLocalized>
+                <VariableLocalized iso="POR">Manipulation or stolen card.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50104</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Die Transaktion wurde vom Authorisierungs-System abgelehnt (Karte durch Bank eingeschränkt).</VariableLocalized>
-                <VariableLocalized iso="ENG">Card restricted.</VariableLocalized>
+                <VariableLocalized iso="GER">Card restricted</VariableLocalized>
+                <VariableLocalized iso="ENG">Card restricted</VariableLocalized>
+                <VariableLocalized iso="ESP">Card restricted</VariableLocalized>
+                <VariableLocalized iso="FRE">Card restricted</VariableLocalized>
+                <VariableLocalized iso="ITA">Card restricted</VariableLocalized>
+                <VariableLocalized iso="POR">Card restricted</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50105</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Die Konfiguration ist ungültig.</VariableLocalized>
+                <VariableLocalized iso="GER">Invalid card configuration data.</VariableLocalized>
                 <VariableLocalized iso="ENG">Invalid card configuration data.</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid card configuration data.</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid card configuration data.</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid card configuration data.</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid card configuration data.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50200</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Technischer Fehler mit dem Bankkonto.</VariableLocalized>
+                <VariableLocalized iso="GER">Technical error with bank account.</VariableLocalized>
                 <VariableLocalized iso="ENG">Technical error with bank account.</VariableLocalized>
+                <VariableLocalized iso="ESP">Technical error with bank account.</VariableLocalized>
+                <VariableLocalized iso="FRE">Technical error with bank account.</VariableLocalized>
+                <VariableLocalized iso="ITA">Technical error with bank account.</VariableLocalized>
+                <VariableLocalized iso="POR">Technical error with bank account.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50201</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Dieser Kundenaccount ist auf einer Schwarzen Liste.</VariableLocalized>
+                <VariableLocalized iso="GER">Card blacklisted.</VariableLocalized>
                 <VariableLocalized iso="ENG">Card blacklisted.</VariableLocalized>
+                <VariableLocalized iso="ESP">Card blacklisted.</VariableLocalized>
+                <VariableLocalized iso="FRE">Card blacklisted.</VariableLocalized>
+                <VariableLocalized iso="ITA">Card blacklisted.</VariableLocalized>
+                <VariableLocalized iso="POR">Card blacklisted.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50300</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Es gibt einen teschnischen Fehler mit 3-D Secure.</VariableLocalized>
+                <VariableLocalized iso="GER">Technical error with 3D secure.</VariableLocalized>
                 <VariableLocalized iso="ENG">Technical error with 3D secure.</VariableLocalized>
+                <VariableLocalized iso="ESP">Technical error with 3D secure.</VariableLocalized>
+                <VariableLocalized iso="FRE">Technical error with 3D secure.</VariableLocalized>
+                <VariableLocalized iso="ITA">Technical error with 3D secure.</VariableLocalized>
+                <VariableLocalized iso="POR">Technical error with 3D secure.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50400</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Ablehnung aufgrund von Risiko Problemen.</VariableLocalized>
+                <VariableLocalized iso="GER">Decline because of risk issues.</VariableLocalized>
                 <VariableLocalized iso="ENG">Decline because of risk issues.</VariableLocalized>
+                <VariableLocalized iso="ESP">Decline because of risk issues.</VariableLocalized>
+                <VariableLocalized iso="FRE">Decline because of risk issues.</VariableLocalized>
+                <VariableLocalized iso="ITA">Decline because of risk issues.</VariableLocalized>
+                <VariableLocalized iso="POR">Decline because of risk issues.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50500</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Generelle Zeitüberschreitung.</VariableLocalized>
+                <VariableLocalized iso="GER">General timeout.</VariableLocalized>
                 <VariableLocalized iso="ENG">General timeout.</VariableLocalized>
+                <VariableLocalized iso="ESP">General timeout.</VariableLocalized>
+                <VariableLocalized iso="FRE">General timeout.</VariableLocalized>
+                <VariableLocalized iso="ITA">General timeout.</VariableLocalized>
+                <VariableLocalized iso="POR">General timeout.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50501</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Die Schnittstelle zum Acquirer reagiert nicht, daher bekommen wir keine Antwort ob die Transaktion erfolgreich durchgelaufen ist.</VariableLocalized>
+                <VariableLocalized iso="GER">Timeout on side of the acquirer.</VariableLocalized>
                 <VariableLocalized iso="ENG">Timeout on side of the acquirer.</VariableLocalized>
+                <VariableLocalized iso="ESP">Timeout on side of the acquirer.</VariableLocalized>
+                <VariableLocalized iso="FRE">Timeout on side of the acquirer.</VariableLocalized>
+                <VariableLocalized iso="ITA">Timeout on side of the acquirer.</VariableLocalized>
+                <VariableLocalized iso="POR">Timeout on side of the acquirer.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50502</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Es gibt eine Zeitüberschreitung bei der Risiko-Management Transaktion.</VariableLocalized>
-                <VariableLocalized iso="ENG">Risk management transaction timeout.</VariableLocalized>
+                <VariableLocalized iso="GER">Risk management transaction timeout</VariableLocalized>
+                <VariableLocalized iso="ENG">Risk management transaction timeout</VariableLocalized>
+                <VariableLocalized iso="ESP">Risk management transaction timeout</VariableLocalized>
+                <VariableLocalized iso="FRE">Risk management transaction timeout</VariableLocalized>
+                <VariableLocalized iso="ITA">Risk management transaction timeout</VariableLocalized>
+                <VariableLocalized iso="POR">Risk management transaction timeout</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_50600</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Doppelte Transaktion.</VariableLocalized>
+                <VariableLocalized iso="GER">Duplicate transaction.</VariableLocalized>
                 <VariableLocalized iso="ENG">Duplicate transaction.</VariableLocalized>
+                <VariableLocalized iso="ESP">Duplicate transaction.</VariableLocalized>
+                <VariableLocalized iso="FRE">Duplicate transaction.</VariableLocalized>
+                <VariableLocalized iso="ITA">Duplicate transaction.</VariableLocalized>
+                <VariableLocalized iso="POR">Duplicate transaction.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_internal_server_error</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Kommunikation mit dem PSP fehlgeschlagen</VariableLocalized>
-                <VariableLocalized iso="ENG">Communication with PSP failed</VariableLocalized>
+                <VariableLocalized iso="GER">The communication with the psp failed.</VariableLocalized>
+                <VariableLocalized iso="ENG">The communication with the psp failed.</VariableLocalized>
+                <VariableLocalized iso="ESP">The communication with the psp failed.</VariableLocalized>
+                <VariableLocalized iso="FRE">The communication with the psp failed.</VariableLocalized>
+                <VariableLocalized iso="ITA">The communication with the psp failed.</VariableLocalized>
+                <VariableLocalized iso="POR">The communication with the psp failed.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_invalid_public_key</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Public Key ungültig</VariableLocalized>
-                <VariableLocalized iso="ENG">Public Key is invalid</VariableLocalized>
+                <VariableLocalized iso="GER">The public key is invalid.</VariableLocalized>
+                <VariableLocalized iso="ENG">The public key is invalid.</VariableLocalized>
+                <VariableLocalized iso="ESP">The public key is invalid.</VariableLocalized>
+                <VariableLocalized iso="FRE">The public key is invalid.</VariableLocalized>
+                <VariableLocalized iso="ITA">The public key is invalid.</VariableLocalized>
+                <VariableLocalized iso="POR">The public key is invalid.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_invalid_payment_data</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Für diesen Zahlungsmodus, Kreditkartentyp, Währung oder Land nicht zugelassen</VariableLocalized>
-                <VariableLocalized iso="ENG">Payment mode, card type, currency or country not accepted.</VariableLocalized>
+                <VariableLocalized iso="GER">
+                    Paymentmethod, card type currency or country not authorized
+</VariableLocalized>
+                <VariableLocalized iso="ENG">
+                    Paymentmethod, card type currency or country not authorized
+</VariableLocalized>
+                <VariableLocalized iso="ESP">
+                    Paymentmethod, card type currency or country not authorized
+</VariableLocalized>
+                <VariableLocalized iso="FRE">
+                    Paymentmethod, card type currency or country not authorized
+</VariableLocalized>
+                <VariableLocalized iso="ITA">
+                    Paymentmethod, card type currency or country not authorized
+</VariableLocalized>
+                <VariableLocalized iso="POR">
+                    Paymentmethod, card type currency or country not authorized
+</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_unknown_error</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Unbekannter Fehler</VariableLocalized>
+                <VariableLocalized iso="GER">Unknown Error</VariableLocalized>
                 <VariableLocalized iso="ENG">Unknown Error</VariableLocalized>
+                <VariableLocalized iso="ESP">Unknown Error</VariableLocalized>
+                <VariableLocalized iso="FRE">Unknown Error</VariableLocalized>
+                <VariableLocalized iso="ITA">Unknown Error</VariableLocalized>
+                <VariableLocalized iso="POR">Unknown Error</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_3ds_cancelled</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">3-D Secure Prozess wurde vom User abgebrochen</VariableLocalized>
-                <VariableLocalized iso="ENG">3-D Secure process has been aborted</VariableLocalized>
+                <VariableLocalized iso="GER">3-D Secure process has been canceled by the user</VariableLocalized>
+                <VariableLocalized iso="ENG">3-D Secure process has been canceled by the user</VariableLocalized>
+                <VariableLocalized iso="ESP">3-D Secure process has been canceled by the user</VariableLocalized>
+                <VariableLocalized iso="FRE">3-D Secure process has been canceled by the user</VariableLocalized>
+                <VariableLocalized iso="ITA">3-D Secure process has been canceled by the user</VariableLocalized>
+                <VariableLocalized iso="POR">3-D Secure process has been canceled by the user</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_field_invalid_card_number</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Fehlende oder ungültige Kreditkartennummer</VariableLocalized>
-                <VariableLocalized iso="ENG">Invalid or missing card number</VariableLocalized>
+                <VariableLocalized iso="GER">Invalid Credit Card Number</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid Credit Card Number</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid Credit Card Number</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid Credit Card Number</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid Credit Card Number</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid Credit Card Number</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_field_invalid_card_exp_year</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Fehlendes oder ungültiges Ablaufjahr</VariableLocalized>
-                <VariableLocalized iso="ENG">Invalid or missing expiry year</VariableLocalized>
+                <VariableLocalized iso="GER">Invalid Expiry Year</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid Expiry Year</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid Expiry Year</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid Expiry Year</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid Expiry Year</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid Expiry Year</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_field_invalid_card_exp_month</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Fehlender oder ungültiger Ablaufmonat</VariableLocalized>
-                <VariableLocalized iso="ENG">Invalid or missing expiry month</VariableLocalized>
+                <VariableLocalized iso="GER">Invalid Expiry Month</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid Expiry Month</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid Expiry Month</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid Expiry Month</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid Expiry Month</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid Expiry Month</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_field_invalid_card_exp</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Karte nicht mehr gültig oder noch nicht gültig</VariableLocalized>
-                <VariableLocalized iso="ENG">Card no longer (or not yet) valid</VariableLocalized>
+                <VariableLocalized iso="GER">Credit Card not valid</VariableLocalized>
+                <VariableLocalized iso="ENG">Credit Card not valid</VariableLocalized>
+                <VariableLocalized iso="ESP">Credit Card not valid</VariableLocalized>
+                <VariableLocalized iso="FRE">Credit Card not valid</VariableLocalized>
+                <VariableLocalized iso="ITA">Credit Card not valid</VariableLocalized>
+                <VariableLocalized iso="POR">Credit Card not valid</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_field_invalid_card_cvc</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Ungültige Prüfziffer</VariableLocalized>
+                <VariableLocalized iso="GER">Invalid CVC</VariableLocalized>
                 <VariableLocalized iso="ENG">Invalid CVC</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid CVC</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid CVC</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid CVC</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid CVC</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_field_invalid_card_holder</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Ungültiger Karteninhaber</VariableLocalized>
-                <VariableLocalized iso="ENG">Invalid card holder</VariableLocalized>
+                <VariableLocalized iso="GER">Invalid Card Holder</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid Card Holder</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid Card Holder</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid Card Holder</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid Card Holder</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid Card Holder</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_field_invalid_amount_int</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Fehlender oder ungültiger Betrag für 3-D Secure</VariableLocalized>
-                <VariableLocalized iso="ENG">Invalid or missing amount for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="GER">Missing amount for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="ENG">Missing amount for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="ESP">Missing amount for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="FRE">Missing amount for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="ITA">Missing amount for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="POR">Missing amount for 3-D Secure</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_field_field_invalid_amount</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Fehlender oder ungültiger Betrag für 3-D Secure</VariableLocalized>
-                <VariableLocalized iso="ENG">Invalid or missing amount for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="GER">Missing amount for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="ENG">Missing amount for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="ESP">Missing amount for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="FRE">Missing amount for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="ITA">Missing amount for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="POR">Missing amount for 3-D Secure</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_field_field_field_invalid_currency</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">Fehlende oder ungültige Währung für 3-D Secure</VariableLocalized>
-                <VariableLocalized iso="ENG">Invalid or missing currency for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="GER">Invalid currency for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid currency for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid currency for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid currency for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid currency for 3-D Secure</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid currency for 3-D Secure</VariableLocalized>
             </Variable>
         </Locales>
     </Install>
