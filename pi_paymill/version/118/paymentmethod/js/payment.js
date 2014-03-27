@@ -147,14 +147,18 @@ $(document).ready(function()
         hideErrorBoxes('elv', 3);
 
         var elvErrorFlag = true;
+        
+        ibanWithoutSpaces = $('#paymill-iban').val();
+        ibanWithoutSpaces = ibanWithoutSpaces.replace(/\s+/g, "");
+        ibanValidator = new PaymillIban();
 
-        if ($('#paymill-iban').val() === '') {
+        if (!ibanValidator.validate(ibanWithoutSpaces)) {
             $("#payment-error-elv-1").text(lang['iban_invalid']);
             $("#payment-error-elv-1").css('display', 'block');
             elvErrorFlag = false;
         }
 
-        if ($('#paymill-bic').val() === '') {
+        if (!($('#paymill-bic').val().length === 8 || $('#paymill-bic').val().length === 11)) {
             $("#payment-error-elv-2").text(lang['bic_invalid']);
             $("#payment-error-elv-2").css('display', 'block');
             elvErrorFlag = false;
@@ -165,7 +169,7 @@ $(document).ready(function()
         }
 
         paymill.createToken({
-            iban: $('#paymill-iban').val(),
+            iban: ibanWithoutSpaces,
             bic: $('#paymill-bic').val(),
             accountholder: $('#paymill-bank-owner-sepa').val()
         }, paymillElvResponseHandler);
