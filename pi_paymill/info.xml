@@ -75,23 +75,17 @@
                 <Name>Einstellungen</Name>
                 <Setting type="text" initialValue="" sort="1" conf="Y">
                     <Name>Paymill Private Key</Name>
-                    <Description>
-                        Der Private Key, welchen Sie von Paymill erhalten haben.
-</Description>
+                    <Description>Der Private Key, welchen Sie von Paymill erhalten haben.</Description>
                     <ValueName>pi_paymill_private_key</ValueName>
                 </Setting>
                 <Setting type="text" initialValue="" sort="2" conf="Y">
                     <Name>Paymill Public Key</Name>
-                    <Description>
-                        Der Public Key, welchen Sie von Paymill erhalten haben.
-</Description>
+                    <Description>Der Public Key, welchen Sie von Paymill erhalten haben.</Description>
                     <ValueName>pi_paymill_public_key</ValueName>
                 </Setting>
                 <Setting type="text" initialValue="" sort="2" conf="Y">
                     <Name>Paymill Different Amount</Name>
-                    <Description>
-                        Falls sich der Gesamtbestellwert nach der Zahlartenauswahl Ändern kann, z.B. bei Zahlartenaufschlägen, muss hier der maximale Wert drin stehen.
-</Description>
+                    <Description>Falls sich der Gesamtbestellwert nach der Zahlartenauswahl Ändern kann, z.B. bei Zahlartenaufschlägen, muss hier der maximale Wert drin stehen.</Description>
                     <ValueName>pi_paymill_different_amount</ValueName>
                 </Setting>
                 <Setting type="selectbox" initialValue="0" sort="3" conf="Y">
@@ -271,20 +265,12 @@
             <Variable>
                 <Name>Credit_Card_Number_Invalid</Name>
                 <Description>Invalid credit card error</Description>
-                <VariableLocalized iso="GER">
-                    Bitte geben Sie eine gültige Kreditkartennummer ein.
-</VariableLocalized>
+                <VariableLocalized iso="GER">Bitte geben Sie eine gültige Kreditkartennummer ein.</VariableLocalized>
                 <VariableLocalized iso="ENG">Please enter a valid credit card number.</VariableLocalized>
-                <VariableLocalized iso="ESP">
-                    Por favor, introduce un número válido de tarjeta de crédito.
-</VariableLocalized>
-                <VariableLocalized iso="FRE">
-                    Veuillez saisir un numéro de carte de crédit valide.
-</VariableLocalized>
+                <VariableLocalized iso="ESP">Por favor, introduce un número válido de tarjeta de crédito.</VariableLocalized>
+                <VariableLocalized iso="FRE">Veuillez saisir un numéro de carte de crédit valide.</VariableLocalized>
                 <VariableLocalized iso="ITA">Inserire un numero di carta di credito valido.</VariableLocalized>
-                <VariableLocalized iso="POR">
-                    Por favor, introduza um número de cartão de crédito válido.
-</VariableLocalized>
+                <VariableLocalized iso="POR">Por favor, introduza um número de cartão de crédito válido.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Credit_Card_Expiration_Date_Invalid</Name>
@@ -311,9 +297,7 @@
                 <Description>Invalid credit card holder error</Description>
                 <VariableLocalized iso="GER">Bitte geben Sie einen Inhabernamen an.</VariableLocalized>
                 <VariableLocalized iso="ENG">Please enter the card holder's name.</VariableLocalized>
-                <VariableLocalized iso="ESP">
-                    Por favor, introduce el nombre del titular de la tarjeta
-</VariableLocalized>
+                <VariableLocalized iso="ESP">Por favor, introduce el nombre del titular de la tarjeta</VariableLocalized>
                 <VariableLocalized iso="FRE">Veuillez saisir le nom du titulaire de la carte.</VariableLocalized>
                 <VariableLocalized iso="ITA">Inserire il nome del titolare della carta.</VariableLocalized>
                 <VariableLocalized iso="POR">Por favor, introduza o nome do titular do cartão.</VariableLocalized>
@@ -322,57 +306,31 @@
                 <Name>Account_Holder_Invalid</Name>
                 <Description>Invalid account holder error</Description>
                 <VariableLocalized iso="GER">Bitte geben Sie den Namen des Kontoinhabers an</VariableLocalized>
-                <VariableLocalized iso="ENG">
-                    Please enter the name of the direct debit account holder
-</VariableLocalized>
-                <VariableLocalized iso="ESP">
-                    Por favor, introduce el nombre del titular de la cuenta para la domiciliación bancaria.
-</VariableLocalized>
-                <VariableLocalized iso="FRE">
-                    Veuillez saisir le nom du titulaire du compte de débit direct
-</VariableLocalized>
-                <VariableLocalized iso="ITA">
-                    Inserire il nome del titolare del conto di addebito diretto
-</VariableLocalized>
-                <VariableLocalized iso="POR">
-                    Por favor, introduza o nome do titular da conta de débito direto
-</VariableLocalized>
+                <VariableLocalized iso="ENG">Please enter the name of the direct debit account holder</VariableLocalized>
+                <VariableLocalized iso="ESP">Por favor, introduce el nombre del titular de la cuenta para la domiciliación bancaria.</VariableLocalized>
+                <VariableLocalized iso="FRE">Veuillez saisir le nom du titulaire du compte de débit direct</VariableLocalized>
+                <VariableLocalized iso="ITA">Inserire il nome del titolare del conto di addebito diretto</VariableLocalized>
+                <VariableLocalized iso="POR">Por favor, introduza o nome do titular da conta de débito direto</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Sort_Code_Invalid</Name>
                 <Description>Invalid sort code error</Description>
                 <VariableLocalized iso="GER">Bitte geben Sie eine gültige Bankleitzahl an</VariableLocalized>
                 <VariableLocalized iso="ENG">Please enter a valid direct debit bank code.</VariableLocalized>
-                <VariableLocalized iso="ESP">
-                    Por favor, introduce un código bancario válido de domiciliación bancaria.
-</VariableLocalized>
-                <VariableLocalized iso="FRE">
-                    Veuillez saisir un code bancaire de débit direct valide.
-</VariableLocalized>
-                <VariableLocalized iso="ITA">
-                    Inserire un codice di addebito bancario diretto valido.
-</VariableLocalized>
-                <VariableLocalized iso="POR">
-                    Por favor, introduza um código bancário de débito direto válido.
-</VariableLocalized>
+                <VariableLocalized iso="ESP">Por favor, introduce un código bancario válido de domiciliación bancaria.</VariableLocalized>
+                <VariableLocalized iso="FRE">Veuillez saisir un code bancaire de débit direct valide.</VariableLocalized>
+                <VariableLocalized iso="ITA">Inserire un codice di addebito bancario diretto valido.</VariableLocalized>
+                <VariableLocalized iso="POR">Por favor, introduza um código bancário de débito direto válido.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Account_Number_Invalid</Name>
                 <Description>Invalid account number error</Description>
                 <VariableLocalized iso="GER">Bitte geben Sie eine gültige Kontonummer ein</VariableLocalized>
                 <VariableLocalized iso="ENG">Please enter a valid direct debit account number</VariableLocalized>
-                <VariableLocalized iso="ESP">
-                    Por favor, introduce un número válido de la cuenta para la domiciliación bancaria.
-</VariableLocalized>
-                <VariableLocalized iso="FRE">
-                    Veuillez saisir un numéro de compte de débit direct valide
-</VariableLocalized>
-                <VariableLocalized iso="ITA">
-                    Inserire un numero di conto di addebito diretto valido
-</VariableLocalized>
-                <VariableLocalized iso="POR">
-                    Por favor, introduza um número de conta de débito direto válido
-</VariableLocalized>
+                <VariableLocalized iso="ESP">Por favor, introduce un número válido de la cuenta para la domiciliación bancaria.</VariableLocalized>
+                <VariableLocalized iso="FRE">Veuillez saisir un numéro de compte de débit direct valide</VariableLocalized>
+                <VariableLocalized iso="ITA">Inserire un numero di conto di addebito diretto valido</VariableLocalized>
+                <VariableLocalized iso="POR">Por favor, introduza um número de conta de débito direto válido</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Iban_Invalid</Name>
@@ -398,36 +356,20 @@
                 <Name>Payment_Processing_Error</Name>
                 <Description>Payment processingr error</Description>
                 <VariableLocalized iso="GER">Während Ihrer Zahlung ist ein Fehler aufgetreten.</VariableLocalized>
-                <VariableLocalized iso="ENG">
-                    An error has occurred while processing your payment.
-</VariableLocalized>
-                <VariableLocalized iso="ESP">
-                    Ha ocurrido un error mientras procesábamos tu pago.
-</VariableLocalized>
-                <VariableLocalized iso="FRE">
-                    Une erreur s'est produit pendant le traiement de votre paiement.
-</VariableLocalized>
-                <VariableLocalized iso="ITA">
-                    Si è verificato un errore durante l'elaborazione del pagamento.
-</VariableLocalized>
-                <VariableLocalized iso="POR">
-                    Ocorreu um erro durante o processamento do seu pagamento.
-</VariableLocalized>
+                <VariableLocalized iso="ENG">An error has occurred while processing your payment.</VariableLocalized>
+                <VariableLocalized iso="ESP">Ha ocurrido un error mientras procesábamos tu pago.</VariableLocalized>
+                <VariableLocalized iso="FRE">Une erreur s'est produit pendant le traiement de votre paiement.</VariableLocalized>
+                <VariableLocalized iso="ITA">Si è verificato un errore durante l'elaborazione del pagamento.</VariableLocalized>
+                <VariableLocalized iso="POR">Ocorreu um erro durante o processamento do seu pagamento.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Invalid_Token_Error</Name>
                 <Description>Invalid token error</Description>
                 <VariableLocalized iso="GER">Während Ihrer Zahlung ist ein Fehler aufgetreten.</VariableLocalized>
                 <VariableLocalized iso="ENG">An error has occurred during token creation.</VariableLocalized>
-                <VariableLocalized iso="ESP">
-                    Ha ocurrido un error durante la creación del indicador.
-</VariableLocalized>
-                <VariableLocalized iso="FRE">
-                    Une erreur est survenue durant la création du token.
-</VariableLocalized>
-                <VariableLocalized iso="ITA">
-                    Si è verificato un errore durante la creazione del token
-</VariableLocalized>
+                <VariableLocalized iso="ESP">Ha ocurrido un error durante la creación del indicador.</VariableLocalized>
+                <VariableLocalized iso="FRE">Une erreur est survenue durant la création du token.</VariableLocalized>
+                <VariableLocalized iso="ITA">Si è verificato un errore durante la creazione del token</VariableLocalized>
                 <VariableLocalized iso="POR">Ocorreu um erro ao criar o token</VariableLocalized>
             </Variable>
             <Variable>
@@ -435,18 +377,10 @@
                 <Description>Paymill cc label text</Description>
                 <VariableLocalized iso="GER">Sichere Kreditkartenzahlung powered by</VariableLocalized>
                 <VariableLocalized iso="ENG">Secure credit card payments powered by</VariableLocalized>
-                <VariableLocalized iso="ESP">
-                    Pagos seguros con tarjeta de crédito gestionados por
-</VariableLocalized>
-                <VariableLocalized iso="FRE">
-                    Paiements par carte de crédit sécurisés fonctionnant avec
-</VariableLocalized>
-                <VariableLocalized iso="ITA">
-                    Pagamenti sicuri con carta di credito con tecnologia
-</VariableLocalized>
-                <VariableLocalized iso="POR">
-                    Pagamentos com cartão de crédito seguros fornecidos por
-</VariableLocalized>
+                <VariableLocalized iso="ESP">Pagos seguros con tarjeta de crédito gestionados por</VariableLocalized>
+                <VariableLocalized iso="FRE">Paiements par carte de crédit sécurisés fonctionnant avec</VariableLocalized>
+                <VariableLocalized iso="ITA">Pagamenti sicuri con carta di credito con tecnologia</VariableLocalized>
+                <VariableLocalized iso="POR">Pagamentos com cartão de crédito seguros fornecidos por</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Paymill_Label_Direct_Debit</Name>
@@ -462,43 +396,21 @@
                 <Name>Order_Generate_Error</Name>
                 <Description>Generate order error</Description>
                 <VariableLocalized iso="GER">Während Ihrer Zahlung ist ein Fehler aufgetreten.</VariableLocalized>
-                <VariableLocalized iso="ENG">
-                    An error has occurred while processing your payment.
-</VariableLocalized>
-                <VariableLocalized iso="ESP">
-                    Ha ocurrido un error mientras procesábamos tu pago.
-</VariableLocalized>
-                <VariableLocalized iso="FRE">
-                    Une erreur s'est produit pendant le traiement de votre paiement.
-</VariableLocalized>
-                <VariableLocalized iso="ITA">
-                    Si è verificato un errore durante l'elaborazione del pagamento.
-</VariableLocalized>
-                <VariableLocalized iso="POR">
-                    Ocorreu um erro durante o processamento do seu pagamento.
-</VariableLocalized>
+                <VariableLocalized iso="ENG">An error has occurred while processing your payment.</VariableLocalized>
+                <VariableLocalized iso="ESP">Ha ocurrido un error mientras procesábamos tu pago.</VariableLocalized>
+                <VariableLocalized iso="FRE">Une erreur s'est produit pendant le traiement de votre paiement.</VariableLocalized>
+                <VariableLocalized iso="ITA">Si è verificato un errore durante l'elaborazione del pagamento.</VariableLocalized>
+                <VariableLocalized iso="POR">Ocorreu um erro durante o processamento do seu pagamento.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>__CVC_TOOLTIP__</Name>
                 <Description>CVC Tooltip</Description>
-                <VariableLocalized iso="GER">
-                    Hinter dem CVV-Code bzw. CVC verbirgt sich ein Sicherheitsmerkmal von Kreditkarten, üblicherweise handelt es sich dabei um eine drei- bis vierstelligen Nummer. Der CVV-Code befindet sich auf VISA-Kreditkarten. Der gleiche Code ist auch auf MasterCard-Kreditkarten zu finden, hier allerdings unter dem Namen CVC. Die Abkürzung CVC steht dabei für Card Validation Code. Bei VISA wird der Code als Card Verification Value-Code bezeichnet. Ähnlich wie bei Mastercard und VISA gibt es auch bei Diners Club, Discover und JCB eine dreistellige Nummer, die meist auf der Rückseite der Karte zu finden ist. Bei Maestro-Karten gibt es mit und ohne dreistelligen CVV. Wird eine Maestro-Karte ohne CVV verwendet kann einfach 000 eingetragen werden. American Express verwendet die CID (Card Identification Number). Dabei handelt es sich um eine vierstellige Nummer, die meist auf der Vorderseite der Karte, rechts oberhalb der Kartennummer zu finden ist.
-</VariableLocalized>
-                <VariableLocalized iso="ENG">
-                    The CVV code or CVC is a security feature of credit cards. It usually is a three to four digit long number. On VISA credit cards, it is called CVV code. The same code can be found on MasterCard credit cards - where however it is called CVC. CVC is an abbreviation for "Card Validation Code". CVV code on the other hand is an abbreviation for "Card Validation Value code". Similar to MasterCard and Visa, other brands such as Diners Club, Discover and JCB contain a three digit number that can usually be found on the back of the credit card. MAESTRO cards exist with and without a three digit CVV. In case a MAESTRO card without a CVV will be used, it is possible to enter 000 to the form instead. American Express uses the CID (card identification number). The CID is a four digit number that can usually be found on the front of the card, top right from the credit card number.
-</VariableLocalized>
-                <VariableLocalized iso="ESP">
-                    El código CVV o CVC es una medida de seguridad de las tarjetas de crédito. Normalmente es un número de tres a cuatro dígitos de longitud. En las tarjetas de crédito VISA, se le llama código CVV. Se puede encontrar este mismo código en las tarjetas de crédito MasterCard -donde se le llama CVC. CVC es la abreviatura de "código de validez de la tarjeta". El código CVV, por otro lado, es la abreviatura de "código de valor de verificación de la tarjeta". Parecidas a MasterCard y Visa, otras tarjetas como Diners Club, Discover y JCB contienen un número de tres dígitos que se encuentra normalmente en el reverso de la tarjeta de crédito. Las tarjetas MAESTRO pueden tener o no el código CVV de tres dígitos. En caso de usar una tarjeta MAESTRO sin CVV, puede introducir 000 en el formulario en su lugar. American Express usa el CID (número de identificación de la tarjeta). El CID es un número de cuatro dígitos que normalmente se encuentra en el anverso de la tarjeta, arriba a la derecha del número de la tarjeta de crédito.
-</VariableLocalized>
-                <VariableLocalized iso="FRE">
-                    Le code CVV ou CVC est une fonctionnalité de sécurité des cartes de crédit. Il se compose en général d'un nombre de trois à quatre chiffres. Sur les cartes de crédit VISA, il est appelé code CVV. On trouve le même code sur les cartes de crédit MasterCard, où il est appelé cependant CVC. CVC signifie « Card Validation Code » (« Code de validation de carte »). Le code CVV signifie quant à lui « Card Validation Value code » (« code de Valeur de validation de carte »). Similaires à MasterCard et Visa, les autres marques telles que Diners Club, Discover et JCB contiennent un nombre à trois chiffres que l'on retrouve généralement au dos de la carte de crédit. Les cartes MAESTRO existent avec et sans le CVV à trois chiffres. Si vous utilisez une carte MAESTRO sans CVV, vous pourrez saisir 000 dans le formulaire. American Express utilise le CID (card identification number - numéro d'identification de carte). Le CID est un nombre à quatre chiffres que l'on retrouve généralement à l'avant de la carte, en haut à droite du numéro de carte de crédit.
-</VariableLocalized>
-                <VariableLocalized iso="ITA">
-                    Il codice CVV o CVC è una funzione di sicurezza delle carte di credito. Di solito, è un numero composto da tre o quattro cifre. Sulle carte di credito VISA, è indicato come codice CVV. Lo stesso codice può essere trovato sulle carte di credito MasterCard, dove però è denominato CVC. CVC è l'abbreviazione di "Card Validation Code" (Codice di validazione della carta). Il codice CVV, invece, è l'abbreviazione di "Card Validation Value code" (Codice del valore di verifica della carta). Similmente alla MasterCard e alla Visa, altre marche come la Diners Club, la Discover e la JCB contengono un numero a tre cifre che di solito può essere trovato sul retro della carta di credito. Esistono carte MAESTRO con o senza un codice CVV a tre cifre. Nel caso in cui venga utilizzata una carta MAESTRO priva di CVV, è possibile inserire 000 nel modulo. L'American Express utilizza il CID (Numero di identificazione della carta). Il CID è un numero a quattro cifre che di solito si trova sulla parte anteriore della carta, in alto a destra dal numero della carta di credito.
-</VariableLocalized>
-                <VariableLocalized iso="POR">
-                    O código CVV ou CVC é uma funcionalidade de segurança dos cartões de crédito. Normalmente é um número com três ou quatro dígitos. Nos cartões de crédito VISA, é chamado de código CVV. O mesmo código pode ser encontrado nos cartões de crédito MasterCard - onde no entanto é chamado de CVC. CVC é uma abreviatura para "Código de Validação do Cartão". O código CVV, por outro lado, é uma abreviatura para "Código para Valor de Validação do Cartão". De forma semelhante à MasterCard e à Visa, outras marcas tais como o Diners Club, Discover e JCB contêm um número de três dígitos que normalmente pode ser encontrado na parte de trás do cartão de crédito. Existem cartões MAESTRO com e sem um CVV de três dígitos. No caso de ser utilizado um cartão MAESTRO sem CVV, é possível introduzir 000 no formulário. A American Express utiliza o CID (número de identificação do cartão). O CID é um número de quatro dígitos que pode ser encontrado na parte da frente do cartão, no topo à direita do número do cartão de crédito.
-</VariableLocalized>
+                <VariableLocalized iso="GER">Hinter dem CVV-Code bzw. CVC verbirgt sich ein Sicherheitsmerkmal von Kreditkarten, üblicherweise handelt es sich dabei um eine drei- bis vierstelligen Nummer. Der CVV-Code befindet sich auf VISA-Kreditkarten. Der gleiche Code ist auch auf MasterCard-Kreditkarten zu finden, hier allerdings unter dem Namen CVC. Die Abkürzung CVC steht dabei für Card Validation Code. Bei VISA wird der Code als Card Verification Value-Code bezeichnet. Ähnlich wie bei Mastercard und VISA gibt es auch bei Diners Club, Discover und JCB eine dreistellige Nummer, die meist auf der Rückseite der Karte zu finden ist. Bei Maestro-Karten gibt es mit und ohne dreistelligen CVV. Wird eine Maestro-Karte ohne CVV verwendet kann einfach 000 eingetragen werden. American Express verwendet die CID (Card Identification Number). Dabei handelt es sich um eine vierstellige Nummer, die meist auf der Vorderseite der Karte, rechts oberhalb der Kartennummer zu finden ist.</VariableLocalized>
+                <VariableLocalized iso="ENG">The CVV code or CVC is a security feature of credit cards. It usually is a three to four digit long number. On VISA credit cards, it is called CVV code. The same code can be found on MasterCard credit cards - where however it is called CVC. CVC is an abbreviation for "Card Validation Code". CVV code on the other hand is an abbreviation for "Card Validation Value code". Similar to MasterCard and Visa, other brands such as Diners Club, Discover and JCB contain a three digit number that can usually be found on the back of the credit card. MAESTRO cards exist with and without a three digit CVV. In case a MAESTRO card without a CVV will be used, it is possible to enter 000 to the form instead. American Express uses the CID (card identification number). The CID is a four digit number that can usually be found on the front of the card, top right from the credit card number.</VariableLocalized>
+                <VariableLocalized iso="ESP">El código CVV o CVC es una medida de seguridad de las tarjetas de crédito. Normalmente es un número de tres a cuatro dígitos de longitud. En las tarjetas de crédito VISA, se le llama código CVV. Se puede encontrar este mismo código en las tarjetas de crédito MasterCard -donde se le llama CVC. CVC es la abreviatura de "código de validez de la tarjeta". El código CVV, por otro lado, es la abreviatura de "código de valor de verificación de la tarjeta". Parecidas a MasterCard y Visa, otras tarjetas como Diners Club, Discover y JCB contienen un número de tres dígitos que se encuentra normalmente en el reverso de la tarjeta de crédito. Las tarjetas MAESTRO pueden tener o no el código CVV de tres dígitos. En caso de usar una tarjeta MAESTRO sin CVV, puede introducir 000 en el formulario en su lugar. American Express usa el CID (número de identificación de la tarjeta). El CID es un número de cuatro dígitos que normalmente se encuentra en el anverso de la tarjeta, arriba a la derecha del número de la tarjeta de crédito.</VariableLocalized>
+                <VariableLocalized iso="FRE">Le code CVV ou CVC est une fonctionnalité de sécurité des cartes de crédit. Il se compose en général d'un nombre de trois à quatre chiffres. Sur les cartes de crédit VISA, il est appelé code CVV. On trouve le même code sur les cartes de crédit MasterCard, où il est appelé cependant CVC. CVC signifie « Card Validation Code » (« Code de validation de carte »). Le code CVV signifie quant à lui « Card Validation Value code » (« code de Valeur de validation de carte »). Similaires à MasterCard et Visa, les autres marques telles que Diners Club, Discover et JCB contiennent un nombre à trois chiffres que l'on retrouve généralement au dos de la carte de crédit. Les cartes MAESTRO existent avec et sans le CVV à trois chiffres. Si vous utilisez une carte MAESTRO sans CVV, vous pourrez saisir 000 dans le formulaire. American Express utilise le CID (card identification number - numéro d'identification de carte). Le CID est un nombre à quatre chiffres que l'on retrouve généralement à l'avant de la carte, en haut à droite du numéro de carte de crédit.</VariableLocalized>
+                <VariableLocalized iso="ITA">Il codice CVV o CVC è una funzione di sicurezza delle carte di credito. Di solito, è un numero composto da tre o quattro cifre. Sulle carte di credito VISA, è indicato come codice CVV. Lo stesso codice può essere trovato sulle carte di credito MasterCard, dove però è denominato CVC. CVC è l'abbreviazione di "Card Validation Code" (Codice di validazione della carta). Il codice CVV, invece, è l'abbreviazione di "Card Validation Value code" (Codice del valore di verifica della carta). Similmente alla MasterCard e alla Visa, altre marche come la Diners Club, la Discover e la JCB contengono un numero a tre cifre che di solito può essere trovato sul retro della carta di credito. Esistono carte MAESTRO con o senza un codice CVV a tre cifre. Nel caso in cui venga utilizzata una carta MAESTRO priva di CVV, è possibile inserire 000 nel modulo. L'American Express utilizza il CID (Numero di identificazione della carta). Il CID è un numero a quattro cifre che di solito si trova sulla parte anteriore della carta, in alto a destra dal numero della carta di credito.</VariableLocalized>
+                <VariableLocalized iso="POR">O código CVV ou CVC é uma funcionalidade de segurança dos cartões de crédito. Normalmente é um número com três ou quatro dígitos. Nos cartões de crédito VISA, é chamado de código CVV. O mesmo código pode ser encontrado nos cartões de crédito MasterCard - onde no entanto é chamado de CVC. CVC é uma abreviatura para "Código de Validação do Cartão". O código CVV, por outro lado, é uma abreviatura para "Código para Valor de Validação do Cartão". De forma semelhante à MasterCard e à Visa, outras marcas tais como o Diners Club, Discover e JCB contêm um número de três dígitos que normalmente pode ser encontrado na parte de trás do cartão de crédito. Existem cartões MAESTRO com e sem um CVV de três dígitos. No caso de ser utilizado um cartão MAESTRO sem CVV, é possível introduzir 000 no formulário. A American Express utiliza o CID (número de identificação do cartão). O CID é um número de quatro dígitos que pode ser encontrado na parte da frente do cartão, no topo à direita do número do cartão de crédito.</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_10001</Name>
@@ -893,24 +805,12 @@
             <Variable>
                 <Name>PAYMILL_invalid_payment_data</Name>
                 <Description>Error Code</Description>
-                <VariableLocalized iso="GER">
-                    Paymentmethod, card type currency or country not authorized
-</VariableLocalized>
-                <VariableLocalized iso="ENG">
-                    Paymentmethod, card type currency or country not authorized
-</VariableLocalized>
-                <VariableLocalized iso="ESP">
-                    Paymentmethod, card type currency or country not authorized
-</VariableLocalized>
-                <VariableLocalized iso="FRE">
-                    Paymentmethod, card type currency or country not authorized
-</VariableLocalized>
-                <VariableLocalized iso="ITA">
-                    Paymentmethod, card type currency or country not authorized
-</VariableLocalized>
-                <VariableLocalized iso="POR">
-                    Paymentmethod, card type currency or country not authorized
-</VariableLocalized>
+                <VariableLocalized iso="GER">Paymentmethod, card type currency or country not authorized</VariableLocalized>
+                <VariableLocalized iso="ENG">Paymentmethod, card type currency or country not authorized</VariableLocalized>
+                <VariableLocalized iso="ESP">Paymentmethod, card type currency or country not authorized</VariableLocalized>
+                <VariableLocalized iso="FRE">Paymentmethod, card type currency or country not authorized</VariableLocalized>
+                <VariableLocalized iso="ITA">Paymentmethod, card type currency or country not authorized</VariableLocalized>
+                <VariableLocalized iso="POR">Paymentmethod, card type currency or country not authorized</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>PAYMILL_unknown_error</Name>
