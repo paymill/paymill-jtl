@@ -922,6 +922,46 @@
                 <VariableLocalized iso="ITA">Invalid currency for 3-D Secure</VariableLocalized>
                 <VariableLocalized iso="POR">Invalid currency for 3-D Secure</VariableLocalized>
             </Variable>
+            <Variable>
+                <Name>PAYMILL_field_invalid_bic</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Invalid BIC</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid BIC</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid BIC</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid BIC</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid BIC</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid BIC</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_field_invalid_iban</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Invalid IBAN</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid IBAN</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid IBAN</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid IBAN</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid IBAN</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid IBAN</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_field_invalid_country</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Invalid country for sepa transactions</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid country for sepa transactions</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid country for sepa transactions</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid country for sepa transactions</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid country for sepa transactions</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid country for sepa transactions</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>PAYMILL_field_invalid_bank_data</Name>
+                <Description>Error Code</Description>
+                <VariableLocalized iso="GER">Invalid bank data</VariableLocalized>
+                <VariableLocalized iso="ENG">Invalid bank data</VariableLocalized>
+                <VariableLocalized iso="ESP">Invalid bank data</VariableLocalized>
+                <VariableLocalized iso="FRE">Invalid bank data</VariableLocalized>
+                <VariableLocalized iso="ITA">Invalid bank data</VariableLocalized>
+                <VariableLocalized iso="POR">Invalid bank data</VariableLocalized>
+            </Variable>
         </Locales>
     </Install>
 </jtlshop3plugin>
