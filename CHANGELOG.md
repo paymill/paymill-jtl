@@ -1,3 +1,8 @@
+## v1.1.8
+ * improved early creditcard validation with greyscale logos
+ * added Iban Validation
+ * added language Support for German, English, Spanish, French, Italian
+
 ## v1.1.7
  * add bridge error translations
 
@@ -28,7 +33,7 @@
 
 ## v1.1.1
  * call "baueBestellnummer()" just one time
- 
+
 ## v1.1.0
  * new paymill logo
  * add fast checkout
