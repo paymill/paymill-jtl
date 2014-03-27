@@ -51,6 +51,10 @@ $js = <<<HTML
     lang['field_invalid_amount_int'] = "$PAYMILL_field_invalid_amount_int";
     lang['field_field_invalid_amount'] = "$PAYMILL_field_field_invalid_amount";
     lang['field_field_field_invalid_currency'] = "$PAYMILL_field_field_field_invalid_currency";
+    lang['field_invalid_bic'] = "$PAYMILL_field_invalid_bic";
+    lang['field_invalid_iban'] = "$PAYMILL_field_invalid_iban";
+    lang['field_invalid_country'] = "$PAYMILL_field_invalid_country";
+    lang['field_invalid_bank_data'] = "$PAYMILL_field_invalid_bank_data";
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://bridge.paymill.com/"></script>

@@ -147,7 +147,7 @@ $(document).ready(function()
         hideErrorBoxes('elv', 3);
 
         var elvErrorFlag = true;
-        
+
         ibanWithoutSpaces = $('#paymill-iban').val();
         ibanWithoutSpaces = ibanWithoutSpaces.replace(/\s+/g, "");
         ibanValidator = new PaymillIban();
