@@ -2,18 +2,18 @@
 $(document).ready(function()
 {
     $('#paymill-card-number').keyup(function() {
-        var brand = paymill.cardType($('#paymill-card-number').val());
-        brand = brand.toLowerCase();
-        $("#paymill-card-number")[0].className = $("#paymill-card-number")[0].className.replace(/paymill-card-number-.*/g, '');
-        if (brand !== 'unknown') {
-            if (brand === 'american express') {
-                brand = 'amex';
-            }
-            
+        var detector = new PaymillBrandDetection();
+        var brand = detector.detect($('#paymill-card-number').val());
+	brand = brand.toLowerCase();
+	$("#paymill-card-number")[0].className = $("#paymill-card-number")[0].className.replace(/paymill-card-number-.*/g, '');
+	if (brand !== 'unknown') {
             $('#paymill-card-number').addClass("paymill-card-number-" + brand);
-        }
+            if (!detector.validate($('#paymill-card-number').val())) {
+                $('#paymill-card-number').addClass("paymill-card-number-grayscale");
+            }
+	}
     });
-	
+
     function paymillElvResponseHandler(error, result)
     {
         if (flag) {
@@ -88,7 +88,7 @@ $(document).ready(function()
                 $("#payment-error-cc-2").text(lang['verfication_number_invalid']);
                 $("#payment-error-cc-2").css('display', 'block');
                 ccErrorFlag = false;
-            } 
+            }
         }
 
         if (!paymill.validateHolder($('#paymill-card-holdername').val())) {
@@ -100,13 +100,13 @@ $(document).ready(function()
         if (!ccErrorFlag) {
             return ccErrorFlag;
         }
-			
+
         var cvc = '000';
 
         if ($('#paymill-card-cvc').val() !== '') {
             cvc = $('#paymill-card-cvc').val();
         }
-		
+
         paymill.createToken({
             number: $('#paymill-card-number').val(),
             exp_month: $('#paymill-card-expiry-month').val(),
@@ -139,7 +139,7 @@ $(document).ready(function()
     $('#paymill-card-holdername').focus(function() {
         fastCheckoutCc = 'false';
     });
-	
+
     function paymillElvSepa()
     {
         paymillDebug('Paymill ELV SEPA: Start form validation');
@@ -148,13 +148,17 @@ $(document).ready(function()
 
         var elvErrorFlag = true;
 
-        if ($('#paymill-iban').val() === '') {
+        ibanWithoutSpaces = $('#paymill-iban').val();
+        ibanWithoutSpaces = ibanWithoutSpaces.replace(/\s+/g, "");
+        ibanValidator = new PaymillIban();
+
+        if (!ibanValidator.validate(ibanWithoutSpaces)) {
             $("#payment-error-elv-1").text(lang['iban_invalid']);
             $("#payment-error-elv-1").css('display', 'block');
             elvErrorFlag = false;
         }
 
-        if ($('#paymill-bic').val() === '') {
+        if (!($('#paymill-bic').val().length === 8 || $('#paymill-bic').val().length === 11)) {
             $("#payment-error-elv-2").text(lang['bic_invalid']);
             $("#payment-error-elv-2").css('display', 'block');
             elvErrorFlag = false;
@@ -165,14 +169,14 @@ $(document).ready(function()
         }
 
         paymill.createToken({
-            iban: $('#paymill-iban').val(),
+            iban: ibanWithoutSpaces,
             bic: $('#paymill-bic').val(),
             accountholder: $('#paymill-bank-owner-sepa').val()
         }, paymillElvResponseHandler);
 
         return false;
     }
-	
+
     function paymillElv()
     {
         paymillDebug('Paymill ELV: Start form validation');
@@ -215,7 +219,7 @@ $(document).ready(function()
     $('#paymill-iban').focus(function() {
         fastCheckoutElv = 'false';
     });
-	
+
     $('#paymill-bic').focus(function() {
         fastCheckoutElv = 'false';
     });

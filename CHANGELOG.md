@@ -1,3 +1,5 @@
+## v1.1.9
+
 ## v1.1.8
  * improved early creditcard validation with greyscale logos
  * added Iban Validation
