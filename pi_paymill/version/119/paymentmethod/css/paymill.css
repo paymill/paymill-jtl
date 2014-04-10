@@ -14,6 +14,11 @@
     padding-top: 7px;
 }
 
+.form-row
+{
+    width: 270px;
+}
+
 .form-row input
 {
     width: 250px;
@@ -21,12 +26,12 @@
 
 .card-expiry-month
 {
-    width: 149px;
+    width: 145px;
 }
 
 .card-expiry-year
 {
-    width: 99px;
+    width: 95px;
 }
 
 .payment-error

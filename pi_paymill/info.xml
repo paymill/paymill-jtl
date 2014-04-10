@@ -126,7 +126,7 @@
         </Adminmenu>
         <Hooks>
             <Hook id="8">payment_selection.php</Hook>
-            <Hook id="10">payment_check.php</Hook>
+            <Hook id="140">php_query.php</Hook>
         </Hooks>
         <PaymentMethod>
             <Method>

@@ -57,7 +57,8 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
         global $oPlugin, $Einstellungen;
 
         $_SESSION['paymill_identifier'] = time();
-        if (array_key_exists('pi', $_SESSION) && array_key_exists('paymillToken', $_SESSION['pi'])) {
+        
+        if (array_key_exists('paymillToken', $_POST)) {
             $this->_orderId = baueBestellnummer();
 
             $amount = (float) $order->fGesamtsumme;
@@ -69,7 +70,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             $paymill->setEmail((string) $order->oRechnungsadresse->cMail);
             $paymill->setName((string) ($order->oRechnungsadresse->cNachname . ', ' . $order->oRechnungsadresse->cVorname));
             $paymill->setPrivateKey(trim((string) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']));
-            $paymill->setToken((string) $_SESSION['pi']['paymillToken']);
+            $paymill->setToken((string) $_POST['paymillToken']);
             $paymill->setLogger($this);
             $paymill->setSource($oPlugin->nVersion . '_JTL_' . JTL_VERSION);
 
@@ -83,7 +84,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
                 $paymill->setClientId($clientId);
             }
 
-            if ($_SESSION['pi']['paymillToken'] === 'dummyToken') {
+            if ($_POST['paymillToken'] === 'dummyToken') {
                 if ($this->_fastCheckout->canCustomerFastCheckoutCc($order->oRechnungsadresse->kKunde) && $order->Zahlungsart->cName == 'paymill_cc') {
                     $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
                     if (!empty($data->paymentID_CC)) {

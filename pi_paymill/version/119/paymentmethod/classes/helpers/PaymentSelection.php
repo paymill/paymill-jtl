@@ -7,32 +7,14 @@ require_once(dirname(__FILE__) . '/../payment/Paymill.php');
 
 class PaymentSelection
 {
-    /**
-     * Extends the paymill infos texts with the payment forms
-     *
-     * @param object $smarty
-     * @param object $oPlugin
-     * @param string $pluginPath
-     */
-    public static function setPaymillInfoTexts($smarty, $oPlugin, $pluginPath, $js)
+    public static function getCcPaymentForm($pluginPath, $oPlugin)
     {
-        foreach (self::getPayments($smarty) as $key => $payment) {
-            if (Util::isPaymillCc($payment->cName, $oPlugin)) {
-                if (!empty($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']) && !empty($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_public_key'])) {
-                    $payment->cHinweisText[$_SESSION['cISOSprache']] .= self::getPaymillPaymentForm('cc', $payment->kZahlungsart, $pluginPath, $oPlugin, $js);
-                } else {
-                    unset($smarty->_tpl_vars['Zahlungsarten'][$key]);
-                }
-            }
-
-            if(Util::isPaymillElv($payment->cName, $oPlugin)) {
-                if (!empty($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']) && !empty($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_public_key'])) {
-                    $payment->cHinweisText[$_SESSION['cISOSprache']] .= self::getPaymillPaymentForm('elv', $payment->kZahlungsart, $pluginPath, $oPlugin, $js);
-                } else {
-                    unset($smarty->_tpl_vars['Zahlungsarten'][$key]);
-                }
-            }
-        }
+        return self::getPaymillPaymentForm('cc', $pluginPath, $oPlugin);
+    }
+    
+    public static function getElvPaymentForm($pluginPath, $oPlugin)
+    {
+        return self::getPaymillPaymentForm('elv', $pluginPath, $oPlugin);
     }
 
     /**
@@ -55,7 +37,7 @@ class PaymentSelection
      * @param object $oPlugin
      * @return string
      */
-    public static function getPaymillPaymentForm($code, $paymentId, $pluginPath, $oPlugin, $js)
+    public static function getPaymillPaymentForm($code, $pluginPath, $oPlugin)
     {
         $methods = array(
             'paymill_cc' => 'cc',
@@ -91,11 +73,9 @@ class PaymentSelection
             $html = str_replace($toReplace, $replace, $html);
         }
         
-        $html = str_replace('{__paymentId__}', $paymentId, $html);
         $html = str_replace('{__amount__}', $amount, $html);
         $html = str_replace('{__currency__}', $currency, $html);
         $html = str_replace('{__pluginPath__}', $pluginPath, $html);
-        $html = str_replace('{__js__}', $js, $html);
 
         if ($code == 'cc') {
             $html = self::addCcMultiLang($html, $oPlugin);
@@ -302,11 +282,12 @@ class PaymentSelection
     
     public static function canPamillFastCheckout($code, $oPlugin)
     {
-        $paymill = new Paymill();
+        $paymill  = new Paymill();
         $payments = new Services_Paymill_Payments(
             $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key'],
             $paymill->apiUrl
         );
+        
         $fastCheckoutHelper = new FastCheckout();
         $data = $fastCheckoutHelper->loadFastCheckoutData($_SESSION['Kunde']->kKunde);
         
