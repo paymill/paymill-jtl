@@ -54,45 +54,46 @@ $(document).ready(function()
 			form.submit();
 		}
     }
-
-    function hideErrorBoxes(payment, limit)
-    {
-        for (i = 0; i <= limit; i++) {
-            $("#payment-error-" + payment + "-" + i).css('display', 'none');
-        }
-    }
-
+	
     function paymillCc()
     {
         paymillDebug('Paymill Creditcard: Start form validation');
 
-        hideErrorBoxes('cc', 4);
+		$("#payment-errors-cc").css('display', 'none');
+		$('#paymill-card-expiry').removeClass('field-error');
+		$('#paymill-card-number').removeClass('field-error');
+		$('#paymill-card-cvc').removeClass('field-error');
+		$('#paymill-card-holdername').removeClass('field-error');
 
         var ccErrorFlag = true;
 
         if (!paymill.validateCardNumber($('#paymill-card-number').val())) {
-            $("#payment-error-cc-1").text(lang['card_number_invalid']);
-            $("#payment-error-cc-1").css('display', 'block');
+			$('#paymill-card-number').addClass('field-error');
+            $("#payment-errors-cc").append('<div>* ' + lang['card_number_invalid'] + '</div>');
+            $("#payment-errors-cc").css('display', 'block');
             ccErrorFlag = false;
         }
 
         if (!paymill.validateExpiry($('#paymill-card-expiry-month').val(), $('#paymill-card-expiry-year').val())) {
-            $("#payment-error-cc-4").text(lang['expiration_date_invalid']);
-            $("#payment-error-cc-4").css('display', 'block');
+			$('#paymill-card-expiry').addClass('field-error');
+            $("#payment-errors-cc").append('<div>* ' + lang['expiration_date_invalid'] + '</div>');
+            $("#payment-errors-cc").css('display', 'block');
             ccErrorFlag = false;
         }
 
         if (!paymill.validateCvc($('#paymill-card-cvc').val())) {
             if (paymill.cardType($('#paymill-card-number').val()).toLowerCase() !== 'maestro') {
-                $("#payment-error-cc-2").text(lang['verfication_number_invalid']);
-                $("#payment-error-cc-2").css('display', 'block');
+				$('#paymill-card-cvc').addClass('field-error');
+                $("#payment-errors-cc").append('<div>* ' + lang['verfication_number_invalid'] + '</div>');
+                $("#payment-errors-cc").css('display', 'block');
                 ccErrorFlag = false;
             }
         }
 
         if (!paymill.validateHolder($('#paymill-card-holdername').val())) {
-            $("#payment-error-cc-3").text(lang['card_holder_invalid']);
-            $("#payment-error-cc-3").css('display', 'block');
+			$('#paymill-card-holdername').addClass('field-error');
+            $("#payment-errors-cc").append('<div>* ' + lang['card_holder_invalid'] + '</div>');
+            $("#payment-errors-cc").css('display', 'block');
             ccErrorFlag = false;
         }
 
@@ -143,7 +144,10 @@ $(document).ready(function()
     {
         paymillDebug('Paymill ELV SEPA: Start form validation');
 
-        hideErrorBoxes('elv', 3);
+		$("#payment-errors-elv").css('display', 'none');
+		$('#paymill-iban').removeClass('field-error');
+		$('#paymill-bic').removeClass('field-error');
+		$('#paymill-bank-owner').removeClass('field-error');
 
         var elvErrorFlag = true;
 
@@ -152,17 +156,26 @@ $(document).ready(function()
         ibanValidator = new PaymillIban();
 
         if (!ibanValidator.validate(ibanWithoutSpaces)) {
-            $("#payment-error-elv-1").text(lang['iban_invalid']);
-            $("#payment-error-elv-1").css('display', 'block');
+			$('#paymill-iban').addClass('field-error');
+            $("#payment-errors-elv").text('<div>* ' + lang['iban_invalid'] + '</div>');
+            $("#payment-errors-elv").css('display', 'block');
             elvErrorFlag = false;
         }
 
         if (!($('#paymill-bic').val().length === 8 || $('#paymill-bic').val().length === 11)) {
-            $("#payment-error-elv-2").text(lang['bic_invalid']);
-            $("#payment-error-elv-2").css('display', 'block');
+			$('#paymill-bic').addClass('field-error');
+            $("#payment-errors-elv").text('<div>* ' + lang['bic_invalid'] + '</div>');
+            $("#payment-errors-elv").css('display', 'block');
             elvErrorFlag = false;
         }
 
+        if ($('#paymill-bank-owner').val() === "") {
+			$('#paymill-bank-owner').addClass('field-error');
+            $("#payment-errors-elv").append('<div>* ' + lang['account_owner_invalid'] + '</div>');
+            $("#payment-errors-elv").css('display', 'block');
+            elvErrorFlag = false;
+        }
+		
         if (!elvErrorFlag) {
             return elvErrorFlag;
         }
@@ -180,25 +193,31 @@ $(document).ready(function()
     {
         paymillDebug('Paymill ELV: Start form validation');
 
-        hideErrorBoxes('elv', 3);
-
+		$("#payment-errors-elv").css('display', 'none');
+		$('#paymill-account-number').removeClass('field-error');
+		$('#paymill-bank-code').removeClass('field-error');
+		$('#paymill-bank-owner').removeClass('field-error');
+		
         var elvErrorFlag = true;
 
         if (!paymill.validateAccountNumber($('#paymill-account-number').val())) {
-            $("#payment-error-elv-1").text(lang['account_number_invalid']);
-            $("#payment-error-elv-1").css('display', 'block');
+			$('#paymill-account-number').addClass('field-error');
+            $("#payment-errors-elv").append('<div>* ' + lang['account_number_invalid'] + '</div>');
+            $("#payment-errors-elv").css('display', 'block');
             elvErrorFlag = false;
         }
 
         if (!paymill.validateBankCode($('#paymill-bank-code').val())) {
-            $("#payment-error-elv-2").text(lang['sort_code_invalid']);
-            $("#payment-error-elv-2").css('display', 'block');
+			$('#paymill-bank-code').addClass('field-error');
+            $("#payment-errors-elv").append('<div>* ' + lang['sort_code_invalid'] + '</div>');
+            $("#payment-errors-elv").css('display', 'block');
             elvErrorFlag = false;
         }
 
         if ($('#paymill-bank-owner').val() === "") {
-            $("#payment-error-elv-3").text(lang['account_owner_invalid']);
-            $("#payment-error-elv-3").css('display', 'block');
+			$('#paymill-bank-owner').addClass('field-error');
+            $("#payment-errors-elv").append('<div>* ' + lang['account_owner_invalid'] + '</div>');
+            $("#payment-errors-elv").css('display', 'block');
             elvErrorFlag = false;
         }
 

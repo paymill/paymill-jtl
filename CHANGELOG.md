@@ -1,4 +1,5 @@
 ## v1.1.9
+ * move payment form to confirm page
 
 ## v1.1.8
  * improved early creditcard validation with greyscale logos

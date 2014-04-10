@@ -69,7 +69,7 @@ class PaymentSelection
             $html = self::setFastCheckoutData($code, $html, $oPlugin);
         } else {
             $toReplace = array('{__cc_brand_logo__}', '{__cc_number__}', '{__cc_cvc__}', '{__cc_holder__}', '{__options_month__}', '{__options_year__}', '{__elv_number__}', '{__elv_bankcode__}', '{__elv_owner__}', '{__elv_iban__}', '{__elv_bic__}');
-            $replace = array('', '', '', '', self::getMonthOptions(), self::getYearOptions(), '', '', '', '', '');
+            $replace = array('', '', '', '', self::getMonthOptions($oPlugin), self::getYearOptions(), '', '', '', '', '');
             $html = str_replace($toReplace, $replace, $html);
         }
         
@@ -121,7 +121,7 @@ class PaymentSelection
                 $replace[0] = '************' . $payment['last4'];
                 $replace[1] = '***';
                 $replace[2] = $payment['card_holder'];
-                $html = str_replace('{__options_month__}', self::getMonthOptions($payment['expire_month']), $html);
+                $html = str_replace('{__options_month__}', self::getMonthOptions($oPlugin, $payment['expire_month']), $html);
                 $html = str_replace('{__options_year__}', self::getYearOptions($payment['expire_year']), $html);
                 $brand = $payment['card_type'];
                 if ($payment['card_type'] === 'american express') {
@@ -204,13 +204,13 @@ class PaymentSelection
         return $options;
     }
     
-    private static function getMonthOptions($selected = false)
+    private static function getMonthOptions($oPlugin, $selected = false)
     {
         for ($i = 1; $i<=12; $i++) {
             if ($selected == $i) {
-                $options .= '<option selected="selected">' . $i . '</option>';
+                $options .= '<option selected="selected">' . $oPlugin->oPluginSprachvariableAssoc_arr['TEXT_PAYMILL_CC_' . $i] . '</option>';
             } else {
-                $options .= '<option>' . $i . '</option>';
+                $options .= '<option>' . $oPlugin->oPluginSprachvariableAssoc_arr['TEXT_PAYMILL_CC_' . $i] . '</option>';
             }
         }
         
