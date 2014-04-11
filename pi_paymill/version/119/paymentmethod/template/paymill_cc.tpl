@@ -24,7 +24,7 @@
             </div>
             <span class="form-row-label-small">___Expiration_Date___</span>
             <br/>
-            <input class="card-expiry form-row-small"  id="paymill-card-expiry" type="text" size="5" value="{__cc_expiry__}"/>
+            <input class="card-expiry form-row-small"  id="paymill-card-expiry" type="text" size="5" maxlength="5" value="{__cc_expiry__}"/>
         </div>
     </fieldset>
 </div>

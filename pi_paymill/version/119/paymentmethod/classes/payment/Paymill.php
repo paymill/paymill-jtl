@@ -73,11 +73,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
             $paymill->setToken((string) $_POST['paymillToken']);
             $paymill->setLogger($this);
             $paymill->setSource($oPlugin->nVersion . '_JTL_' . JTL_VERSION);
-
-            if (array_key_exists('authorized_amount', $_SESSION['pi'])) {
-                $paymill->setPreAuthAmount($_SESSION['pi']['authorized_amount']);
-            }
-
+            
             $data = $this->_fastCheckout->loadFastCheckoutData($order->oRechnungsadresse->kKunde);
             if (!empty($data->clientID)) {
                 $clientId = $this->_getUpdatedClientId($data, $order);
@@ -150,16 +146,16 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
     {
         global $oPlugin;
         $clients = new Services_Paymill_Clients(
-                trim((string) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']), (string) $this->apiUrl
+            trim((string) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_private_key']), (string) $this->apiUrl
         );
 
         $client = $clients->getOne($data->clientID);
         if ($client['email'] !== $order->oRechnungsadresse->cMail) {
             $clients->update(
-                    array(
-                        'id' => $data->clientID,
-                        'email' => $order->oRechnungsadresse->cMail
-                    )
+                array(
+                    'id' => $data->clientID,
+                    'email' => $order->oRechnungsadresse->cMail
+                )
             );
         }
 

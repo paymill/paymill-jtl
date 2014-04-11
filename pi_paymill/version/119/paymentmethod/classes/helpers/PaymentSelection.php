@@ -44,7 +44,7 @@ class PaymentSelection
             'paymill_elv' => 'elv'
         );
         
-        $amountFloat = $_SESSION["Warenkorb"]->gibGesamtsummeWaren(true) + Util::getDifferentAmount($oPlugin);
+        $amountFloat = $_SESSION["Warenkorb"]->gibGesamtsummeWaren(true);
         
         $amount = round((float) $amountFloat * 100);
         
@@ -56,7 +56,7 @@ class PaymentSelection
         }
         
         if ($code === 'cc') {
-            $html .= file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '.tpl');
+            $html .= file_get_contents(dirname(dirname(dirname(__FILE__))) . '/template/paymill_' . $code . '.tpl');
         } else {
             if ($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_sepa']) {
                 $html .= file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '_sepa.tpl');
@@ -68,8 +68,8 @@ class PaymentSelection
         if (self::canPamillFastCheckout($code, $oPlugin)) {
             $html = self::setFastCheckoutData($code, $html, $oPlugin);
         } else {
-            $toReplace = array('{__cc_brand_logo__}', '{__cc_number__}', '{__cc_cvc__}', '{__cc_holder__}', '{__options_month__}', '{__options_year__}', '{__elv_number__}', '{__elv_bankcode__}', '{__elv_owner__}', '{__elv_iban__}', '{__elv_bic__}');
-            $replace = array('', '', '', '', self::getMonthOptions($oPlugin), self::getYearOptions(), '', '', '', '', '');
+            $toReplace = array('{__cc_brand_logo__}', '{__cc_number__}', '{__cc_cvc__}', '{__cc_holder__}', '{__cc_expiry__}', '{__elv_number__}', '{__elv_bankcode__}', '{__elv_owner__}', '{__elv_iban__}', '{__elv_bic__}');
+            $replace = array('', '', '', '', '', '', '', '', '', '');
             $html = str_replace($toReplace, $replace, $html);
         }
         
@@ -121,8 +121,7 @@ class PaymentSelection
                 $replace[0] = '************' . $payment['last4'];
                 $replace[1] = '***';
                 $replace[2] = $payment['card_holder'];
-                $html = str_replace('{__options_month__}', self::getMonthOptions($oPlugin, $payment['expire_month']), $html);
-                $html = str_replace('{__options_year__}', self::getYearOptions($payment['expire_year']), $html);
+                $html = str_replace('{__cc_expiry__}', $payment['expire_month'] . '/' .  $payment['expire_year'], $html);
                 $brand = $payment['card_type'];
                 if ($payment['card_type'] === 'american express') {
                     $brand = 'amex';
@@ -180,41 +179,6 @@ class PaymentSelection
         }
         
         return $html;
-    }
-
-    /**
-     * retrieve option html tags with the next 10 years from now
-     *
-     * @return string
-     */
-    private static function getYearOptions($selected = false)
-    {
-        $options = '';
-        $start = (int) date("Y");
-        $end = (int) date("Y") + 10;
-
-        for ($i = $start; $i<=$end; $i++) {
-            if ($selected == $i) {
-                $options .= '<option selected="selected">' . $i . '</option>';
-            } else {
-                $options .= '<option>' . $i . '</option>';
-            }
-        }
-
-        return $options;
-    }
-    
-    private static function getMonthOptions($oPlugin, $selected = false)
-    {
-        for ($i = 1; $i<=12; $i++) {
-            if ($selected == $i) {
-                $options .= '<option selected="selected">' . $oPlugin->oPluginSprachvariableAssoc_arr['TEXT_PAYMILL_CC_' . $i] . '</option>';
-            } else {
-                $options .= '<option>' . $oPlugin->oPluginSprachvariableAssoc_arr['TEXT_PAYMILL_CC_' . $i] . '</option>';
-            }
-        }
-        
-        return $options;
     }
 
     /**

@@ -27,12 +27,12 @@ if ($smarty->_tpl_vars['AktuelleSeite'] === 'BESTELLVORGANG' && Util::isPaymillP
     $head = 
 <<<HTML
     <script type="text/javascript">
-        var fastCheckoutCc = "$fastCheckoutCc";
-        var fastCheckoutElv = "$fastCheckoutElv";
+        var fastCheckoutCc = $fastCheckoutCc;
+        var fastCheckoutElv = $fastCheckoutElv;
         var cc = $cc;
         var elv = $elv;
         var PAYMILL_PUBLIC_KEY = "$publicKey";
-        var debug = "$debug";
+        var debug = $debug;
         var lang = new Array();
         // Paymill cc js lang
         lang['card_number_invalid'] = "$Credit_Card_Number_Invalid";
