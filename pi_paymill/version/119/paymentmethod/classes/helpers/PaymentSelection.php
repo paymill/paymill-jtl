@@ -44,7 +44,7 @@ class PaymentSelection
             'paymill_elv' => 'elv'
         );
         
-        $amountFloat = $_SESSION["Warenkorb"]->gibGesamtsummeWaren(true);
+        $amountFloat = $_SESSION["Warenkorb"]->gibGesamtsummeWaren(true) * $_SESSION['Waehrung']->fFaktor;
         
         $amount = round((float) $amountFloat * 100);
         

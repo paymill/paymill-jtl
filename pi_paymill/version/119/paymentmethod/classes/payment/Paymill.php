@@ -61,7 +61,7 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
         if (array_key_exists('paymillToken', $_POST)) {
             $this->_orderId = baueBestellnummer();
 
-            $amount = (float) $order->fGesamtsumme;
+            $amount = (float) $order->fGesamtsumme * $_SESSION['Waehrung']->fFaktor;
             $paymill = new Services_Paymill_PaymentProcessor();
             $paymill->setAmount((int) (string) ($amount * 100));
             $paymill->setApiUrl((string) $this->apiUrl);
