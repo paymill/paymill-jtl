@@ -5,8 +5,8 @@ require_once(dirname(__FILE__) . '/../paymentmethod/classes/helpers/PaymentCheck
 require_once(dirname(__FILE__) . '/../paymentmethod/classes/helpers/PaymentSelection.php');
 
 $payment = PaymentCheck::getPayment();
+$pluginPath = gibShopUrl() . "/" . PFAD_PLUGIN . $oPlugin->cVerzeichnis . "/" . PFAD_PLUGIN_VERSION . $oPlugin->nVersion . "/paymentmethod";
 if ($smarty->_tpl_vars['AktuelleSeite'] === 'BESTELLVORGANG' && Util::isPaymillPayment($payment->cName, $oPlugin)) {
-    $pluginPath = gibShopUrl() . "/" . PFAD_PLUGIN . $oPlugin->cVerzeichnis . "/" . PFAD_PLUGIN_VERSION . $oPlugin->nVersion . "/paymentmethod";
     $debug = ($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_debug_mode'] == 1) ? "true" : "false";
 
     foreach ($oPlugin->oPluginSprachvariableAssoc_arr as $key => $value) {

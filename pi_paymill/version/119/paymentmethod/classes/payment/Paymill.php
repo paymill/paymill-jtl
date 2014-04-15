@@ -95,11 +95,11 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
                     }
                 }
             }
-
+            
             $result = $paymill->processPayment();
-
-            $_SESSION['pi_error']['method'] = $order->Zahlungsart->cName;
-
+            
+            $_SESSION['paymill_method'] = $order->Zahlungsart->cName;
+            
             if ($result) {
                 if ($this->finalizeOrder($order)) {
                     if ((boolean) $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_fast_checkout']) {
@@ -118,17 +118,18 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
                     unset($_SESSION['pi_error']);
                 } else {
                     unset($_SESSION['pi']);
-                    $_SESSION['pi_error']['error'] = $oPlugin->oPluginSprachvariableAssoc_arr['Order_Generate_Error'];
+                    $_SESSION['paymill_error'] = $oPlugin->oPluginSprachvariableAssoc_arr['Order_Generate_Error'];
                     header("Location: " . gibShopURL() . '/bestellvorgang.php?editZahlungsart=1');
                 }
             } else {
                 unset($_SESSION['pi']);
-                $_SESSION['pi_error']['error'] = $this->_getErrorMessage($oPlugin, $paymill->getErrorCode());
+                $_SESSION['paymill_error'] = $this->_getErrorMessage($oPlugin, $paymill->getErrorCode());
                 header("Location: " . gibShopURL() . '/bestellvorgang.php?editZahlungsart=1');
             }
         } else {
+            
             unset($_SESSION['pi']);
-            $_SESSION['pi_error']['error'] = $oPlugin->oPluginSprachvariableAssoc_arr['Invalid_Token_Error'];
+            $_SESSION['paymill_error'] = $oPlugin->oPluginSprachvariableAssoc_arr['Invalid_Token_Error'];
             header("Location: " . gibShopURL() . '/bestellvorgang.php?editZahlungsart=1');
         }
     }
