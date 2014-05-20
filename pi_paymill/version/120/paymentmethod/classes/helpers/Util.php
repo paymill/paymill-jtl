@@ -41,7 +41,7 @@ class Util
 
      /**
      * Paymill log function
-     * 
+     *
      * @global object $oPlugin
      * @param string $message
      */
@@ -53,13 +53,36 @@ class Util
             if (array_key_exists('paymill_identifier', $_SESSION)) {
                  $GLOBALS['DB']->executeQuery("INSERT INTO `xplugin_pi_paymill_log` "
                             . "(debug, message, identifier) "
-                            . "VALUES('" 
-                              . $debugInfo . "', '" 
-                              . $message . "', '" 
-                              . $_SESSION['paymill_identifier'] 
+                            . "VALUES('"
+                              . $debugInfo . "', '"
+                              . $message . "', '"
+                              . $_SESSION['paymill_identifier']
                             . "')"
                 );
             }
         }
     }
+
+    /**
+     * Returns an array with all creditcard brands
+     *
+     * @global object $oPlugin
+     * @return array
+     */
+    public static function getEnabledBrands($oPlugin){
+        return array(
+            'visa' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_visa'] === "1",
+            'china-unionpay' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_china_unionpay'] === "1",
+            'mastercard' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_mastercard'] === "1",
+            'maestro' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_maestro'] === "1",
+            'jcb' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_jcb'] === "1",
+            'discover' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_discover'] === "1",
+            'diners-club' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_dinersclub'] === "1",
+            'carte-bleue' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_carte_bleue'] === "1",
+            'carta-si' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_carta_si'] === "1",
+            'amex' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_amex'] === "1"
+        );
+    }
+
+
 }

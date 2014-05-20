@@ -73,6 +73,9 @@
         <Version nr="119">
             <CreateDate>2014-03-13</CreateDate>
         </Version>
+        <Version nr="120">
+            <CreateDate>2014-05-07</CreateDate>
+        </Version>
         <Adminmenu>
             <Settingslink sort="1">
                 <Name>Einstellungen</Name>
@@ -108,6 +111,96 @@
                     <Name>Paymill debug mode</Name>
                     <Description>Debug Modus, für die schnelle Fehlerfindung.</Description>
                     <ValueName>pi_paymill_debug_mode</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                    <Name>Amex</Name>
+                    <Description>-</Description>
+                    <ValueName>pi_paymill_creditcardbrand_amex</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                    <Name>Carta si</Name>
+                    <Description>-</Description>
+                    <ValueName>pi_paymill_creditcardbrand_carta_si</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                    <Name>Carte bleue</Name>
+                    <Description>-</Description>
+                    <ValueName>pi_paymill_creditcardbrand_carte_bleue</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                    <Name>Dinersclub</Name>
+                    <Description>-</Description>
+                    <ValueName>pi_paymill_creditcardbrand_dinersclub</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                    <Name>Discover</Name>
+                    <Description>-</Description>
+                    <ValueName>pi_paymill_creditcardbrand_discover</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                    <Name>JCB</Name>
+                    <Description>-</Description>
+                    <ValueName>pi_paymill_creditcardbrand_jcb</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                    <Name>Maestro</Name>
+                    <Description>-</Description>
+                    <ValueName>pi_paymill_creditcardbrand_maestro</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                    <Name>Mastercard</Name>
+                    <Description>-</Description>
+                    <ValueName>pi_paymill_creditcardbrand_mastercard</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                    <Name>China Unionpay</Name>
+                    <Description>-</Description>
+                    <ValueName>pi_paymill_creditcardbrand_china_unionpay</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                    <Name>Visa</Name>
+                    <Description>-</Description>
+                    <ValueName>pi_paymill_creditcardbrand_visa</ValueName>
                     <SelectboxOptions>
                         <Option value="0" sort="2">Off</Option>
                         <Option value="1" sort="1">On</Option>
