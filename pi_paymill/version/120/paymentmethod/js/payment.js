@@ -1,20 +1,20 @@
 $(document).ready(function()
 {
 	var paymentSubmitted = false;
-	
+
     $('#paymill-card-number').keyup(function() {
         var detector = new PaymillBrandDetection();
         var brand = detector.detect($('#paymill-card-number').val());
 		brand = brand.toLowerCase();
 		$("#paymill-card-number")[0].className = $("#paymill-card-number")[0].className.replace(/paymill-card-number-.*/g, '');
-		if (brand !== 'unknown') {
+		if (brand !== 'unknown' && allowedBrands[brand]) {
             $('#paymill-card-number').addClass("paymill-card-number-" + brand);
             if (!detector.validate($('#paymill-card-number').val())) {
                 $('#paymill-card-number').addClass("paymill-card-number-grayscale");
             }
 		}
     });
-	
+
 	$('#paymill-card-expiry').keyup(function() {
 		if ( /^\d\d$/.test( $('#paymill-card-expiry').val() ) ) {
 			text = $('#paymill-card-expiry').val();
@@ -62,7 +62,7 @@ $(document).ready(function()
 			form.submit();
 		}
     }
-	
+
     function paymillCc()
     {
         paymillDebug('Paymill Creditcard: Start form validation');
@@ -75,20 +75,20 @@ $(document).ready(function()
 		$('#paymill-card-holdername').removeClass('field-error');
 
         var ccErrorFlag = true;
-		
+
         if (!paymill.validateCardNumber($('#paymill-card-number').val())) {
 			$('#paymill-card-number').addClass('field-error');
             $("#payment-errors-cc").append('<div>* ' + lang['card_number_invalid'] + '</div>');
             $("#payment-errors-cc").css('display', 'block');
             ccErrorFlag = false;
         }
-		
+
 		var expiry = $('#paymill-card-expiry').val().split("/");
-		
+
 		if (expiry[1] && (expiry[1].length <= 2)) {
 			expiry[1] = '20' + expiry[1];
 		}
-		
+
 		if (!paymill.validateExpiry(expiry[0], expiry[1])) {
 			$('#paymill-card-expiry').addClass('field-error');
             $("#payment-errors-cc").append('<div>* ' + lang['expiration_date_invalid'] + '</div>');
@@ -121,9 +121,9 @@ $(document).ready(function()
         if ($('#paymill-card-cvc').val() !== '') {
             cvc = $('#paymill-card-cvc').val();
         }
-		
+
 		paymillDebug('Paymill CC: Finished validation');
-		
+
         paymill.createToken({
             number: $('#paymill-card-number').val(),
             exp_month: expiry[0],
@@ -193,7 +193,7 @@ $(document).ready(function()
             $("#payment-errors-elv").css('display', 'block');
             elvErrorFlag = false;
         }
-		
+
         if (!elvErrorFlag) {
             return elvErrorFlag;
         }
@@ -216,7 +216,7 @@ $(document).ready(function()
 		$('#paymill-account-number').removeClass('field-error');
 		$('#paymill-bank-code').removeClass('field-error');
 		$('#paymill-bank-owner').removeClass('field-error');
-		
+
         var elvErrorFlag = true;
 
         if (!paymill.validateAccountNumber($('#paymill-account-number').val())) {
