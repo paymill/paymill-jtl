@@ -55,20 +55,11 @@ class PaymentSelection
             $html = self::getPaymentError($html);
         }
 
-        if ($code === 'cc') {
-            $html .= file_get_contents(dirname(dirname(dirname(__FILE__))) . '/template/paymill_' . $code . '.tpl');
-        } else {
-            if ($oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_sepa']) {
-                $html .= file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '_sepa.tpl');
-            } else {
-                $html .= file_get_contents(dirname(__FILE__) . '/../../template/paymill_' . $code . '_normal.tpl');
-            }
-        }
-
+        $html .= file_get_contents(dirname(dirname(dirname(__FILE__))) . '/template/paymill_' . $code . '.tpl');
         if (self::canPamillFastCheckout($code, $oPlugin)) {
             $html = self::setFastCheckoutData($code, $html, $oPlugin);
         } else {
-            $toReplace = array('{__cc_brand_logo__}', '{__cc_number__}', '{__cc_cvc__}', '{__cc_holder__}', '{__cc_expiry__}', '{__elv_number__}', '{__elv_bankcode__}', '{__elv_owner__}', '{__elv_iban__}', '{__elv_bic__}');
+            $toReplace = array('{__cc_brand_logo__}', '{__cc_number__}', '{__cc_cvc__}', '{__cc_holder__}', '{__cc_expiry__}', '{__elv_number_iban__}', '{__elv_bankcode_bic__}', '{__elv_owner__}');
             $replace = array('', '', '', '', '', '', '', '', '', '');
             $html = str_replace($toReplace, $replace, $html);
         }
@@ -79,7 +70,6 @@ class PaymentSelection
                 $iconHtml .= "<span style='width:30px;height:20px;display:inline-block;' class='paymill-card-number-$name'></span>";
             }
         }
-
 
         $html = str_replace('{__amount__}', $amount, $html);
         $html = str_replace('{__currency__}', $currency, $html);
@@ -145,14 +135,8 @@ class PaymentSelection
     private static function setElvFastCheckoutData($data, $html, $fastCheckoutHelper, $oPlugin)
     {
         $paymill = new Paymill();
-
-        if (!$oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_sepa']) {
-            $toReplace = array('{__elv_number__}', '{__elv_bankcode__}', '{__elv_owner__}');
-            $replace = array('', '', '');
-        } else {
-            $toReplace = array('{__elv_iban__}', '{__elv_bic__}', '{__elv_owner__}');
-            $replace = array('', '', '');
-        }
+        $toReplace = array('{__elv_number_iban__}', '{__elv_bankcode_bic__}', '{__elv_owner__}');
+        $replace = array('', '', '');
 
         if ($fastCheckoutHelper->hasElvPaymentId($_SESSION['Kunde']->kKunde)) {
             $payments = new Services_Paymill_Payments(
@@ -161,19 +145,14 @@ class PaymentSelection
             );
 
             $payment = $payments->getOne($data->paymentID_ELV);
-
-            if (!$oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_sepa']) {
-                if (array_key_exists('account', $payment)) {
-                    $replace[0] = $payment['account'];
-                    $replace[1] = $payment['code'];
-                    $replace[2] = $payment['holder'];
-                }
-            } else {
-                if (array_key_exists('iban', $payment)) {
-                    $replace[0] = $payment['iban'];
-                    $replace[1] = $payment['bic'];
-                    $replace[2] = $payment['holder'];
-                }
+            if (array_key_exists('iban', $payment) && !empty($payment['iban'])) {
+                $replace[0] = $payment['iban'];
+                $replace[1] = $payment['bic'];
+                $replace[2] = $payment['holder'];
+            }elseif(array_key_exists('account', $payment) && !empty($payment['account'])){
+                $replace[0] = $payment['account'];
+                $replace[1] = $payment['code'];
+                $replace[2] = $payment['holder'];
             }
         }
 

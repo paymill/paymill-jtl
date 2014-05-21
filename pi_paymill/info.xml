@@ -99,15 +99,6 @@
                     </SelectboxOptions>
                 </Setting>
                 <Setting type="selectbox" initialValue="0" sort="3" conf="Y">
-                    <Name>SEPA</Name>
-                    <Description>SEPA Bezahlformular</Description>
-                    <ValueName>pi_paymill_sepa</ValueName>
-                    <SelectboxOptions>
-                        <Option value="0" sort="2">Off</Option>
-                        <Option value="1" sort="1">On</Option>
-                    </SelectboxOptions>
-                </Setting>
-                <Setting type="selectbox" initialValue="0" sort="3" conf="Y">
                     <Name>Paymill debug mode</Name>
                     <Description>Debug Modus, für die schnelle Fehlerfindung.</Description>
                     <ValueName>pi_paymill_debug_mode</ValueName>

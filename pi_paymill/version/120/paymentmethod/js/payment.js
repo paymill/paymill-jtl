@@ -23,6 +23,12 @@ $(document).ready(function()
 	});
 
 
+    function isSepa(){
+        var reg = new RegExp(/^\D\D/);
+        return reg.test($('#paymill-account-number').val());
+    }
+
+
     function paymillElvResponseHandler(error, result)
     {
 		paymillDebug('Paymill: Start response handler');
@@ -163,32 +169,32 @@ $(document).ready(function()
 
 		$("#payment-errors-elv").css('display', 'none');
 		$("#payment-errors-elv").text('');
-		$('#paymill-iban').removeClass('field-error');
-		$('#paymill-bic').removeClass('field-error');
+		$('#paymill-account-number').removeClass('field-error');
+		$('#paymill-bank-code').removeClass('field-error');
 		$('#paymill-bank-owner').removeClass('field-error');
 
         var elvErrorFlag = true;
 
-        ibanWithoutSpaces = $('#paymill-iban').val();
+        ibanWithoutSpaces = $('#paymill-account-number').val();
         ibanWithoutSpaces = ibanWithoutSpaces.replace(/\s+/g, "");
         ibanValidator = new PaymillIban();
 
         if (!ibanValidator.validate(ibanWithoutSpaces)) {
-			$('#paymill-iban').addClass('field-error');
+			$('#paymill-account-number').addClass('field-error');
             $("#payment-errors-elv").append('<div>* ' + lang['iban_invalid'] + '</div>');
             $("#payment-errors-elv").css('display', 'block');
             elvErrorFlag = false;
         }
 
-        if (!($('#paymill-bic').val().length === 8 || $('#paymill-bic').val().length === 11)) {
-			$('#paymill-bic').addClass('field-error');
+        if (!($('#paymill-bank-code').val().length === 8 || $('#paymill-bank-code').val().length === 11)) {
+			$('#paymill-bank-code').addClass('field-error');
             $("#payment-errors-elv").append('<div>* ' + lang['bic_invalid'] + '</div>');
             $("#payment-errors-elv").css('display', 'block');
             elvErrorFlag = false;
         }
 
-        if ($('#paymill-bank-owner-sepa').val() === "") {
-			$('#paymill-bank-owner-sepa').addClass('field-error');
+        if ($('#paymill-bank-owner').val() === "") {
+			$('#paymill-bank-owner').addClass('field-error');
             $("#payment-errors-elv").append('<div>* ' + lang['account_owner_invalid'] + '</div>');
             $("#payment-errors-elv").css('display', 'block');
             elvErrorFlag = false;
@@ -200,8 +206,8 @@ $(document).ready(function()
 
         paymill.createToken({
             iban: ibanWithoutSpaces,
-            bic: $('#paymill-bic').val(),
-            accountholder: $('#paymill-bank-owner-sepa').val()
+            bic: $('#paymill-bank-code').val(),
+            accountholder: $('#paymill-bank-owner').val()
         }, paymillElvResponseHandler);
 
         return false;
@@ -289,10 +295,10 @@ $(document).ready(function()
 			} else if (elv) {
 				paymillDebug('Paymill ELV: Payment method triggered');
 				if (!fastCheckoutElv) {
-					if ($('#paymill-account-number').length) {
-						return paymillElv();
-					} else {
+					if (isSepa()) {
 						return paymillElvSepa();
+					} else {
+						return paymillElv();
 					}
 				} else {
 					paymentSubmitted = true;
