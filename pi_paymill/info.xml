@@ -107,7 +107,11 @@
                         <Option value="1" sort="1">On</Option>
                     </SelectboxOptions>
                 </Setting>
-                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                <Setting type="text" initialValue="7" sort="2" conf="Y">
+                    <Name>SEPA: Tage bis zur Belastung</Name>
+                    <ValueName>pi_paymill_sepa_date</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="4" conf="Y" >
                     <Name>Amex</Name>
                     <Description>-</Description>
                     <ValueName>pi_paymill_creditcardbrand_amex</ValueName>
@@ -116,7 +120,7 @@
                         <Option value="1" sort="1">On</Option>
                     </SelectboxOptions>
                 </Setting>
-                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                <Setting type="selectbox" initialValue="0" sort="4" conf="Y" >
                     <Name>Carta si</Name>
                     <Description>-</Description>
                     <ValueName>pi_paymill_creditcardbrand_carta_si</ValueName>
@@ -125,7 +129,7 @@
                         <Option value="1" sort="1">On</Option>
                     </SelectboxOptions>
                 </Setting>
-                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                <Setting type="selectbox" initialValue="0" sort="4" conf="Y" >
                     <Name>Carte bleue</Name>
                     <Description>-</Description>
                     <ValueName>pi_paymill_creditcardbrand_carte_bleue</ValueName>
@@ -134,7 +138,7 @@
                         <Option value="1" sort="1">On</Option>
                     </SelectboxOptions>
                 </Setting>
-                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                <Setting type="selectbox" initialValue="0" sort="4" conf="Y" >
                     <Name>Dinersclub</Name>
                     <Description>-</Description>
                     <ValueName>pi_paymill_creditcardbrand_dinersclub</ValueName>
@@ -143,7 +147,7 @@
                         <Option value="1" sort="1">On</Option>
                     </SelectboxOptions>
                 </Setting>
-                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                <Setting type="selectbox" initialValue="0" sort="4" conf="Y" >
                     <Name>Discover</Name>
                     <Description>-</Description>
                     <ValueName>pi_paymill_creditcardbrand_discover</ValueName>
@@ -152,7 +156,7 @@
                         <Option value="1" sort="1">On</Option>
                     </SelectboxOptions>
                 </Setting>
-                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                <Setting type="selectbox" initialValue="0" sort="4" conf="Y" >
                     <Name>JCB</Name>
                     <Description>-</Description>
                     <ValueName>pi_paymill_creditcardbrand_jcb</ValueName>
@@ -161,7 +165,7 @@
                         <Option value="1" sort="1">On</Option>
                     </SelectboxOptions>
                 </Setting>
-                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                <Setting type="selectbox" initialValue="0" sort="4" conf="Y" >
                     <Name>Maestro</Name>
                     <Description>-</Description>
                     <ValueName>pi_paymill_creditcardbrand_maestro</ValueName>
@@ -170,7 +174,7 @@
                         <Option value="1" sort="1">On</Option>
                     </SelectboxOptions>
                 </Setting>
-                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                <Setting type="selectbox" initialValue="0" sort="4" conf="Y" >
                     <Name>Mastercard</Name>
                     <Description>-</Description>
                     <ValueName>pi_paymill_creditcardbrand_mastercard</ValueName>
@@ -179,7 +183,7 @@
                         <Option value="1" sort="1">On</Option>
                     </SelectboxOptions>
                 </Setting>
-                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                <Setting type="selectbox" initialValue="0" sort="4" conf="Y" >
                     <Name>China Unionpay</Name>
                     <Description>-</Description>
                     <ValueName>pi_paymill_creditcardbrand_china_unionpay</ValueName>
@@ -188,7 +192,7 @@
                         <Option value="1" sort="1">On</Option>
                     </SelectboxOptions>
                 </Setting>
-                <Setting type="selectbox" initialValue="0" sort="3" conf="Y" >
+                <Setting type="selectbox" initialValue="0" sort="4" conf="Y" >
                     <Name>Visa</Name>
                     <Description>-</Description>
                     <ValueName>pi_paymill_creditcardbrand_visa</ValueName>
@@ -206,6 +210,7 @@
         <Hooks>
             <Hook id="8">payment_selection.php</Hook>
             <Hook id="140">php_query.php</Hook>
+            <Hook id="153">mail.php</Hook>
         </Hooks>
         <PaymentMethod>
             <Method>
@@ -343,6 +348,16 @@
                 <VariableLocalized iso="FRE">BIC</VariableLocalized>
                 <VariableLocalized iso="ITA">BIC</VariableLocalized>
                 <VariableLocalized iso="POR">BIC</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>___SEPA_MAIL___</Name>
+                <Description>SEPA Date</Description>
+                <VariableLocalized iso="GER">Die Lastschrift wird zu dem folgenden Termin eingezogen</VariableLocalized>
+                <VariableLocalized iso="ENG">The direct debit is drawn to the following date</VariableLocalized>
+                <VariableLocalized iso="ESP">The direct debit is drawn to the following date</VariableLocalized>
+                <VariableLocalized iso="FRE">The direct debit is drawn to the following date</VariableLocalized>
+                <VariableLocalized iso="ITA">The direct debit is drawn to the following date</VariableLocalized>
+                <VariableLocalized iso="POR">The direct debit is drawn to the following date</VariableLocalized>
             </Variable>
             <Variable>
                 <Name>Credit_Card_Number_Invalid</Name>
