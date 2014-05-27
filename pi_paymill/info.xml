@@ -441,7 +441,7 @@
             <Variable>
                 <Name>Iban_Invalid</Name>
                 <Description>Invalid IBAN error</Description>
-                <VariableLocalized iso="GER">Invalid IBAN</VariableLocalized>
+                <VariableLocalized iso="GER">Ungültige IBAN</VariableLocalized>
                 <VariableLocalized iso="ENG">Invalid IBAN</VariableLocalized>
                 <VariableLocalized iso="ESP">Invalid IBAN</VariableLocalized>
                 <VariableLocalized iso="FRE">Invalid IBAN</VariableLocalized>
@@ -451,7 +451,7 @@
             <Variable>
                 <Name>Bic_Invalid</Name>
                 <Description>Invalid BIC</Description>
-                <VariableLocalized iso="GER">Invalid BIC</VariableLocalized>
+                <VariableLocalized iso="GER">Ungültige BIC</VariableLocalized>
                 <VariableLocalized iso="ENG">Invalid BIC</VariableLocalized>
                 <VariableLocalized iso="ESP">Invalid BIC</VariableLocalized>
                 <VariableLocalized iso="FRE">Invalid BIC</VariableLocalized>
