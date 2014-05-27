@@ -77,6 +77,7 @@ class Util
             'maestro' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_maestro'] === "1",
             'jcb' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_jcb'] === "1",
             'discover' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_discover'] === "1",
+            'dankort' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_dankort'] === "1",
             'diners-club' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_dinersclub'] === "1",
             'carte-bleue' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_carte_bleue'] === "1",
             'carta-si' => $oPlugin->oPluginEinstellungAssoc_arr['pi_paymill_creditcardbrand_carta_si'] === "1",

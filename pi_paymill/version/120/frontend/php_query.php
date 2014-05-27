@@ -32,6 +32,7 @@ if ($smarty->_tpl_vars['AktuelleSeite'] === 'BESTELLVORGANG' && Util::isPaymillP
             'mastercard' => true,
             'maestro' => true,
             'jcb' => true,
+            'dankort' => true,
             'discover' => true,
             'diners-club' => true,
             'carte-bleue' => true,

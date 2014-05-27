@@ -139,6 +139,15 @@
                     </SelectboxOptions>
                 </Setting>
                 <Setting type="selectbox" initialValue="0" sort="4" conf="Y" >
+                    <Name>Dankort</Name>
+                    <Description>-</Description>
+                    <ValueName>pi_paymill_creditcardbrand_dankort</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="2">Off</Option>
+                        <Option value="1" sort="1">On</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="4" conf="Y" >
                     <Name>Dinersclub</Name>
                     <Description>-</Description>
                     <ValueName>pi_paymill_creditcardbrand_dinersclub</ValueName>
