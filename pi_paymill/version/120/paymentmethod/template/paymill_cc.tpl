@@ -10,7 +10,7 @@
             <div style="float: left; padding-right: 10px;">
                 <span class="form-row-label-big">___Credit_Card_Number___</span>
                 <br/>
-                <input class="card-number {__brand__} form-row-big" id="paymill-card-number" type="text" size="20" value="{__cc_number__}"/>
+                <input class="form-row-big card-number {__brand__}" id="paymill-card-number" type="text" size="20" value="{__cc_number__}"/>
             </div>
             <span class="form-row-label-small">___Card_Verification_Number___<span class="tooltip" title="__CVC_TOOLTIP__">?</span></span>
             <br/>
