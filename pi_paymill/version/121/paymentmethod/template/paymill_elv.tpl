@@ -4,12 +4,12 @@
         </label>
         <div id="payment-errors-elv" class="payment-error"></div>
         <div class="form-row">
-            <label>___Account_Number___</label>
-            <input class="account-number form-row-big" id="paymill-account-number" type="text" size="20" value="{__elv_number__}"/>
+            <label>___Account_Number___ / ___IBAN___</label>
+            <input class="account-number form-row-big" id="paymill-account-number" type="text" size="20" value="{__elv_number_iban__}"/>
         </div>
         <div class="form-row">
-            <label>___Sort_Code___</label>
-            <input class="bank-code form-row-big" id="paymill-bank-code" type="text" size="20" value="{__elv_bankcode__}"/>
+            <label>___Sort_Code___ / ___BIC___</label>
+            <input class="bank-code form-row-big" id="paymill-bank-code" type="text" size="20" value="{__elv_bankcode_bic__}"/>
         </div>
         <div class="form-row">
             <label>___Account_Owner___</label>

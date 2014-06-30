@@ -22,11 +22,30 @@ if ($smarty->_tpl_vars['AktuelleSeite'] === 'BESTELLVORGANG' && Util::isPaymillP
 
     $cc = Util::isPaymillCc($payment->cName, $oPlugin) ? 'true' : 'false';
     $elv = Util::isPaymillElv($payment->cName, $oPlugin) ? 'true' : 'false';
-    
-    $publicKey =  trim($pi_paymill_public_key);
-    $head = 
-<<<HTML
+
+
+    $allowedBrands = Util::getEnabledBrands($oPlugin);
+    if (count($allowedBrands) === count(array_keys($allowedBrands, false))) {
+        $allowedBrands = array(
+            'visa' => true,
+            'china-unionpay' => true,
+            'mastercard' => true,
+            'maestro' => true,
+            'jcb' => true,
+            'dankort' => true,
+            'discover' => true,
+            'diners-club' => true,
+            'carte-bleue' => true,
+            'carta-si' => true,
+            'amex' => true
+        );
+    }
+    $encodedBrands = json_encode($allowedBrands);
+
+    $publicKey = trim($pi_paymill_public_key);
+    $head = <<<HTML
     <script type="text/javascript">
+        var allowedBrands = $encodedBrands;
         var fastCheckoutCc = $fastCheckoutCc;
         var fastCheckoutElv = $fastCheckoutElv;
         var cc = $cc;
@@ -73,12 +92,12 @@ if ($smarty->_tpl_vars['AktuelleSeite'] === 'BESTELLVORGANG' && Util::isPaymillP
     <link rel="stylesheet" type="text/css" href="$pluginPath/css/paymill.css" />
 HTML;
     pq('head')->append($head);
-    
+
     if (Util::isPaymillCc($payment->cName, $oPlugin)) {
         $paymentForm = PaymentSelection::getCcPaymentForm($pluginPath, $oPlugin);
     } elseif (Util::isPaymillElv($payment->cName, $oPlugin)) {
         $paymentForm = PaymentSelection::getElvPaymentForm($pluginPath, $oPlugin);
     }
-    
+
     pq('#complete_order')->prepend($paymentForm);
 }

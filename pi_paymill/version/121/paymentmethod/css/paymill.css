@@ -17,7 +17,7 @@
 .form-row
 {
     width: 400px;
-    padding-bottom: 5px; 
+    padding-bottom: 5px;
 }
 
 .form-row-big
@@ -129,7 +129,12 @@
 
 .paymill-card-number-carta-si
 {
-    background: url('../img/icon_32x20_carte-bleue.png') no-repeat center right !important;
+    background: url('../img/icon_32x20_carta-si.png') no-repeat center right !important;
+}
+
+.paymill-card-number-dankort
+{
+    background: url('../img/icon_32x20_dankort.png') no-repeat center right !important;
 }
 
 .paymill-card-number-grayscale
