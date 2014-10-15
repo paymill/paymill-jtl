@@ -79,6 +79,9 @@
         <Version nr="121">
             <CreateDate>2014-06-30</CreateDate>
         </Version>
+        <Version nr="130">
+            <CreateDate>2014-10-15</CreateDate>
+        </Version>
         <Adminmenu>
             <Settingslink sort="1">
                 <Name>Einstellungen</Name>
@@ -223,6 +226,7 @@
             <Hook id="8">payment_selection.php</Hook>
             <Hook id="140">php_query.php</Hook>
             <Hook id="153">mail.php</Hook>
+            <Hook id="134">mail.php</Hook>
         </Hooks>
         <PaymentMethod>
             <Method>
