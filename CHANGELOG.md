@@ -1,3 +1,12 @@
+## v1.2.1
+ * set description limit to 128 cahrs
+ * automcopletition false for payment forms
+
+## v1.2.0
+ * merge elv/sepa to one payment form
+ * selective brand detection via payment config
+ * prenotification information in the order email
+
 ## v1.1.9
  * move payment form to confirm page
  * redesign payment form
