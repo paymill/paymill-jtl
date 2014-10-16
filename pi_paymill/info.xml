@@ -80,6 +80,7 @@
             <CreateDate>2014-06-30</CreateDate>
         </Version>
         <Version nr="130">
+            <SQL>transaction.sql</SQL>
             <CreateDate>2014-10-15</CreateDate>
         </Version>
         <Adminmenu>
