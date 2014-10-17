@@ -29,6 +29,10 @@ To activate PAYMILL payment follow these steps:
 - Click on **ändern**
 - Select the payment you want and press **Versandart ändern**
 
+# Refund
+
+To trigger a paymill refund you must cancel the order in the jtl wawi
+
 # Error handling
 
 In case of any errors turn on the debug mode in the PAYMILL payment method configuration. Open the javascript console in your browser and check what's being logged during the checkout process.
