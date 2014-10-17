@@ -1,18 +1,18 @@
 <?php
-global $db, $oPlugin;
+require_once(dirname(__FILE__) . '/../paymentmethod/classes/lib/Services/Paymill/Refunds.php');
 
-$orders = $db->executeQuery(
+$orders = $GLOBALS['DB']->executeQuery(
     'SELECT cBestellNr FROM tbestellung WHERE cStatus = "' . BESTELLUNG_STATUS_STORNO . '"',
     2
 );
 
 foreach ($orders as $order) {
-    $transaction = $db->executeQuery(
+    $transaction = $GLOBALS['DB']->executeQuery(
         'SELECT * FROM xplugin_pi_paymill_transaction WHERE order_id = "' . $order->cBestellNr . '"',
-        2
+        1
     );
     
-    if (!is_null($transaction) && !is_null($transaction->transaction_id)) {
+    if ($transaction) {
         $params = array(
             'transactionId' => $transaction->transaction_id,
             'params' => array('amount' => $transaction->amount)

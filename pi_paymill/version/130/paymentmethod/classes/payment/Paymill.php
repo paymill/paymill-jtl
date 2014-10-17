@@ -112,6 +112,10 @@ class Paymill extends PaymentMethod implements Services_Paymill_LoggingInterface
                             $this->_fastCheckout->saveElvIds($order->oRechnungsadresse->kKunde, $paymill->getClientId(), $paymill->getPaymentId());
                         }
                     }
+                    
+                    $GLOBALS['DB']->executeQuery(
+                        "INSERT INTO `xplugin_pi_paymill_transaction` (`order_id`, `transaction_id`, `amount`) VALUES ('$this->_orderId', '" . $paymill->getTransactionId() . "', '" . (int) (string) ($amount * 100) . "')"
+                    );
 
                     unset($_SESSION['pi']);
                     unset($_SESSION['PigmbhPaymill']);
