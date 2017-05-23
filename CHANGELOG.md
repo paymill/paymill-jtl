@@ -1,3 +1,8 @@
+## v1.3.1
+* Remove CURLOPT_CAINFO - path to Certificate Authority (CA) bundle
+* Remove paymill.crt
+* Change user agent info to "Paymill-JTL/1.3.1"
+
 ## v1.3.0
  * add paymill refund via wawi "storno"
 
